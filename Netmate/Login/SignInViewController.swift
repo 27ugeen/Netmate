@@ -1,5 +1,5 @@
 //
-//  RegisterViewController.swift
+//  SignInViewController.swift
 //  Netmate
 //
 //  Created by GiN Eugene on 25/7/2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class SignInViewController: UIViewController {
     //MARK: - props
     
     //MARK: - subviews
@@ -27,26 +27,18 @@ class RegisterViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setSBFont(18)
-        label.textColor = Palette.mainTextColor
-        label.text = "REGISTER"
+        label.textColor = Palette.accentTextColor
+        label.text = "Welcom back"
         return label
     }()
     
-    private lazy var midLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.setMedFont(16)
-        label.textColor = Palette.mainTextColor
-        label.text = "Enter your number"
-        return label
-    }()
     
     private lazy var midSubLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.setMedFont(12)
+        label.font = UIFont.setNormFont(14)
         label.textColor = Palette.secondTextColor
-        label.text = "Your phone number will be used to sign in to your account"
+        label.text = "Enter your phone number to sign in to your account"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -67,20 +59,9 @@ class RegisterViewController: UIViewController {
         return text
     }()
     
-    private lazy var nextButton = MagicButton(title: "NEXT", titleColor: Palette.btnWithBordTitleColor) {
+    private lazy var nextButton = MagicButton(title: "CONFIRM", titleColor: Palette.btnWithBordTitleColor) {
         //        self.goToProfile()
     }
-    
-    private lazy var botSubLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.setMedFont(12)
-        label.textColor = Palette.secondTextColor
-        label.text = "By clicking the \"Next\" button you accept the User Agreement and Privacy Policy"
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
-    }()
     //MARK: - init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +92,7 @@ class RegisterViewController: UIViewController {
     }
 }
 //MARK: - setupViews
-extension RegisterViewController {
+extension SignInViewController {
     private func setupViews() {
         
         self.navigationController?.isNavigationBarHidden = false
@@ -125,11 +106,9 @@ extension RegisterViewController {
         scrollView.addSubview(contentView)
         
         contentView.addSubview(topLabel)
-        contentView.addSubview(midLabel)
         contentView.addSubview(midSubLabel)
         contentView.addSubview(phoneTextField)
         contentView.addSubview(nextButton)
-        contentView.addSubview(botSubLabel)
         
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -145,34 +124,27 @@ extension RegisterViewController {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             topLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            topLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 104),
+            topLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 180),
             
-            midLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            midLabel.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 70),
-            
-            midSubLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 80),
-            midSubLabel.topAnchor.constraint(equalTo: midLabel.bottomAnchor, constant: 5),
-            midSubLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -80),
+            midSubLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 98),
+            midSubLabel.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 26),
+            midSubLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -98),
             
             phoneTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            phoneTextField.topAnchor.constraint(equalTo: midSubLabel.bottomAnchor, constant: 16),
+            phoneTextField.topAnchor.constraint(equalTo: midSubLabel.bottomAnchor, constant: 12),
             phoneTextField.heightAnchor.constraint(equalToConstant: 48),
             phoneTextField.widthAnchor.constraint(equalToConstant: 260),
             
             nextButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            nextButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 70),
+            nextButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 148),
             nextButton.heightAnchor.constraint(equalToConstant: 48),
-            nextButton.widthAnchor.constraint(equalToConstant: 120),
-            
-            botSubLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 58),
-            botSubLabel.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 20),
-            botSubLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -58),
-            botSubLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            nextButton.widthAnchor.constraint(equalToConstant: 200),
+            nextButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }
 //MARK: - setupKeyboard
-private extension RegisterViewController {
+private extension SignInViewController {
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             scrollView.contentInset.bottom = keyboardSize.height

@@ -43,6 +43,9 @@ class OnboardingViewController: UIViewController {
     
     private lazy var goToLoginButton = MagicButton(title: "Already have an account", titleColor: Palette.btnNoBordTitleColor) {
 //        self.isUserExists = !self.isUserExists
+        let signInVC = SignInViewController()
+        self.navigationItem.backButtonTitle = ""
+        self.navigationController?.pushViewController(signInVC, animated: true)
     }
     //MARK: - localization
     
