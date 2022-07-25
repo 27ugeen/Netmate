@@ -36,6 +36,9 @@ class OnboardingViewController: UIViewController {
     
     private lazy var registerButton = MagicButton(title: "REGISTER", titleColor: Palette.btnWithBordTitleColor) {
 //        self.goToProfile()
+        let regVC = RegisterViewController()
+        self.navigationItem.backButtonTitle = ""
+        self.navigationController?.pushViewController(regVC, animated: true)
     }
     
     private lazy var goToLoginButton = MagicButton(title: "Already have an account", titleColor: Palette.btnNoBordTitleColor) {

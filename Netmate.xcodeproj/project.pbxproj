@@ -18,6 +18,7 @@
 		1156B80D288EBD9700F58577 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1156B80A288EBD9700F58577 /* Inter-SemiBold.ttf */; };
 		1156B80E288EBD9700F58577 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1156B80B288EBD9700F58577 /* Inter-Regular.ttf */; };
 		1156B80F288EBD9700F58577 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1156B80C288EBD9700F58577 /* Inter-Medium.ttf */; };
+		1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B812288ED39900F58577 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		1156B80A288EBD9700F58577 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		1156B80B288EBD9700F58577 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		1156B80C288EBD9700F58577 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		1156B812288ED39900F58577 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				1156B7F6288E9AC200F58577 /* LaunchScreen.storyboard */,
 				1156B7F9288E9AC200F58577 /* Info.plist */,
 				1156B7F4288E9AC200F58577 /* Assets.xcassets */,
+				1156B811288ED36F00F58577 /* Onboarding */,
 				1156B809288EA64300F58577 /* Login */,
 				1156B810288EBDA100F58577 /* Fonts */,
 				1156B808288EA63900F58577 /* Helpers */,
@@ -99,7 +102,7 @@
 		1156B809288EA64300F58577 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				1156B7FF288E9E3F00F58577 /* OnboardingViewController.swift */,
+				1156B812288ED39900F58577 /* RegisterViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -112,6 +115,14 @@
 				1156B80A288EBD9700F58577 /* Inter-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1156B811288ED36F00F58577 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1156B7FF288E9E3F00F58577 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +200,7 @@
 			files = (
 				1156B805288EA4A400F58577 /* Extensions.swift in Sources */,
 				1156B800288E9E3F00F58577 /* OnboardingViewController.swift in Sources */,
+				1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */,
 				1156B802288EA3B100F58577 /* MagicButton.swift in Sources */,
 				1156B807288EA54500F58577 /* Palette.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,

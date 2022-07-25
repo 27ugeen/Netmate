@@ -76,6 +76,6 @@ extension UIFont {
     }
     
     static func setSBFont(_ fontSize: CGFloat) -> UIFont {
-        return UIFont(name: "Inter-SemiBold", size: fontSize) ?? .systemFont(ofSize: fontSize)
+        return UIFont(name: "Inter-SemiBold", size: fontSize) ?? UIFont.boldSystemFont(ofSize: fontSize)
     }
 }
