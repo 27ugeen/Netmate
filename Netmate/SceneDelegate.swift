@@ -16,8 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
         
-        let onBoardingVC = OnboardingViewController()
+//        let onBoardingVC = OnboardingViewController()
+        let onBoardingVC = MainViewController()
         let onBoardingNavVC = UINavigationController(rootViewController: onBoardingVC)
+        
+        
         
         window?.rootViewController = onBoardingNavVC
     }

@@ -9,7 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     //MARK: - props
-    private let friedsListCellId = FriendsListTableViewCell.cellId
+    private let friedsListCellID = FriendsListTableViewCell.cellId
+    private let feedCellID = FeedTableViewCell.cellId
     
     //MARK: - subviews
     private let tableView = UITableView(frame: .zero, style: .grouped)
@@ -30,7 +31,8 @@ extension MainViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = Palette.appTintColor
         
-        tableView.register(FriendsListTableViewCell.self, forCellReuseIdentifier: friedsListCellId)
+        tableView.register(FriendsListTableViewCell.self, forCellReuseIdentifier: friedsListCellID)
+        tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
         //        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: photoCellID)
         //        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: headerID)
         //
@@ -68,13 +70,19 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: friedsListCellId, for: indexPath) as! FriendsListTableViewCell
-//        cell.imageView?.image = UIImage(named: "Tom_Cruise")
-        return cell
+        let friedsListCell = tableView.dequeueReusableCell(withIdentifier: friedsListCellID) as! FriendsListTableViewCell
+        let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
+        
+        switch indexPath.row {
+        case 0:
+            return friedsListCell
+        default:
+            return feedCell
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -83,14 +91,14 @@ extension MainViewController: UITableViewDataSource {
 }
 //MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        tableView.deselectRow(at: indexPath, animated: true)
-        //        if indexPath.row == 0 {
-        //            self.goToPhotoGalleryAction?()
-        //        }
-    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        switch indexPath.row {
+        case 0:
+            return 60
+        default:
+            return 508
+        }
     }
 }

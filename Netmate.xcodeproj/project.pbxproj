@@ -25,6 +25,9 @@
 		11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */; };
 		11573E45288FF3F000819116 /* FriendsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */; };
 		11573E47288FF8DA00819116 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E46288FF8DA00819116 /* FriendsList.swift */; };
+		11573E4A2890440F00819116 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E492890440F00819116 /* FeedTableViewCell.swift */; };
+		11573E4D2890527100819116 /* PostTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E4C2890527100819116 /* PostTopTableViewCell.swift */; };
+		11573E50289054C000819116 /* PostBotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E4F289054C000819116 /* PostBotTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewCell.swift; sourceTree = "<group>"; };
 		11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListCollectionViewCell.swift; sourceTree = "<group>"; };
 		11573E46288FF8DA00819116 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
+		11573E492890440F00819116 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		11573E4C2890527100819116 /* PostTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTopTableViewCell.swift; sourceTree = "<group>"; };
+		11573E4F289054C000819116 /* PostBotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBotTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +97,10 @@
 				1156B810288EBDA100F58577 /* Fonts */,
 				1156B808288EA63900F58577 /* Helpers */,
 				1156B803288EA3C500F58577 /* Components */,
-				11573E482890427A00819116 /* FriedsList */,
 				11573E41288FF21B00819116 /* Main */,
+				11573E482890427A00819116 /* FriedsList */,
+				11573E4B2890441400819116 /* Feed */,
+				11573E4E2890527C00819116 /* Post */,
 			);
 			path = Netmate;
 			sourceTree = "<group>";
@@ -165,6 +173,23 @@
 				11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */,
 			);
 			path = FriedsList;
+			sourceTree = "<group>";
+		};
+		11573E4B2890441400819116 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				11573E492890440F00819116 /* FeedTableViewCell.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		11573E4E2890527C00819116 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				11573E4C2890527100819116 /* PostTopTableViewCell.swift */,
+				11573E4F289054C000819116 /* PostBotTableViewCell.swift */,
+			);
+			path = Post;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,11 +267,14 @@
 			files = (
 				1156B805288EA4A400F58577 /* Extensions.swift in Sources */,
 				1156B800288E9E3F00F58577 /* OnboardingViewController.swift in Sources */,
+				11573E4D2890527100819116 /* PostTopTableViewCell.swift in Sources */,
+				11573E50289054C000819116 /* PostBotTableViewCell.swift in Sources */,
 				1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */,
 				11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */,
 				11573E45288FF3F000819116 /* FriendsListCollectionViewCell.swift in Sources */,
 				1156B802288EA3B100F58577 /* MagicButton.swift in Sources */,
 				1156B815288F0D1500F58577 /* SignInViewController.swift in Sources */,
+				11573E4A2890440F00819116 /* FeedTableViewCell.swift in Sources */,
 				1156B807288EA54500F58577 /* Palette.swift in Sources */,
 				11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,
