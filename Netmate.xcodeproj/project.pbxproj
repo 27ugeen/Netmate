@@ -21,6 +21,10 @@
 		1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B812288ED39900F58577 /* RegisterViewController.swift */; };
 		1156B815288F0D1500F58577 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B814288F0D1400F58577 /* SignInViewController.swift */; };
 		11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E3C288FCA7D00819116 /* RegisterConfirmViewController.swift */; };
+		11573E40288FEE7E00819116 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E3F288FEE7E00819116 /* MainViewController.swift */; };
+		11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */; };
+		11573E45288FF3F000819116 /* FriendsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */; };
+		11573E47288FF8DA00819116 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E46288FF8DA00819116 /* FriendsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		1156B812288ED39900F58577 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1156B814288F0D1400F58577 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		11573E3C288FCA7D00819116 /* RegisterConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterConfirmViewController.swift; sourceTree = "<group>"; };
+		11573E3F288FEE7E00819116 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewCell.swift; sourceTree = "<group>"; };
+		11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListCollectionViewCell.swift; sourceTree = "<group>"; };
+		11573E46288FF8DA00819116 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +86,13 @@
 				1156B7F9288E9AC200F58577 /* Info.plist */,
 				1156B7F4288E9AC200F58577 /* Assets.xcassets */,
 				1156B811288ED36F00F58577 /* Onboarding */,
-				1156B809288EA64300F58577 /* Login */,
+				1156B809288EA64300F58577 /* Register */,
+				11573E3E288FD2BA00819116 /* SignIn */,
 				1156B810288EBDA100F58577 /* Fonts */,
 				1156B808288EA63900F58577 /* Helpers */,
 				1156B803288EA3C500F58577 /* Components */,
+				11573E482890427A00819116 /* FriedsList */,
+				11573E41288FF21B00819116 /* Main */,
 			);
 			path = Netmate;
 			sourceTree = "<group>";
@@ -103,14 +114,13 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		1156B809288EA64300F58577 /* Login */ = {
+		1156B809288EA64300F58577 /* Register */ = {
 			isa = PBXGroup;
 			children = (
 				1156B812288ED39900F58577 /* RegisterViewController.swift */,
 				11573E3C288FCA7D00819116 /* RegisterConfirmViewController.swift */,
-				1156B814288F0D1400F58577 /* SignInViewController.swift */,
 			);
-			path = Login;
+			path = Register;
 			sourceTree = "<group>";
 		};
 		1156B810288EBDA100F58577 /* Fonts */ = {
@@ -129,6 +139,32 @@
 				1156B7FF288E9E3F00F58577 /* OnboardingViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		11573E3E288FD2BA00819116 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				1156B814288F0D1400F58577 /* SignInViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		11573E41288FF21B00819116 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				11573E3F288FEE7E00819116 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		11573E482890427A00819116 /* FriedsList */ = {
+			isa = PBXGroup;
+			children = (
+				11573E46288FF8DA00819116 /* FriendsList.swift */,
+				11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */,
+				11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */,
+			);
+			path = FriedsList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,11 +244,15 @@
 				1156B800288E9E3F00F58577 /* OnboardingViewController.swift in Sources */,
 				1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */,
 				11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */,
+				11573E45288FF3F000819116 /* FriendsListCollectionViewCell.swift in Sources */,
 				1156B802288EA3B100F58577 /* MagicButton.swift in Sources */,
 				1156B815288F0D1500F58577 /* SignInViewController.swift in Sources */,
 				1156B807288EA54500F58577 /* Palette.swift in Sources */,
+				11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,
 				1156B7EE288E9AC000F58577 /* SceneDelegate.swift in Sources */,
+				11573E40288FEE7E00819116 /* MainViewController.swift in Sources */,
+				11573E47288FF8DA00819116 /* FriendsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

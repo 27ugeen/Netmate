@@ -61,6 +61,8 @@ class SignInViewController: UIViewController {
     
     private lazy var nextButton = MagicButton(title: "CONFIRM", titleColor: Palette.btnWithBordTitleColor) {
         //        self.goToProfile()
+        let mainVC = MainViewController()
+        self.navigationController?.pushViewController(mainVC, animated: true)
     }
     //MARK: - init
     override func viewDidLoad() {
