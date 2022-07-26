@@ -1,13 +1,13 @@
 //
-//  RegisterViewController.swift
+//  RegisterConfirmViewController.swift
 //  Netmate
 //
-//  Created by GiN Eugene on 25/7/2022.
+//  Created by GiN Eugene on 26/7/2022.
 //
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterConfirmViewController: UIViewController {
     //MARK: - props
     
     //MARK: - subviews
@@ -27,26 +27,39 @@ class RegisterViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setSBFont(18)
-        label.textColor = Palette.mainTextColor
-        label.text = "REGISTER"
+        label.textColor = Palette.accentTextColor
+        label.text = "Confirmation of registration"
         return label
     }()
     
     private lazy var midLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.setMedFont(16)
+        label.font = UIFont.setNormFont(14)
         label.textColor = Palette.mainTextColor
-        label.text = "Enter your number"
+        label.text = "We sent an SMS whit a code to the number:"
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var phoneLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.setSBFont(14)
+        label.textColor = Palette.mainTextColor
+        label.text = "+38 098 888 88 88"
+        label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
     private lazy var midSubLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.setMedFont(12)
+        label.font = UIFont.setNormFont(12)
         label.textColor = Palette.secondTextColor
-        label.text = "Your phone number will be used to sign in to your account"
+        label.text = "Enter code from SMS"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -62,27 +75,21 @@ class RegisterViewController: UIViewController {
         text.font = UIFont.setNormFont(16)
         text.tintColor = Palette.mainTextColor
         text.autocapitalizationType = .none
-        text.placeholder = "+38___-___-__-__"
+        text.placeholder = "________"
         text.textAlignment = .center
         return text
     }()
     
-    private lazy var nextButton = MagicButton(title: "NEXT", titleColor: Palette.btnWithBordTitleColor) {
+    private lazy var registerButton = MagicButton(title: "REGISTER", titleColor: Palette.btnWithBordTitleColor) {
         //        self.goToProfile()
-        let regConfVC = RegisterConfirmViewController()
-        self.navigationItem.backButtonTitle = ""
-        self.navigationController?.pushViewController(regConfVC, animated: true)
     }
     
-    private lazy var botSubLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.setMedFont(12)
-        label.textColor = Palette.secondTextColor
-        label.text = "By clicking the \"Next\" button you accept the User Agreement and Privacy Policy"
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
+    private lazy var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "main_icon")
+        return imageView
     }()
     //MARK: - init
     override func viewDidLoad() {
@@ -107,14 +114,14 @@ class RegisterViewController: UIViewController {
     }
     //MARK: - methods
     private func setupButton() {
-        nextButton.setBackgroundColor(Palette.btnWithBordColor, forState: .normal)
-        nextButton.titleLabel?.font = UIFont.setMedFont(16)
-        nextButton.layer.cornerRadius = 8
-        nextButton.clipsToBounds = true
+        registerButton.setBackgroundColor(Palette.btnWithBordColor, forState: .normal)
+        registerButton.titleLabel?.font = UIFont.setMedFont(16)
+        registerButton.layer.cornerRadius = 8
+        registerButton.clipsToBounds = true
     }
 }
 //MARK: - setupViews
-extension RegisterViewController {
+extension RegisterConfirmViewController {
     private func setupViews() {
         
         self.navigationController?.isNavigationBarHidden = false
@@ -129,10 +136,11 @@ extension RegisterViewController {
         
         contentView.addSubview(topLabel)
         contentView.addSubview(midLabel)
+        contentView.addSubview(phoneLabel)
         contentView.addSubview(midSubLabel)
         contentView.addSubview(phoneTextField)
-        contentView.addSubview(nextButton)
-        contentView.addSubview(botSubLabel)
+        contentView.addSubview(registerButton)
+        contentView.addSubview(logoImageView)
         
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -151,31 +159,34 @@ extension RegisterViewController {
             topLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 104),
             
             midLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            midLabel.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 70),
+            midLabel.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 12),
             
-            midSubLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 80),
-            midSubLabel.topAnchor.constraint(equalTo: midLabel.bottomAnchor, constant: 5),
-            midSubLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -80),
+            phoneLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            phoneLabel.topAnchor.constraint(equalTo: midLabel.bottomAnchor, constant: 4),
             
             phoneTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            phoneTextField.topAnchor.constraint(equalTo: midSubLabel.bottomAnchor, constant: 16),
+            phoneTextField.topAnchor.constraint(equalTo: midLabel.bottomAnchor, constant: 138),
             phoneTextField.heightAnchor.constraint(equalToConstant: 48),
             phoneTextField.widthAnchor.constraint(equalToConstant: 260),
             
-            nextButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            nextButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 70),
-            nextButton.heightAnchor.constraint(equalToConstant: 48),
-            nextButton.widthAnchor.constraint(equalToConstant: 120),
+            midSubLabel.leadingAnchor.constraint(equalTo: phoneTextField.leadingAnchor),
+            midSubLabel.bottomAnchor.constraint(equalTo: phoneTextField.topAnchor, constant: -5),
             
-            botSubLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 58),
-            botSubLabel.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 20),
-            botSubLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -58),
-            botSubLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            registerButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            registerButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 86),
+            registerButton.heightAnchor.constraint(equalToConstant: 48),
+            registerButton.widthAnchor.constraint(equalToConstant: 260),
+            registerButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            logoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            logoImageView.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 43),
+            logoImageView.heightAnchor.constraint(equalToConstant: 100),
+            logoImageView.widthAnchor.constraint(equalToConstant: 86)
         ])
     }
 }
 //MARK: - setupKeyboard
-private extension RegisterViewController {
+private extension RegisterConfirmViewController {
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             scrollView.contentInset.bottom = keyboardSize.height

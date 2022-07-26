@@ -20,6 +20,7 @@
 		1156B80F288EBD9700F58577 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1156B80C288EBD9700F58577 /* Inter-Medium.ttf */; };
 		1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B812288ED39900F58577 /* RegisterViewController.swift */; };
 		1156B815288F0D1500F58577 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B814288F0D1400F58577 /* SignInViewController.swift */; };
+		11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E3C288FCA7D00819116 /* RegisterConfirmViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		1156B80C288EBD9700F58577 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		1156B812288ED39900F58577 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1156B814288F0D1400F58577 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		11573E3C288FCA7D00819116 /* RegisterConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterConfirmViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				1156B812288ED39900F58577 /* RegisterViewController.swift */,
+				11573E3C288FCA7D00819116 /* RegisterConfirmViewController.swift */,
 				1156B814288F0D1400F58577 /* SignInViewController.swift */,
 			);
 			path = Login;
@@ -204,6 +207,7 @@
 				1156B805288EA4A400F58577 /* Extensions.swift in Sources */,
 				1156B800288E9E3F00F58577 /* OnboardingViewController.swift in Sources */,
 				1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */,
+				11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */,
 				1156B802288EA3B100F58577 /* MagicButton.swift in Sources */,
 				1156B815288F0D1500F58577 /* SignInViewController.swift in Sources */,
 				1156B807288EA54500F58577 /* Palette.swift in Sources */,
