@@ -24,30 +24,38 @@ class PostTopTableViewCell: UITableViewCell {
     //MARK: - localization
     
     //MARK: - subviews
-    private let vLineImageView: UIImageView = {
+    private lazy var vLineImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = Palette.appTintColor
         image.image = UIImage(named: "vLine")
         return image
     }()
     
-    private let postDescriptionLabel: UILabel = {
+    private lazy var postDescriptionLabel: UILabel = {
         let description = UILabel()
         description.translatesAutoresizingMaskIntoConstraints = false
-        description.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        description.textColor = .systemGray
-        description.numberOfLines = 0
+        description.font = UIFont.setNormFont(14)
+        description.textColor = Palette.mainTextColor
+        description.numberOfLines = 4
         description.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         return description
     }()
     
-    private let postImageView: UIImageView = {
+    private lazy var showMoreLabel: UILabel = {
+        let description = UILabel()
+        description.translatesAutoresizingMaskIntoConstraints = false
+        description.font = UIFont.setSBFont(12)
+        description.textColor = Palette.linkTextcolor
+        description.text = "Show more..."
+        return description
+    }()
+    
+    private lazy var postImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = Palette.appTintColor
+        image.backgroundColor = Palette.secondBackColor
         image.image = UIImage(named: "Gal_Gadot")
         image.clipsToBounds = true
         return image
@@ -66,8 +74,10 @@ class PostTopTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension PostTopTableViewCell {
     private func setupViews() {
+        contentView.backgroundColor = Palette.secondBackColor
         contentView.addSubview(vLineImageView)
         contentView.addSubview(postDescriptionLabel)
+        contentView.addSubview(showMoreLabel)
         contentView.addSubview(postImageView)
         
         NSLayoutConstraint.activate([
@@ -80,9 +90,12 @@ extension PostTopTableViewCell {
             postDescriptionLabel.leadingAnchor.constraint(equalTo: vLineImageView.trailingAnchor, constant: 24),
             postDescriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             postDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            
+            showMoreLabel.leadingAnchor.constraint(equalTo: vLineImageView.trailingAnchor, constant: 24),
+            showMoreLabel.topAnchor.constraint(equalTo: postDescriptionLabel.bottomAnchor, constant: 3),
 
             postImageView.leadingAnchor.constraint(equalTo: vLineImageView.leadingAnchor, constant: 24),
-            postImageView.topAnchor.constraint(equalTo: postDescriptionLabel.bottomAnchor, constant: 15),
+            postImageView.topAnchor.constraint(equalTo: showMoreLabel.bottomAnchor, constant: 15),
             postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
             postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             postImageView.heightAnchor.constraint(equalToConstant: 125)

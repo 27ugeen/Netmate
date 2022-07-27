@@ -24,16 +24,16 @@ class PostBotTableViewCell: UITableViewCell {
     //MARK: - localization
     
     //MARK: - subviews
-    private let likesImageView: UIImageView = {
+    private lazy var likesImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = Palette.appTintColor
+        image.backgroundColor = Palette.secondBackColor
         image.image = UIImage(named: "heart")
         return image
     }()
     
-    private let likesLabel: UILabel = {
+    private lazy var likesLabel: UILabel = {
         let likes = UILabel()
         likes.translatesAutoresizingMaskIntoConstraints = false
         likes.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -42,16 +42,16 @@ class PostBotTableViewCell: UITableViewCell {
         return likes
     }()
     
-    private let commentsImageView: UIImageView = {
+    private lazy var commentsImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = Palette.appTintColor
+        image.backgroundColor = Palette.secondBackColor
         image.image = UIImage(named: "speech_bubble")
         return image
     }()
     
-    private let commentsLabel: UILabel = {
+    private lazy var commentsLabel: UILabel = {
         let comments = UILabel()
         comments.translatesAutoresizingMaskIntoConstraints = false
         comments.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -60,11 +60,11 @@ class PostBotTableViewCell: UITableViewCell {
         return comments
     }()
     
-    private let bookmarkImageView: UIImageView = {
+    private lazy var bookmarkImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = Palette.appTintColor
+        image.backgroundColor = Palette.secondBackColor
         image.image = UIImage(named: "bookmark")
         return image
     }()
@@ -82,6 +82,7 @@ class PostBotTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension PostBotTableViewCell {
     private func setupViews() {
+        contentView.backgroundColor = Palette.secondBackColor
         contentView.addSubview(likesImageView)
         contentView.addSubview(likesLabel)
         contentView.addSubview(commentsImageView)
@@ -98,7 +99,7 @@ extension PostBotTableViewCell {
             likesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -18),
             
-            commentsImageView.leadingAnchor.constraint(equalTo: likesImageView.leadingAnchor, constant: 58),
+            commentsImageView.leadingAnchor.constraint(equalTo: likesLabel.trailingAnchor, constant: 30),
             commentsImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
             commentsImageView.widthAnchor.constraint(equalToConstant: 25),
             commentsImageView.heightAnchor.constraint(equalTo: commentsImageView.widthAnchor),

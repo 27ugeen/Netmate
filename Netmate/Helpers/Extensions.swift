@@ -19,6 +19,12 @@ extension UIViewController {
     }
 }
 
+extension UITableViewCell {
+  func separator(hide: Bool) {
+      separatorInset.left = hide ? bounds.size.width * 2 : 0
+  }
+}
+
 extension UITabBar {
     static func setTransparentTabbar() {
         UITabBar.appearance().backgroundImage = UIImage()

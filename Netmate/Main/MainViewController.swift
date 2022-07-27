@@ -13,23 +13,31 @@ class MainViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     //MARK: - subviews
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.automaticallyAdjustsScrollIndicatorInsets = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = Palette.appTintColor
+        return tableView
+    }()
     
     //MARK: - init
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
         setupViews()
     }
     
 }
-//MARK: - setupTableView
+//MARK: - setupConstraints
 extension MainViewController {
-    private func setupTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = Palette.appTintColor
+    private func setupViews() {
+        self.navigationController?.isNavigationBarHidden = true
+        self.view.backgroundColor = Palette.appTintColor
+        self.view.addSubview(tableView)
         
         tableView.register(FriendsListTableViewCell.self, forCellReuseIdentifier: friedsListCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
@@ -46,14 +54,6 @@ extension MainViewController {
         //
         tableView.dataSource = self
         tableView.delegate = self
-    }
-}
-//MARK: - setupConstraints
-extension MainViewController {
-    private func setupViews() {
-        self.navigationController?.isNavigationBarHidden = true
-        self.view.backgroundColor = Palette.appTintColor
-        self.view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -70,7 +70,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,6 +81,7 @@ extension MainViewController: UITableViewDataSource {
         case 0:
             return friedsListCell
         default:
+            feedCell.selectionStyle = .none
             return feedCell
         }
     }
@@ -98,7 +99,7 @@ extension MainViewController: UITableViewDelegate {
         case 0:
             return 60
         default:
-            return 508
+            return 405
         }
     }
 }

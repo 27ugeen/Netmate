@@ -26,7 +26,7 @@ class FeedTableViewCell: UITableViewCell {
     //MARK: - localization
     
     //MARK: - subviews
-    private let authorImageView: UIImageView = {
+    private lazy var authorImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
@@ -37,25 +37,25 @@ class FeedTableViewCell: UITableViewCell {
         return image
     }()
     
-    private let authorLabel: UILabel = {
+    private lazy var authorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemGray
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.textColor = Palette.mainTextColor
+        label.font = UIFont.setMedFont(16)
         label.text = "Gal Gadot"
         return label
     }()
     
-    private let descriptLabel: UILabel = {
+    private lazy var descriptLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemGray
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.textColor = Palette.secondTextColor
+        label.font = UIFont.setNormFont(14)
         label.text = "Actor"
         return label
     }()
     
-    private let menuImageView: UIImageView = {
+    private lazy var menuImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
@@ -64,34 +64,28 @@ class FeedTableViewCell: UITableViewCell {
         return image
     }()
     
-    private let postTableView = UITableView(frame: .zero, style: .plain)
+    private let postTableView: UITableView = {
+        let table = UITableView(frame: .zero, style: .plain)
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.automaticallyAdjustsScrollIndicatorInsets = false
+//        table.contentInsetAdjustmentBehavior = .never
+        table.isScrollEnabled = false
+        table.separatorStyle = .singleLine
+        table.backgroundColor = Palette.appTintColor
+        table.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        table.separatorColor = Palette.separatorColor
+        return table
+    }()
     
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setupTableView()
         setupViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-//MARK: - setupTableView
-extension FeedTableViewCell {
-    private func setupTableView() {
-        postTableView.translatesAutoresizingMaskIntoConstraints = false
-//        postTableView.isScrollEnabled = false
-//        postTableView.separatorStyle = .none
-        postTableView.backgroundColor = Palette.appTintColor
-//        postTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        postTableView.register(PostTopTableViewCell.self, forCellReuseIdentifier: postTopCellID)
-        postTableView.register(PostBotTableViewCell.self, forCellReuseIdentifier: postBotCellID)
-
-        postTableView.dataSource = self
-        postTableView.delegate = self
     }
 }
 //MARK: - setupViews
@@ -103,19 +97,25 @@ extension FeedTableViewCell {
         contentView.addSubview(menuImageView)
         contentView.addSubview(postTableView)
         
+        postTableView.register(PostTopTableViewCell.self, forCellReuseIdentifier: postTopCellID)
+        postTableView.register(PostBotTableViewCell.self, forCellReuseIdentifier: postBotCellID)
+
+        postTableView.dataSource = self
+        postTableView.delegate = self
+        
         NSLayoutConstraint.activate([
             authorImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            authorImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            authorImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
             authorImageView.widthAnchor.constraint(equalToConstant: 60),
             authorImageView.heightAnchor.constraint(equalTo: authorImageView.widthAnchor),
             
             authorLabel.leadingAnchor.constraint(equalTo: authorImageView.trailingAnchor, constant: 24),
-            authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
             
             descriptLabel.leadingAnchor.constraint(equalTo: authorImageView.trailingAnchor, constant: 24),
             descriptLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 4),
             
-            menuImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            menuImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 37),
             menuImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
             menuImageView.widthAnchor.constraint(equalToConstant: 5),
             menuImageView.heightAnchor.constraint(equalToConstant: 21),
@@ -141,6 +141,7 @@ extension FeedTableViewCell: UITableViewDataSource {
         case 0:
             return postTopCell
         default:
+            postBotCell.separator(hide: true)
             return postBotCell
         }
     }
