@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,11 +17,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
         
-//        let onBoardingVC = OnboardingViewController()
-        let onBoardingVC = FavoriteViewController()
+        let localAuthContext = LAContext()
+        let rootVC = UIViewController()
+        
+        let localAuthorizationService = LocalAuthorizationService(localAuthContext: localAuthContext)
+        
+        let mainVC = MainViewController()
+        let profileVC = ProfileViewController()
+        let favVC = FavoriteViewController()
+        
+        let mainCoord = MainCoordinator(rootViewController: rootVC, mainVC: mainVC)
+        let profileCoord = ProfileCoordinator(rootViewController: rootVC, profileVC: profileVC)
+        let favCoord = FavoriteCoordinator(rootViewController: rootVC, favVC: favVC)
+        
+        let appCoordinator = AppCoordinator(mainCoordinator: mainCoord, profileCoordinator: profileCoord, favoriteCoordinator: favCoord)
+        
+        let onBoardingVC = OnboardingViewController(coordinator: appCoordinator, localAuthorizationService: localAuthorizationService)
         let onBoardingNavVC = UINavigationController(rootViewController: onBoardingVC)
-        
-        
         
         window?.rootViewController = onBoardingNavVC
     }

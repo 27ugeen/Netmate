@@ -10,6 +10,8 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
     //MARK: - props
+    private let appCoordinator: AppCoordinator
+    private let localAuthorizationService: LocalAuthorizationService
 
     //MARK: - subviews
     private let scrollView: UIScrollView = {
@@ -43,13 +45,23 @@ class OnboardingViewController: UIViewController {
     
     private lazy var goToLoginButton = MagicButton(title: "Already have an account", titleColor: Palette.btnNoBordTitleColor) {
 //        self.isUserExists = !self.isUserExists
-        let signInVC = SignInViewController()
+        let signInVC = SignInViewController(coordinator: self.appCoordinator, localAuthorizationService: self.localAuthorizationService)
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(signInVC, animated: true)
     }
     //MARK: - localization
     
     //MARK: - init
+    init(coordinator: AppCoordinator, localAuthorizationService: LocalAuthorizationService) {
+        self.appCoordinator = coordinator
+        self.localAuthorizationService = localAuthorizationService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

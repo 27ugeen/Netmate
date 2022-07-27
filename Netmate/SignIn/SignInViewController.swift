@@ -9,6 +9,8 @@ import UIKit
 
 class SignInViewController: UIViewController {
     //MARK: - props
+    private let appCoordinator: AppCoordinator
+    private let localAuthorizationService: LocalAuthorizationService
     
     //MARK: - subviews
     private let scrollView: UIScrollView = {
@@ -60,11 +62,19 @@ class SignInViewController: UIViewController {
     }()
     
     private lazy var nextButton = MagicButton(title: "CONFIRM", titleColor: Palette.btnWithBordTitleColor) {
-        //        self.goToProfile()
-        let mainVC = MainViewController()
-        self.navigationController?.pushViewController(mainVC, animated: true)
+        self.goToProfile()
     }
     //MARK: - init
+    init(coordinator: AppCoordinator, localAuthorizationService: LocalAuthorizationService) {
+        self.appCoordinator = coordinator
+        self.localAuthorizationService = localAuthorizationService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,6 +101,13 @@ class SignInViewController: UIViewController {
         nextButton.titleLabel?.font = UIFont.setMedFont(16)
         nextButton.layer.cornerRadius = 8
         nextButton.clipsToBounds = true
+    }
+    
+    private func goToProfile() {
+        let tabBC = appCoordinator.start()
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.pushViewController(tabBC, animated: true)
+        print("Current user:  is signed in")
     }
 }
 //MARK: - setupViews
