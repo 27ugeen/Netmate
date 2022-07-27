@@ -21,7 +21,8 @@ extension UIViewController {
 
 extension UITableViewCell {
   func separator(hide: Bool) {
-      separatorInset.left = hide ? bounds.size.width * 2 : 0
+      //TODO: - need another way to hide
+      separatorInset.left = hide ? bounds.size.width * 5 : 0
   }
 }
 

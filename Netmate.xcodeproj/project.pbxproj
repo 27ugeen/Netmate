@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E14289142D900A8AFE3 /* ProfileViewController.swift */; };
+		11431E182891453400A8AFE3 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E172891453400A8AFE3 /* ProfileHeaderView.swift */; };
 		1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B7EB288E9AC000F58577 /* AppDelegate.swift */; };
 		1156B7EE288E9AC000F58577 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B7ED288E9AC000F58577 /* SceneDelegate.swift */; };
 		1156B7F5288E9AC200F58577 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1156B7F4288E9AC200F58577 /* Assets.xcassets */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11431E14289142D900A8AFE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		11431E172891453400A8AFE3 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		1156B7E8288E9AC000F58577 /* Netmate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netmate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1156B7EB288E9AC000F58577 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1156B7ED288E9AC000F58577 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11431E16289142DF00A8AFE3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				11431E14289142D900A8AFE3 /* ProfileViewController.swift */,
+				11431E172891453400A8AFE3 /* ProfileHeaderView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		1156B7DF288E9ABF00F58577 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +111,7 @@
 				1156B808288EA63900F58577 /* Helpers */,
 				1156B803288EA3C500F58577 /* Components */,
 				11573E41288FF21B00819116 /* Main */,
+				11431E16289142DF00A8AFE3 /* Profile */,
 				11573E482890427A00819116 /* FriedsList */,
 				11573E4B2890441400819116 /* Feed */,
 				11573E4E2890527C00819116 /* Post */,
@@ -272,11 +286,13 @@
 				1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */,
 				11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */,
 				11573E45288FF3F000819116 /* FriendsListCollectionViewCell.swift in Sources */,
+				11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */,
 				1156B802288EA3B100F58577 /* MagicButton.swift in Sources */,
 				1156B815288F0D1500F58577 /* SignInViewController.swift in Sources */,
 				11573E4A2890440F00819116 /* FeedTableViewCell.swift in Sources */,
 				1156B807288EA54500F58577 /* Palette.swift in Sources */,
 				11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */,
+				11431E182891453400A8AFE3 /* ProfileHeaderView.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,
 				1156B7EE288E9AC000F58577 /* SceneDelegate.swift in Sources */,
 				11573E40288FEE7E00819116 /* MainViewController.swift in Sources */,
