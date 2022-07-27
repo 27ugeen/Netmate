@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
 //        let onBoardingVC = OnboardingViewController()
-        let onBoardingVC = ProfileViewController()
+        let onBoardingVC = FavoriteViewController()
         let onBoardingNavVC = UINavigationController(rootViewController: onBoardingVC)
         
         
