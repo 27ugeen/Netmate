@@ -29,6 +29,12 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
         profileVC.goToInfoVCAction = { [weak self] in
             self?.goToInfoVC()
         }
+        
+        profileVC.goToEditVCAction = { [weak self] in
+            self?.goToProfEditVC()
+            
+        }
+        
         rootViewController = UINavigationController(rootViewController: profileVC)
         return rootViewController
     }
@@ -36,5 +42,10 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     func goToInfoVC() {
         let infoVC = InfoViewController(infoVM: infoVM)
         navigationRootViewController?.present(infoVC, animated: true)
+    }
+    
+    func goToProfEditVC() {
+        let profEditVC = ProfileEditViewController()
+        navigationRootViewController?.pushViewController(profEditVC, animated: true)
     }
 }

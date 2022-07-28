@@ -12,6 +12,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     static let cellId = "ProfileHeaderTableViewCell"
     
     var goToInfoAction: (() -> Void)?
+    var goToEditAction: (() -> Void)?
 
     //MARK: - localization
     
@@ -74,6 +75,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     
     private lazy var editButton = MagicButton(title: "Edit profile", titleColor: Palette.appTintColor) {
         print("header edit button tapped")
+        self.goToEditAction?()
     }
     
     //MARK: - init

@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     var goToInfoVCAction: (() -> Void)?
+    var goToEditVCAction: (() -> Void)?
     
     //MARK: - subviews
     private let tableView: UITableView = {
@@ -81,6 +82,9 @@ extension ProfileViewController: UITableViewDataSource {
             headerCell.selectionStyle = .none
             headerCell.goToInfoAction = {
                 self.goToInfoVCAction?()
+            }
+            headerCell.goToEditAction = {
+                self.goToEditVCAction?()
             }
             return headerCell
         case 2:

@@ -19,6 +19,7 @@
 		11431E312891AB6300A8AFE3 /* FavoriteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E302891AB6300A8AFE3 /* FavoriteCoordinator.swift */; };
 		11431E342891AF6200A8AFE3 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E332891AF6200A8AFE3 /* AuthorizationViewController.swift */; };
 		11431E362891AFB700A8AFE3 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E352891AFB700A8AFE3 /* LocalAuthorizationService.swift */; };
+		11471D522892FD8D00A5EB57 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11471D512892FD8D00A5EB57 /* ProfileEditViewController.swift */; };
 		1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B7EB288E9AC000F58577 /* AppDelegate.swift */; };
 		1156B7EE288E9AC000F58577 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B7ED288E9AC000F58577 /* SceneDelegate.swift */; };
 		1156B7F5288E9AC200F58577 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1156B7F4288E9AC200F58577 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 		11431E302891AB6300A8AFE3 /* FavoriteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoordinator.swift; sourceTree = "<group>"; };
 		11431E332891AF6200A8AFE3 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		11431E352891AFB700A8AFE3 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
+		11471D512892FD8D00A5EB57 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		1156B7E8288E9AC000F58577 /* Netmate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netmate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1156B7EB288E9AC000F58577 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1156B7ED288E9AC000F58577 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				11431E14289142D900A8AFE3 /* ProfileViewController.swift */,
+				11471D512892FD8D00A5EB57 /* ProfileEditViewController.swift */,
 				11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */,
 			);
 			path = Views;
@@ -470,6 +473,7 @@
 				1172710F2892DB080084D204 /* InfoViewModel.swift in Sources */,
 				11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */,
 				11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */,
+				11471D522892FD8D00A5EB57 /* ProfileEditViewController.swift in Sources */,
 				11431E1A28919E1300A8AFE3 /* FavoriteViewController.swift in Sources */,
 				117271012892927B0084D204 /* Photo.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,
