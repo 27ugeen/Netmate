@@ -7,9 +7,11 @@
 
 import UIKit
 
-class ProfileHeaderView: UITableViewHeaderFooterView {
+class ProfileHeaderTableViewCell: UITableViewCell {
     //MARK: - props
-    static let cellId = "ProfileHeaderView"
+    static let cellId = "ProfileHeaderTableViewCell"
+    
+    var goToInfoAction: (() -> Void)?
 
     //MARK: - localization
     
@@ -55,7 +57,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    
     private lazy var exclamatImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +69,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private lazy var detailButton = MagicButton(title: "Detail information", titleColor: Palette.mainTextColor) {
         print("header detail button tapped")
+        self.goToInfoAction?()
     }
     
     private lazy var editButton = MagicButton(title: "Edit profile", titleColor: Palette.appTintColor) {
@@ -75,15 +77,15 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     //MARK: - init
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupButtons()
         setupViews()
     }
     
     required init?(coder: NSCoder) {
-        nil
+        fatalError("init(coder:) has not been implemented")
     }
     //MARK: - methods
     private func setupButtons() {
@@ -100,16 +102,16 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
 }
 //MARK: - setupViews
-extension ProfileHeaderView {
+extension ProfileHeaderTableViewCell {
     private func setupViews() {
-        addSubview(titleLabel)
-        addSubview(menuButton)
-        addSubview(avatarImage)
-        addSubview(fullNameLabel)
-        addSubview(profLabel)
-        addSubview(exclamatImage)
-        addSubview(detailButton)
-        addSubview(editButton)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(menuButton)
+        contentView.addSubview(avatarImage)
+        contentView.addSubview(fullNameLabel)
+        contentView.addSubview(profLabel)
+        contentView.addSubview(exclamatImage)
+        contentView.addSubview(detailButton)
+        contentView.addSubview(editButton)
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 26),

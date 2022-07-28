@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E14289142D900A8AFE3 /* ProfileViewController.swift */; };
-		11431E182891453400A8AFE3 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E172891453400A8AFE3 /* ProfileHeaderView.swift */; };
+		11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */; };
 		11431E1A28919E1300A8AFE3 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E1928919E1300A8AFE3 /* FavoriteViewController.swift */; };
 		11431E1D28919FEC00A8AFE3 /* FavoriteSearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E1C28919FEC00A8AFE3 /* FavoriteSearchHeaderView.swift */; };
 		11431E1F2891A27100A8AFE3 /* FavoriteSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E1E2891A27100A8AFE3 /* FavoriteSearchViewController.swift */; };
@@ -44,11 +44,14 @@
 		117271012892927B0084D204 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271002892927B0084D204 /* Photo.swift */; };
 		117271042892939B0084D204 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271032892939B0084D204 /* PhotoTableViewCell.swift */; };
 		11727106289294020084D204 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11727105289294020084D204 /* PhotoCollectionViewCell.swift */; };
+		117271092892D0440084D204 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271082892D0440084D204 /* InfoViewController.swift */; };
+		1172710C2892D6610084D204 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172710B2892D6610084D204 /* InfoTableViewCell.swift */; };
+		1172710F2892DB080084D204 /* InfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172710E2892DB080084D204 /* InfoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11431E14289142D900A8AFE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		11431E172891453400A8AFE3 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewTableViewCell.swift; sourceTree = "<group>"; };
 		11431E1928919E1300A8AFE3 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		11431E1C28919FEC00A8AFE3 /* FavoriteSearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSearchHeaderView.swift; sourceTree = "<group>"; };
 		11431E1E2891A27100A8AFE3 /* FavoriteSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSearchViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +89,9 @@
 		117271002892927B0084D204 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		117271032892939B0084D204 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		11727105289294020084D204 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		117271082892D0440084D204 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		1172710B2892D6610084D204 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		1172710E2892DB080084D204 /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				11431E14289142D900A8AFE3 /* ProfileViewController.swift */,
-				11431E172891453400A8AFE3 /* ProfileHeaderView.swift */,
+				11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -222,6 +228,7 @@
 				11431E16289142DF00A8AFE3 /* Profile */,
 				11431E1B28919E1B00A8AFE3 /* Favorite */,
 				11573E482890427A00819116 /* FriedsList */,
+				1172710A2892D4C40084D204 /* Info */,
 				11573E4B2890441400819116 /* Feed */,
 				117271022892937B0084D204 /* Photo */,
 				11573E4E2890527C00819116 /* Post */,
@@ -336,6 +343,32 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1172710A2892D4C40084D204 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				1172710D2892D9BE0084D204 /* Views */,
+				117271102892DB0F0084D204 /* Model */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		1172710D2892D9BE0084D204 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				117271082892D0440084D204 /* InfoViewController.swift */,
+				1172710B2892D6610084D204 /* InfoTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		117271102892DB0F0084D204 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1172710E2892DB080084D204 /* InfoViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -410,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11431E342891AF6200A8AFE3 /* AuthorizationViewController.swift in Sources */,
+				117271092892D0440084D204 /* InfoViewController.swift in Sources */,
 				1156B805288EA4A400F58577 /* Extensions.swift in Sources */,
 				11431E2A2891A9CA00A8AFE3 /* MainCoordinator.swift in Sources */,
 				1156B800288E9E3F00F58577 /* OnboardingViewController.swift in Sources */,
@@ -431,9 +465,11 @@
 				1156B802288EA3B100F58577 /* MagicButton.swift in Sources */,
 				1156B815288F0D1500F58577 /* SignInViewController.swift in Sources */,
 				11573E4A2890440F00819116 /* FeedTableViewCell.swift in Sources */,
+				1172710C2892D6610084D204 /* InfoTableViewCell.swift in Sources */,
 				1156B807288EA54500F58577 /* Palette.swift in Sources */,
+				1172710F2892DB080084D204 /* InfoViewModel.swift in Sources */,
 				11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */,
-				11431E182891453400A8AFE3 /* ProfileHeaderView.swift in Sources */,
+				11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */,
 				11431E1A28919E1300A8AFE3 /* FavoriteViewController.swift in Sources */,
 				117271012892927B0084D204 /* Photo.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,

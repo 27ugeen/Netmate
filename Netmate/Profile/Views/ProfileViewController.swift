@@ -9,15 +9,20 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     //MARK: - props
-    private let headerCellID = ProfileHeaderView.cellId
+    private let headerCellID = ProfileHeaderTableViewCell.cellId
     private let photoCellID = PhotoTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
+    var goToInfoVCAction: (() -> Void)?
+    
     //MARK: - subviews
     private let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = Palette.appTintColor
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = Palette.mainTextColor
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
         return tableView
     }()
@@ -37,7 +42,7 @@ extension ProfileViewController {
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
         
-        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: headerCellID)
+        tableView.register(ProfileHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
         
@@ -46,8 +51,8 @@ extension ProfileViewController {
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -59,15 +64,26 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let emptyCell = UITableViewCell()
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! ProfileHeaderTableViewCell
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
         
         switch indexPath.row {
         case 0:
+            emptyCell.separator(hide: true)
+            return emptyCell
+        case 1:
+            headerCell.selectionStyle = .none
+            headerCell.goToInfoAction = {
+                self.goToInfoVCAction?()
+            }
+            return headerCell
+        case 2:
             photoCell.selectionStyle = .none
             return photoCell
         default:
@@ -75,21 +91,8 @@ extension ProfileViewController: UITableViewDataSource {
             feedCell.separator(hide: true)
             return feedCell
         }
-        
-//        switch indexPath.row {
-//        case 0:
-//            let cell: PhotosTableViewCell = tableView.dequeueReusableCell(withIdentifier: photoCellID, for: indexPath) as! PhotosTableViewCell
-//            return cell
-//        default:
-//            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! PostTableViewCell
-//            cell.post = PostsStorage.tableModel[indexPath.section].posts[indexPath.row - 1]
-//            return cell
-//        }
     }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "PostsStorage.tableModel[section].title"
-//    }
+
 }
 //MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
@@ -102,24 +105,14 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
-        case 0 :
+        case 0:
+            return 0
+        case 1:
+            return 200
+        case 2:
             return 140
         default:
             return 400
         }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerCellID) as! ProfileHeaderView
-        tableView.separatorColor = Palette.accentTextColor
-        
-//        headerView.logOutAction = {
-//            self.logOutAction?()
-//        }
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
     }
 }

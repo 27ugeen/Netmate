@@ -41,8 +41,10 @@ class PhotoTableViewCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
+        
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.showsHorizontalScrollIndicator = false
         
         view.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: photoCellID)
         
