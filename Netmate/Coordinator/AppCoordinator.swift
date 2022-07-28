@@ -40,15 +40,15 @@ final class AppCoordinator: AppBaseCoordinatorProtocol {
     func start() -> UIViewController {
         let mainNavVC = mainCoordinator.start()
         mainCoordinator.parentCoordinator = self
-        mainNavVC.tabBarItem = UITabBarItem(title: "Main", image: UIImage(systemName: "house.fill"), tag: 0)
+        mainNavVC.tabBarItem = UITabBarItem(title: "Main", image: UIImage(named: "house"), tag: 0)
         
         let profileNavVC = profileCoordinator.start()
         profileCoordinator.parentCoordinator = self
-        profileNavVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
+        profileNavVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "person"), tag: 1)
         
         let favoriteNavVC = favoriteCoordinator.start()
         favoriteCoordinator.parentCoordinator = self
-        favoriteNavVC.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star.square.fill"), tag: 2)
+        favoriteNavVC.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(named: "heart"), tag: 2)
         
         (rootViewController as? UITabBarController)?.viewControllers = [mainNavVC, profileNavVC, favoriteNavVC]
         

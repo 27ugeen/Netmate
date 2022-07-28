@@ -29,6 +29,14 @@ class FriendsListTableViewCell: UITableViewCell {
         
         return view
     }()
+    
+    private lazy var hLineImageView: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        image.image = UIImage(named: "hLine")?.withTintColor(Palette.accentTextColor)
+        return image
+    }()
     //MARK: - init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -45,15 +53,22 @@ class FriendsListTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension FriendsListTableViewCell {
     private func setupViews() {
-        
         contentView.addSubview(friendsCollectionView)
+        contentView.addSubview(hLineImageView)
         
         NSLayoutConstraint.activate([
             friendsCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             friendsCollectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             friendsCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            friendsCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            friendsCollectionView.heightAnchor.constraint(equalToConstant: 60)
+//            friendsCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            friendsCollectionView.heightAnchor.constraint(equalToConstant: 60),
+            
+            hLineImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            hLineImageView.topAnchor.constraint(equalTo: friendsCollectionView.bottomAnchor, constant: 15),
+            hLineImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            hLineImageView.widthAnchor.constraint(equalTo: friendsCollectionView.widthAnchor),
+            hLineImageView.heightAnchor.constraint(equalToConstant: 1)
+            
         ])
     }
 }

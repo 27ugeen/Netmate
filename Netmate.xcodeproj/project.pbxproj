@@ -40,6 +40,7 @@
 		11573E4A2890440F00819116 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E492890440F00819116 /* FeedTableViewCell.swift */; };
 		11573E4D2890527100819116 /* PostTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E4C2890527100819116 /* PostTopTableViewCell.swift */; };
 		11573E50289054C000819116 /* PostBotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E4F289054C000819116 /* PostBotTableViewCell.swift */; };
+		117270FF28926ACE0084D204 /* MainHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117270FE28926ACE0084D204 /* MainHeaderTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		11573E492890440F00819116 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		11573E4C2890527100819116 /* PostTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTopTableViewCell.swift; sourceTree = "<group>"; };
 		11573E4F289054C000819116 /* PostBotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBotTableViewCell.swift; sourceTree = "<group>"; };
+		117270FE28926ACE0084D204 /* MainHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				11573E3F288FEE7E00819116 /* MainViewController.swift */,
+				117270FE28926ACE0084D204 /* MainHeaderTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				11431E212891A8B600A8AFE3 /* Coordinator.swift in Sources */,
 				11573E45288FF3F000819116 /* FriendsListCollectionViewCell.swift in Sources */,
 				11431E1D28919FEC00A8AFE3 /* FavoriteSearchHeaderView.swift in Sources */,
+				117270FF28926ACE0084D204 /* MainHeaderTableViewCell.swift in Sources */,
 				11431E312891AB6300A8AFE3 /* FavoriteCoordinator.swift in Sources */,
 				11431E1F2891A27100A8AFE3 /* FavoriteSearchViewController.swift in Sources */,
 				11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */,

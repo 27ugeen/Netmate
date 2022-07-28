@@ -105,17 +105,17 @@ extension FeedTableViewCell {
         
         NSLayoutConstraint.activate([
             authorImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            authorImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
+            authorImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             authorImageView.widthAnchor.constraint(equalToConstant: 60),
             authorImageView.heightAnchor.constraint(equalTo: authorImageView.widthAnchor),
             
             authorLabel.leadingAnchor.constraint(equalTo: authorImageView.trailingAnchor, constant: 24),
-            authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
+            authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             
             descriptLabel.leadingAnchor.constraint(equalTo: authorImageView.trailingAnchor, constant: 24),
             descriptLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 4),
             
-            menuImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 37),
+            menuImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
             menuImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
             menuImageView.widthAnchor.constraint(equalToConstant: 5),
             menuImageView.heightAnchor.constraint(equalToConstant: 21),

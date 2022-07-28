@@ -91,11 +91,13 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 405
+        return 400
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = ProfileHeaderView()
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerCellID) as! ProfileHeaderView
+        tableView.separatorColor = Palette.accentTextColor
+        
 //        headerView.logOutAction = {
 //            self.logOutAction?()
 //        }

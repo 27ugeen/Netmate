@@ -9,6 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     //MARK: - props
+    private let headerCellID = MainHeaderTableViewCell.cellId
     private let friedsListCellID = FriendsListTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
@@ -29,8 +30,15 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        setupTabBarView()
     }
-    
+    //MARK: - setupTabBarView
+    private func setupTabBarView() {
+        self.tabBarController?.tabBar.barTintColor = Palette.appTintColor
+        self.tabBarController?.tabBar.isTranslucent = true
+        self.tabBarController?.tabBar.tintColor = Palette.accentTextColor
+        self.tabBarController?.tabBar.unselectedItemTintColor = Palette.mainTextColor
+    }
 }
 //MARK: - setupConstraints
 extension MainViewController {
@@ -39,26 +47,17 @@ extension MainViewController {
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
         
+        tableView.register(MainHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
         tableView.register(FriendsListTableViewCell.self, forCellReuseIdentifier: friedsListCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
-        //        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: photoCellID)
-        //        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: headerID)
-        //
-        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapEdit(_:)))
-        //        tapGesture.numberOfTapsRequired = 2
-        //        tableView.addGestureRecognizer(tapGesture)
-        //
-        //        tableView.dragInteractionEnabled = true
-        //        tableView.dragDelegate = self
-        //        tableView.dropDelegate = self
-        //
+        
         tableView.dataSource = self
         tableView.delegate = self
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -74,20 +73,21 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! MainHeaderTableViewCell
         let friedsListCell = tableView.dequeueReusableCell(withIdentifier: friedsListCellID) as! FriendsListTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
         
         switch indexPath.row {
         case 0:
+            headerCell.selectionStyle = .none
+            return headerCell
+        case 1:
+            headerCell.selectionStyle = .none
             return friedsListCell
         default:
             feedCell.selectionStyle = .none
             return feedCell
         }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "MAIN"
     }
 }
 //MARK: - UITableViewDelegate
@@ -97,9 +97,11 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 60
+            return 85
+        case 1:
+            return 76
         default:
-            return 405
+            return 400
         }
     }
 }
