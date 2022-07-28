@@ -82,7 +82,7 @@ extension MainViewController: UITableViewDataSource {
             headerCell.selectionStyle = .none
             return headerCell
         case 1:
-            headerCell.selectionStyle = .none
+            friedsListCell.selectionStyle = .none
             return friedsListCell
         default:
             feedCell.selectionStyle = .none

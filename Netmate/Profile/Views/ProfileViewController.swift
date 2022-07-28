@@ -10,6 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController {
     //MARK: - props
     private let headerCellID = ProfileHeaderView.cellId
+    private let photoCellID = PhotoTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
     //MARK: - subviews
@@ -37,6 +38,7 @@ extension ProfileViewController {
         self.view.addSubview(tableView)
         
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: headerCellID)
+        tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
         
         tableView.dataSource = self
@@ -61,10 +63,18 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: feedCellID, for: indexPath) as! FeedTableViewCell
-        cell.separator(hide: true)
+        let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
+        let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
         
-        return cell
+        switch indexPath.row {
+        case 0:
+            photoCell.selectionStyle = .none
+            return photoCell
+        default:
+            photoCell.selectionStyle = .none
+            feedCell.separator(hide: true)
+            return feedCell
+        }
         
 //        switch indexPath.row {
 //        case 0:
@@ -91,7 +101,12 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        switch indexPath.row {
+        case 0 :
+            return 140
+        default:
+            return 400
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
