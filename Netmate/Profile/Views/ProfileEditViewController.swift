@@ -21,6 +21,17 @@ class ProfileEditViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    private let testButton = MagicButton(title: "Test", titleColor: Palette.mainTextColor) {
+        print("edit testButton tapped")
+    }
+    
+    let radioView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -87,6 +98,14 @@ class ProfileEditViewController: UIViewController {
         return label
     }()
     
+    private lazy var male = RadioButtonView(title: "Male", titleColor: Palette.mainTextColor, titleFont: UIFont.setMedFont(12), isSelected: true, imgSize: CGSize(width: 16, height: 16), imgPadding: 14) {
+        self.onRadioButtonTap(0)
+    }
+    
+    private lazy var female = RadioButtonView(title: "Female", titleColor: Palette.mainTextColor, titleFont: UIFont.setMedFont(12), isSelected: false, imgSize: CGSize(width: 16, height: 16), imgPadding: 14) {
+        self.onRadioButtonTap(1)
+    }
+    
     private lazy var birthLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -143,7 +162,41 @@ class ProfileEditViewController: UIViewController {
         setupViews()
     }
     //MARK: - methods
+    private func onRadioButtonTap(_ sender: Int) {
+        if sender == 0 {
+            mSelected()
+        } else {
+            fSelected()
+        }
+    }
+    
+    private func mSelected() {
+        male.radioImageView.backgroundColor = Palette.appTintColor
+        male.radioImageView.image = UIImage(systemName: "record.circle")
+        male.radioImageView.tintColor = Palette.accentTextColor
+        
+        female.radioImageView.backgroundColor = Palette.appTintColor
+        female.radioImageView.image = UIImage(systemName: "circle")
+        female.radioImageView.tintColor = Palette.mainTextColor
+    }
+    
+    private func fSelected() {
+        male.radioImageView.backgroundColor = Palette.appTintColor
+        male.radioImageView.image = UIImage(systemName: "circle")
+        male.radioImageView.tintColor = Palette.mainTextColor
+        
+        female.radioImageView.backgroundColor = Palette.appTintColor
+        female.radioImageView.image = UIImage(systemName: "record.circle")
+        female.radioImageView.tintColor = Palette.accentTextColor
+    }
+    
     private func setupButtons() {
+        if male.radioButton.isSelected {
+            mSelected()
+        } else {
+            fSelected()
+        }
+        
         leftButton.setBackgroundImage(UIImage(named: "cancel"), for: .normal)
         
         rightButton.setBackgroundImage(UIImage(named: "checkMark"), for: .normal)
@@ -165,6 +218,11 @@ extension ProfileEditViewController {
         self.view.addSubview(firstTextField)
         self.view.addSubview(lastLabel)
         self.view.addSubview(lastTextField)
+        
+        self.view.addSubview(sexLabel)
+        self.view.addSubview(male)
+        self.view.addSubview(female)
+        
         self.view.addSubview(birthLabel)
         self.view.addSubview(birthTextField)
         self.view.addSubview(cityLabel)
@@ -200,8 +258,21 @@ extension ProfileEditViewController {
             lastTextField.trailingAnchor.constraint(equalTo: rightButton.trailingAnchor),
             lastTextField.heightAnchor.constraint(equalToConstant: 40),
             
+            sexLabel.leadingAnchor.constraint(equalTo: leftButton.leadingAnchor),
+            sexLabel.topAnchor.constraint(equalTo: lastTextField.bottomAnchor, constant: 14),
+            
+            male.leadingAnchor.constraint(equalTo: leftButton.leadingAnchor),
+            male.topAnchor.constraint(equalTo: sexLabel.bottomAnchor, constant: 11),
+            male.widthAnchor.constraint(equalToConstant: 100),
+            male.heightAnchor.constraint(equalToConstant: 20),
+            
+            female.leadingAnchor.constraint(equalTo: leftButton.leadingAnchor),
+            female.topAnchor.constraint(equalTo: male.bottomAnchor, constant: 16),
+            female.widthAnchor.constraint(equalToConstant: 100),
+            female.heightAnchor.constraint(equalToConstant: 20),
+            
             birthLabel.leadingAnchor.constraint(equalTo: leftButton.leadingAnchor),
-            birthLabel.topAnchor.constraint(equalTo: lastTextField.bottomAnchor,constant: 122),
+            birthLabel.topAnchor.constraint(equalTo: female.bottomAnchor,constant: 34),
             
             birthTextField.leadingAnchor.constraint(equalTo: leftButton.leadingAnchor),
             birthTextField.topAnchor.constraint(equalTo: birthLabel.bottomAnchor, constant: 6),
@@ -215,8 +286,6 @@ extension ProfileEditViewController {
             cityTextField.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 6),
             cityTextField.trailingAnchor.constraint(equalTo: rightButton.trailingAnchor),
             cityTextField.heightAnchor.constraint(equalToConstant: 40)
-            
-        
         ])
     }
 }

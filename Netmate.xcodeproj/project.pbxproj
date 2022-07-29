@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113621DE2893F59100EE5C5F /* RadioButton.swift */; };
 		11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E14289142D900A8AFE3 /* ProfileViewController.swift */; };
 		11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */; };
 		11431E1A28919E1300A8AFE3 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E1928919E1300A8AFE3 /* FavoriteViewController.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		113621DE2893F59100EE5C5F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		11431E14289142D900A8AFE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewTableViewCell.swift; sourceTree = "<group>"; };
 		11431E1928919E1300A8AFE3 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				1156B801288EA3B100F58577 /* MagicButton.swift */,
+				113621DE2893F59100EE5C5F /* RadioButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				117271012892927B0084D204 /* Photo.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,
 				1156B7EE288E9AC000F58577 /* SceneDelegate.swift in Sources */,
+				113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */,
 				11573E40288FEE7E00819116 /* MainViewController.swift in Sources */,
 				11573E47288FF8DA00819116 /* FriendsList.swift in Sources */,
 				11431E362891AFB700A8AFE3 /* LocalAuthorizationService.swift in Sources */,
