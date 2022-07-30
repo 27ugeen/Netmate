@@ -25,13 +25,6 @@ class ProfileEditViewController: UIViewController {
         print("edit testButton tapped")
     }
     
-    let radioView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

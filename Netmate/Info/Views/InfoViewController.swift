@@ -9,19 +9,38 @@ import UIKit
 
 class InfoViewController: UIViewController {
     //MARK: - props
+    private let infoCell = InfoTableViewCell.cellId
     private let infoVM: InfoViewModel
     
-    private let infoCell = InfoTableViewCell.cellId
+    var cancelAction: (() -> Void)?
     
     //MARK: - subviews
+    private lazy var cancelButton: UIButton = MagicButton(title: "", titleColor: Palette.appTintColor) {
+        print("info cancel button tapped")
+        self.cancelAction?()
+    }
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = Palette.mainTextColor
+        label.font = UIFont.setSBFont(18)
+        label.text = "Profile"
+        return label
+    }()
+    
+    private lazy var hLineImageView: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.backgroundColor = Palette.separatorColor
+        return image
+    }()
+    
     private let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
-        
-        tableView.separatorStyle = .singleLine
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        tableView.separatorColor = Palette.separatorColor
+        tableView.separatorStyle = .none
         
         return tableView
     }()
@@ -44,7 +63,13 @@ class InfoViewController: UIViewController {
 //MARK: - setupViews
 extension InfoViewController {
     private func setupViews() {
-        self.view.backgroundColor = Palette.secondBackColor.withAlphaComponent(0.95)
+        self.navigationController?.isNavigationBarHidden = true
+        self.view.backgroundColor = Palette.secondBackColor
+        self.cancelButton.setBackgroundImage(UIImage(named: "cancel"), for: .normal)
+        
+        self.view.addSubview(cancelButton)
+        self.view.addSubview(titleLabel)
+        self.view.addSubview(hLineImageView)
         self.view.addSubview(tableView)
         
         tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: infoCell)
@@ -53,9 +78,22 @@ extension InfoViewController {
         tableView.delegate = self
         
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            cancelButton.widthAnchor.constraint(equalToConstant: 24),
+            cancelButton.heightAnchor.constraint(equalTo: cancelButton.widthAnchor),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: cancelButton.leadingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 25),
+            
+            hLineImageView.leadingAnchor.constraint(equalTo: cancelButton.leadingAnchor),
+            hLineImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
+            hLineImageView.widthAnchor.constraint(equalToConstant: view.frame.width / (4/3) - 48),
+            hLineImageView.heightAnchor.constraint(equalToConstant: 0.5),
+            
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            tableView.topAnchor.constraint(equalTo: hLineImageView.bottomAnchor, constant: 15),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -79,6 +117,6 @@ extension InfoViewController: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension InfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 32
     }
 }

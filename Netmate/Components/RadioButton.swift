@@ -34,7 +34,7 @@ final class RadioButtonView: UIView {
         return iView
     }()
     
-    private let radioLabel: UILabel = {
+    let radioLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

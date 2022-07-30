@@ -42,6 +42,9 @@
 		11573E4A2890440F00819116 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E492890440F00819116 /* FeedTableViewCell.swift */; };
 		11573E4D2890527100819116 /* PostTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E4C2890527100819116 /* PostTopTableViewCell.swift */; };
 		11573E50289054C000819116 /* PostBotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E4F289054C000819116 /* PostBotTableViewCell.swift */; };
+		115A32C4289516A000873DB9 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A32C3289516A000873DB9 /* MenuViewController.swift */; };
+		115A32C72895394E00873DB9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A32C62895394E00873DB9 /* MenuTableViewCell.swift */; };
+		115A32CA28953B9900873DB9 /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A32C928953B9900873DB9 /* MenuModel.swift */; };
 		117270FF28926ACE0084D204 /* MainHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117270FE28926ACE0084D204 /* MainHeaderTableViewCell.swift */; };
 		117271012892927B0084D204 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271002892927B0084D204 /* Photo.swift */; };
 		117271042892939B0084D204 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271032892939B0084D204 /* PhotoTableViewCell.swift */; };
@@ -49,6 +52,7 @@
 		117271092892D0440084D204 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271082892D0440084D204 /* InfoViewController.swift */; };
 		1172710C2892D6610084D204 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172710B2892D6610084D204 /* InfoTableViewCell.swift */; };
 		1172710F2892DB080084D204 /* InfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172710E2892DB080084D204 /* InfoViewModel.swift */; };
+		4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +93,9 @@
 		11573E492890440F00819116 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		11573E4C2890527100819116 /* PostTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTopTableViewCell.swift; sourceTree = "<group>"; };
 		11573E4F289054C000819116 /* PostBotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBotTableViewCell.swift; sourceTree = "<group>"; };
+		115A32C3289516A000873DB9 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		115A32C62895394E00873DB9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		115A32C928953B9900873DB9 /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 		117270FE28926ACE0084D204 /* MainHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		117271002892927B0084D204 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		117271032892939B0084D204 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
@@ -96,6 +103,9 @@
 		117271082892D0440084D204 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		1172710B2892D6610084D204 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		1172710E2892DB080084D204 /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
+		78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.release.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.release.xcconfig"; sourceTree = "<group>"; };
+		F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.debug.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +113,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F51D194776812270A958C6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */,
+				F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		11431E16289142DF00A8AFE3 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +222,8 @@
 			children = (
 				1156B7EA288E9AC000F58577 /* Netmate */,
 				1156B7E9288E9AC000F58577 /* Products */,
+				0F51D194776812270A958C6D /* Pods */,
+				C8469C57D8868439AE601DBD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -230,6 +252,7 @@
 				1156B803288EA3C500F58577 /* Components */,
 				11431E372891AFD700A8AFE3 /* Services */,
 				11573E41288FF21B00819116 /* Main */,
+				115A32C5289538F000873DB9 /* Menu */,
 				11431E16289142DF00A8AFE3 /* Profile */,
 				11431E1B28919E1B00A8AFE3 /* Favorite */,
 				11573E482890427A00819116 /* FriedsList */,
@@ -331,6 +354,32 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
+		115A32C5289538F000873DB9 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				115A32C828953B7A00873DB9 /* Views */,
+				115A32CB28953DF500873DB9 /* Model */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		115A32C828953B7A00873DB9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				115A32C3289516A000873DB9 /* MenuViewController.swift */,
+				115A32C62895394E00873DB9 /* MenuTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		115A32CB28953DF500873DB9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				115A32C928953B9900873DB9 /* MenuModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		117271022892937B0084D204 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +424,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C8469C57D8868439AE601DBD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,9 +439,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1156B7FC288E9AC200F58577 /* Build configuration list for PBXNativeTarget "Netmate" */;
 			buildPhases = (
+				25640F7C80A7A9E29A75F80B /* [CP] Check Pods Manifest.lock */,
 				1156B7E4288E9AC000F58577 /* Sources */,
 				1156B7E5288E9AC000F58577 /* Frameworks */,
 				1156B7E6288E9AC000F58577 /* Resources */,
+				5609797E66B04FE50B362786 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -443,6 +502,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		25640F7C80A7A9E29A75F80B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Netmate-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5609797E66B04FE50B362786 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Netmate/Pods-Netmate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Netmate/Pods-Netmate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Netmate/Pods-Netmate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1156B7E4288E9AC000F58577 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -465,12 +566,14 @@
 				11431E1D28919FEC00A8AFE3 /* FavoriteSearchHeaderView.swift in Sources */,
 				117270FF28926ACE0084D204 /* MainHeaderTableViewCell.swift in Sources */,
 				11431E312891AB6300A8AFE3 /* FavoriteCoordinator.swift in Sources */,
+				115A32C4289516A000873DB9 /* MenuViewController.swift in Sources */,
 				11431E1F2891A27100A8AFE3 /* FavoriteSearchViewController.swift in Sources */,
 				11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */,
 				117271042892939B0084D204 /* PhotoTableViewCell.swift in Sources */,
 				1156B802288EA3B100F58577 /* MagicButton.swift in Sources */,
 				1156B815288F0D1500F58577 /* SignInViewController.swift in Sources */,
 				11573E4A2890440F00819116 /* FeedTableViewCell.swift in Sources */,
+				115A32CA28953B9900873DB9 /* MenuModel.swift in Sources */,
 				1172710C2892D6610084D204 /* InfoTableViewCell.swift in Sources */,
 				1156B807288EA54500F58577 /* Palette.swift in Sources */,
 				1172710F2892DB080084D204 /* InfoViewModel.swift in Sources */,
@@ -480,6 +583,7 @@
 				11431E1A28919E1300A8AFE3 /* FavoriteViewController.swift in Sources */,
 				117271012892927B0084D204 /* Photo.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,
+				115A32C72895394E00873DB9 /* MenuTableViewCell.swift in Sources */,
 				1156B7EE288E9AC000F58577 /* SceneDelegate.swift in Sources */,
 				113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */,
 				11573E40288FEE7E00819116 /* MainViewController.swift in Sources */,
@@ -618,6 +722,7 @@
 		};
 		1156B7FD288E9AC200F58577 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -645,6 +750,7 @@
 		};
 		1156B7FE288E9AC200F58577 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

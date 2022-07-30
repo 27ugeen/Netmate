@@ -16,7 +16,7 @@ class InfoTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.secondTextColor
-        label.font = UIFont.setSBFont(16)
+        label.font = UIFont.setMedFont(12)
         label.text = "nameLabel"
         return label
     }()
@@ -25,7 +25,7 @@ class InfoTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
-        label.font = UIFont.setMedFont(14)
+        label.font = UIFont.setNormFont(14)
         label.text = "valueLabel"
         return label
     }()
@@ -40,21 +40,20 @@ class InfoTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-//MARK: - setupViews
-extension InfoTableViewCell {
+    //MARK: - methods
     private func setupViews() {
         contentView.addSubview(nameLabel)
         contentView.addSubview(valueLabel)
         
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }
+

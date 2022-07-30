@@ -13,6 +13,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     
     var goToInfoAction: (() -> Void)?
     var goToEditAction: (() -> Void)?
+    var goToMenuAction: (() -> Void)?
 
     //MARK: - localization
     
@@ -28,6 +29,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     
     private lazy var menuButton: UIButton = MagicButton(title: "", titleColor: Palette.appTintColor) {
         print("header menu button tapped")
+        self.goToMenuAction?()
     }
     
     private lazy var avatarImage: UIImageView = {
