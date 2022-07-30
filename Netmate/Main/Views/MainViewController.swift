@@ -14,6 +14,15 @@ class MainViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     //MARK: - subviews
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = Palette.mainTextColor
+        label.font = UIFont.setSBFont(18)
+        label.text = "Main"
+        return label
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +52,9 @@ class MainViewController: UIViewController {
 //MARK: - setupConstraints
 extension MainViewController {
     private func setupViews() {
-        self.navigationController?.isNavigationBarHidden = true
+        let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
+        self.navigationItem.setLeftBarButtonItems([leftBarTitle], animated: true)
+        
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
         
@@ -56,8 +67,8 @@ extension MainViewController {
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 63),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -97,7 +108,7 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 85
+            return 30
         case 1:
             return 76
         default:

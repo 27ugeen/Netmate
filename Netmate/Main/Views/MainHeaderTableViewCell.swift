@@ -12,15 +12,6 @@ class MainHeaderTableViewCell: UITableViewCell {
     static let cellId = "MainHeaderTableViewCell"
     
     //MARK: - subviews
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Palette.mainTextColor
-        label.font = UIFont.setSBFont(18)
-        label.text = "Main"
-        return label
-    }()
-    
     private lazy var newsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -53,16 +44,12 @@ class MainHeaderTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension MainHeaderTableViewCell {
     private func setupViews() {
-        contentView.addSubview(titleLabel)
         contentView.addSubview(newsLabel)
         contentView.addSubview(hLineImageView)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            
-            newsLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            newsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
+            newsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            newsLabel.topAnchor.constraint(equalTo: self.topAnchor),
             
             hLineImageView.leadingAnchor.constraint(equalTo: newsLabel.leadingAnchor),
             hLineImageView.topAnchor.constraint(equalTo: newsLabel.bottomAnchor, constant: 2),

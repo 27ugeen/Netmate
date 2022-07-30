@@ -26,6 +26,15 @@ class FavoriteViewController: UIViewController {
 //    private let findPostAlert = "find_post_alert".localized()
     
     //MARK: - subviews
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = Palette.mainTextColor
+        label.font = UIFont.setSBFont(18)
+        label.text = "Favorite"
+        return label
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -102,7 +111,10 @@ class FavoriteViewController: UIViewController {
 extension FavoriteViewController {
     private func setupViews() {
         UserDefaults.standard.set("", forKey: "author")
-        self.title = "Favorites"
+        
+        let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
+        self.navigationItem.setLeftBarButtonItems([leftBarTitle], animated: true)
+        
         self.navigationItem.setRightBarButtonItems([searchBarButton, resetBarButton], animated: true)
         self.navigationController?.navigationBar.tintColor = Palette.mainTextColor
         self.view.backgroundColor = Palette.appTintColor
