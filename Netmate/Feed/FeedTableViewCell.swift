@@ -91,6 +91,7 @@ class FeedTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension FeedTableViewCell {
     private func setupViews() {
+        contentView.backgroundColor = Palette.appTintColor
         contentView.addSubview(authorImageView)
         contentView.addSubview(authorLabel)
         contentView.addSubview(descriptLabel)

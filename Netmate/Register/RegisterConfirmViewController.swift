@@ -77,6 +77,7 @@ class RegisterConfirmViewController: UIViewController {
         text.autocapitalizationType = .none
         text.placeholder = "________"
         text.textAlignment = .center
+        text.becomeFirstResponder()
         return text
     }()
     

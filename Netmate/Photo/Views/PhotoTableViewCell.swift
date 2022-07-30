@@ -45,6 +45,7 @@ class PhotoTableViewCell: UITableViewCell {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.showsHorizontalScrollIndicator = false
+        view.backgroundColor = Palette.appTintColor
         
         view.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: photoCellID)
         
@@ -79,6 +80,7 @@ class PhotoTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension PhotoTableViewCell {
     private func setupViews() {
+        contentView.backgroundColor = Palette.appTintColor
         contentView.addSubview(titleLableView)
         contentView.addSubview(buttonView)
         contentView.addSubview(photosPreview)

@@ -240,10 +240,10 @@
 			children = (
 				1156B7EB288E9AC000F58577 /* AppDelegate.swift */,
 				1156B7ED288E9AC000F58577 /* SceneDelegate.swift */,
-				11431E222891A8DD00A8AFE3 /* Coordinator */,
 				1156B7F6288E9AC200F58577 /* LaunchScreen.storyboard */,
 				1156B7F9288E9AC200F58577 /* Info.plist */,
 				1156B7F4288E9AC200F58577 /* Assets.xcassets */,
+				11431E222891A8DD00A8AFE3 /* Coordinator */,
 				1156B811288ED36F00F58577 /* Onboarding */,
 				1156B809288EA64300F58577 /* Register */,
 				11573E3E288FD2BA00819116 /* SignIn */,

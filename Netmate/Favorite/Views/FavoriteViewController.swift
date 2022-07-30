@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import BonsaiController
 
 class FavoriteViewController: UIViewController {
     //MARK: - props
@@ -28,7 +29,9 @@ class FavoriteViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = Palette.appTintColor
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.sectionHeaderTopPadding = 0
         return tableView
     }()
     
@@ -83,8 +86,10 @@ class FavoriteViewController: UIViewController {
     
     @objc private func searcAction() {
         let searchVC = FavoriteSearchViewController()
+        searchVC.transitioningDelegate = self
+        searchVC.modalPresentationStyle = .custom
         self.navigationController?.present(searchVC, animated: true)
-        self.goToSearchAction?()
+//        self.goToSearchAction?()
     }
     
     @objc private func clearFilter() {
@@ -97,8 +102,9 @@ class FavoriteViewController: UIViewController {
 extension FavoriteViewController {
     private func setupViews() {
         UserDefaults.standard.set("", forKey: "author")
-//        self.title = favoriteVCTitle
+        self.title = "Favorites"
         self.navigationItem.setRightBarButtonItems([searchBarButton, resetBarButton], animated: true)
+        self.navigationController?.navigationBar.tintColor = Palette.mainTextColor
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
         
@@ -110,7 +116,7 @@ extension FavoriteViewController {
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
@@ -121,7 +127,7 @@ extension FavoriteViewController {
 extension FavoriteViewController: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return favoriteViewModel.favoritePosts.count
-        return 1
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -143,6 +149,7 @@ extension FavoriteViewController: UITableViewDataSource  {
 extension FavoriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: favSearchID) as! FavoriteSearchHeaderView
+        
 //        let author = UserDefaults.standard.string(forKey: "author")
 //        if author != "" {
 //            if let unwrappedAuthor = author {
@@ -159,7 +166,7 @@ extension FavoriteViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
+        return 30
     }
     
 //    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -174,4 +181,38 @@ extension FavoriteViewController: UITableViewDelegate {
 //        configuration.performsFirstActionWithFullSwipe = true
 //        return configuration
 //    }
+}
+//MARK: - BonsaiControllerDelegate
+extension FavoriteViewController: BonsaiControllerDelegate {
+    
+    // return the frame of your Bonsai View Controller
+    func frameOfPresentedView(in containerViewFrame: CGRect) -> CGRect {
+        
+//        return CGRect(origin: CGPoint(x: containerViewFrame.width / 2, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height / 4))
+        
+        return CGRect(origin: CGPoint(x: 24, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width - 48, height: containerViewFrame.height / 4))
+        
+//        return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
+    }
+    
+    // return a Bonsai Controller with SlideIn or Bubble transition animator
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+    
+        /// With Background Color ///
+    
+        // Slide animation from .left, .right, .top, .bottom
+        return BonsaiController(fromDirection: .top, backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
+        
+        // or Bubble animation initiated from a view
+//        return BonsaiController(fromView: UIView(), backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
+    
+    
+        /// With Blur Style ///
+        
+        // Slide animation from .left, .right, .top, .bottom
+        //return BonsaiController(fromDirection: .bottom, blurEffectStyle: .light, presentedViewController: presented, delegate: self)
+        
+        // or Bubble animation initiated from a view
+//        return BonsaiController(fromView: UIView(), blurEffectStyle: .systemUltraThinMaterialDark,  presentedViewController: presented, delegate: self)
+    }
 }

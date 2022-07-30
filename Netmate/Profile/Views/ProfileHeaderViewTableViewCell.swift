@@ -56,7 +56,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.secondTextColor
         label.font = UIFont.setNormFont(12)
-        label.text = "Apple developer"
+        label.text = "Apple software developer"
         return label
     }()
     
@@ -108,6 +108,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension ProfileHeaderTableViewCell {
     private func setupViews() {
+        contentView.backgroundColor = Palette.appTintColor
         contentView.addSubview(titleLabel)
         contentView.addSubview(menuButton)
         contentView.addSubview(avatarImage)

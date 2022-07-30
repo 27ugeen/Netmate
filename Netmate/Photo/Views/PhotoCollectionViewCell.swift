@@ -33,6 +33,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     //MARK: - methods
     private func setupViews() {
+        contentView.backgroundColor = Palette.appTintColor
         contentView.addSubview(imageView)
         
         NSLayoutConstraint.activate([

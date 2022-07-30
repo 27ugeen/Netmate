@@ -58,6 +58,7 @@ class SignInViewController: UIViewController {
         text.autocapitalizationType = .none
         text.placeholder = "+38___-___-__-__"
         text.textAlignment = .center
+        text.becomeFirstResponder()
         return text
     }()
     

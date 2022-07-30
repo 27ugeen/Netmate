@@ -33,27 +33,28 @@ class FavoriteSearchViewController: UIViewController {
     private lazy var searchTextField: UITextField = {
         let text = UITextField()
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.backgroundColor = .systemGray6
-        text.layer.borderColor = UIColor.lightGray.cgColor
-        text.layer.borderWidth = 0.5
+        text.backgroundColor = Palette.appTintColor
+        text.layer.borderColor = Palette.textFieldBorderColor.cgColor
+        text.layer.borderWidth = 1
         text.layer.cornerRadius = 8
-        text.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        text.tintColor = UIColor(named: "myAccentColor")
+        text.font = UIFont.setNormFont(16)
+        text.tintColor = Palette.accentTextColor
         text.autocapitalizationType = .none
-//        text.placeholder = searchField
+        text.placeholder = "Enter author name"
+        text.textAlignment = .left
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
         text.leftViewMode = .always
         text.becomeFirstResponder()
         return text
     }()
     
-    private lazy var cancelButton = MagicButton(title: "cancelBtn", titleColor: .systemGray) {
+    private lazy var cancelButton = MagicButton(title: "Cancel", titleColor: Palette.accentTextColor) {
         self.dismiss(animated: true)
     }
     
-    private lazy var searchButton = MagicButton(title: "searchBtn", titleColor: .systemGray) {
+    private lazy var searchButton = MagicButton(title: "Search", titleColor: Palette.btnWithBordTitleColor) {
         guard self.searchTextField.text != "" else {
-            self.showAlertOk(message: "self.searchAuthorAlert")
+            self.showAlertOk(message: "Enter something...")
             return
         }
         self.filterAction?(self.searchTextField.text ?? "")
@@ -80,6 +81,20 @@ class FavoriteSearchViewController: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+}
+// MARK: - setupButtons
+extension FavoriteSearchViewController {
+    private func setupButtons() {
+        cancelButton.titleLabel?.font = UIFont.setMedFont(16)
+        cancelButton.layer.cornerRadius = 8
+        cancelButton.clipsToBounds = true
+        cancelButton.setTitleColor(.systemRed, for: .highlighted)
+        
+        searchButton.setBackgroundColor(Palette.btnWithBordColor, forState: .normal)
+        searchButton.titleLabel?.font = UIFont.setMedFont(16)
+        searchButton.layer.cornerRadius = 8
+        searchButton.clipsToBounds = true
     }
 }
 // MARK: - setup views
@@ -122,27 +137,6 @@ extension FavoriteSearchViewController {
             searchButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             searchButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-    }
-}
-// MARK: - setupButtons
-extension FavoriteSearchViewController {
-    private func setupButtons() {
-        cancelButton.setTitleColor(.systemRed, for: .highlighted)
-        
-        searchButton.setTitleColor(.systemBlue, for: .highlighted)
-        searchButton.layer.cornerRadius = 8
-        searchButton.layer.borderWidth = 1
-        searchButton.layer.borderColor = UIColor.systemGray.cgColor
-        searchButton.clipsToBounds = true
-        searchButton.addTarget(self, action: #selector(startHighlight), for: .touchDown)
-        searchButton.addTarget(self, action: #selector(stopHighLight), for: .touchUpInside)
-    }
-    
-    @objc private func startHighlight() {
-        searchButton.layer.borderColor = UIColor.systemBlue.cgColor
-    }
-    @objc private func stopHighLight() {
-        searchButton.layer.borderColor = UIColor.systemGray.cgColor
     }
 }
 // MARK: - setupKeyboard
