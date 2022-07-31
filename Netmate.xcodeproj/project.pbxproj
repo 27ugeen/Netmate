@@ -52,6 +52,7 @@
 		117271092892D0440084D204 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271082892D0440084D204 /* InfoViewController.swift */; };
 		1172710C2892D6610084D204 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172710B2892D6610084D204 /* InfoTableViewCell.swift */; };
 		1172710F2892DB080084D204 /* InfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172710E2892DB080084D204 /* InfoViewModel.swift */; };
+		117BA2BF2896A8F200B9F501 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117BA2BE2896A8F200B9F501 /* Separator.swift */; };
 		4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		117271082892D0440084D204 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		1172710B2892D6610084D204 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		1172710E2892DB080084D204 /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
+		117BA2BE2896A8F200B9F501 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.release.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.release.xcconfig"; sourceTree = "<group>"; };
 		F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.debug.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			children = (
 				1156B801288EA3B100F58577 /* MagicButton.swift */,
 				113621DE2893F59100EE5C5F /* RadioButton.swift */,
+				117BA2BE2896A8F200B9F501 /* Separator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				1156B805288EA4A400F58577 /* Extensions.swift in Sources */,
 				11431E2A2891A9CA00A8AFE3 /* MainCoordinator.swift in Sources */,
 				1156B800288E9E3F00F58577 /* OnboardingViewController.swift in Sources */,
+				117BA2BF2896A8F200B9F501 /* Separator.swift in Sources */,
 				11431E2D2891AAE500A8AFE3 /* ProfileCoordinator.swift in Sources */,
 				11573E4D2890527100819116 /* PostTopTableViewCell.swift in Sources */,
 				11573E50289054C000819116 /* PostBotTableViewCell.swift in Sources */,

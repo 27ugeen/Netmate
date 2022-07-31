@@ -52,6 +52,11 @@ class MainViewController: UIViewController {
         self.tabBarController?.tabBar.isTranslucent = true
         self.tabBarController?.tabBar.tintColor = Palette.accentTextColor
         self.tabBarController?.tabBar.unselectedItemTintColor = Palette.mainTextColor
+        
+        let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
+        self.navigationItem.setLeftBarButtonItems([leftBarTitle], animated: true)
+        self.navigationItem.setRightBarButtonItems([searchBarButton, resetBarButton], animated: true)
+        self.navigationController?.navigationBar.tintColor = Palette.mainTextColor
     }
     
     @objc private func searcAction() {
@@ -71,10 +76,7 @@ class MainViewController: UIViewController {
 //MARK: - setupConstraints
 extension MainViewController {
     private func setupViews() {
-        let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
-        self.navigationItem.setLeftBarButtonItems([leftBarTitle], animated: true)
-        self.navigationItem.setRightBarButtonItems([searchBarButton, resetBarButton], animated: true)
-        self.navigationController?.navigationBar.tintColor = Palette.mainTextColor
+
         
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)

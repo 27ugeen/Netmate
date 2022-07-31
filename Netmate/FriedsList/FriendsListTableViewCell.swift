@@ -30,14 +30,9 @@ class FriendsListTableViewCell: UITableViewCell {
         return view
     }()
     
-    private lazy var hLineImageView: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = Palette.separatorColor
-        return image
-    }()
-    //MARK: - init
+    private lazy var separator = Separator(backgroundColor: Palette.separatorColor)
     
+    //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -53,18 +48,18 @@ class FriendsListTableViewCell: UITableViewCell {
 extension FriendsListTableViewCell {
     private func setupViews() {
         contentView.addSubview(friendsCollectionView)
-        contentView.addSubview(hLineImageView)
+        contentView.addSubview(separator)
         
         NSLayoutConstraint.activate([
             friendsCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             friendsCollectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             friendsCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-            hLineImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            hLineImageView.topAnchor.constraint(equalTo: friendsCollectionView.bottomAnchor, constant: 15),
-            hLineImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            hLineImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            hLineImageView.heightAnchor.constraint(equalToConstant: 0.5)
+            separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            separator.topAnchor.constraint(equalTo: friendsCollectionView.bottomAnchor, constant: 15),
+            separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            separator.heightAnchor.constraint(equalToConstant: 0.5)
         ])
     }
 }

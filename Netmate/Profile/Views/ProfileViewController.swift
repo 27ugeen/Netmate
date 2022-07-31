@@ -16,16 +16,26 @@ class ProfileViewController: UIViewController {
     
     var goToInfoVCAction: (() -> Void)?
     var goToEditVCAction: (() -> Void)?
+//    var goToMenuAction: (() -> Void)?
     
     //MARK: - subviews
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = Palette.mainTextColor
+        label.font = UIFont.setNormFont(16)
+        label.text = "gin_apple_sd"
+        return label
+    }()
+    
+    private lazy var menuBarButton = UIBarButtonItem(image: UIImage(named: "3lines"), style: .plain, target: self, action: #selector(menuTapped))
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = Palette.appTintColor
-        tableView.separatorStyle = .singleLine
-        tableView.separatorColor = Palette.mainTextColor
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -33,14 +43,32 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTabBarView()
         setupViews()
+    }
+    //MARK: - methods
+    private func setupTabBarView() {
+        let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
+        self.navigationItem.setLeftBarButtonItems([leftBarTitle], animated: true)
+        self.navigationItem.setRightBarButtonItems([menuBarButton], animated: true)
+        self.navigationController?.navigationBar.tintColor = Palette.accentTextColor
+    }
+    @objc private func menuTapped() {
+        let menuVC = MenuViewController(menuVM: MenuViewModel().self)
+        menuVC.transitioningDelegate = self
+        menuVC.modalPresentationStyle = .custom
+        self.present(menuVC, animated: true)
+        
+        menuVC.backAction = {
+            self.dismiss(animated: true)
+        }
+//        self.goToMenuAction?()
     }
 
 }
 //MARK: - setupViews
 extension ProfileViewController {
     private func setupViews() {
-        self.navigationController?.isNavigationBarHidden = true
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
         
@@ -53,7 +81,7 @@ extension ProfileViewController {
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
@@ -70,27 +98,13 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let emptyCell = UITableViewCell()
         let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! ProfileHeaderTableViewCell
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
         
         switch indexPath.row {
         case 0:
-            emptyCell.separator(hide: true)
-            return emptyCell
-        case 1:
             headerCell.selectionStyle = .none
-            headerCell.goToMenuAction = {
-                let menuVC = MenuViewController(menuVM: MenuViewModel().self)
-                menuVC.transitioningDelegate = self
-                menuVC.modalPresentationStyle = .custom
-                self.present(menuVC, animated: true)
-                
-                menuVC.backAction = {
-                    self.dismiss(animated: true)
-                }
-            }
             headerCell.goToInfoAction = {
                 let infoVC = InfoViewController(infoVM: InfoViewModel().self)
                 infoVC.transitioningDelegate = self
@@ -106,7 +120,7 @@ extension ProfileViewController: UITableViewDataSource {
                 self.goToEditVCAction?()
             }
             return headerCell
-        case 2:
+        case 1:
             photoCell.selectionStyle = .none
             return photoCell
         default:
@@ -129,10 +143,8 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 0
+            return 180
         case 1:
-            return 200
-        case 2:
             return 140
         default:
             return 400

@@ -13,25 +13,10 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     
     var goToInfoAction: (() -> Void)?
     var goToEditAction: (() -> Void)?
-    var goToMenuAction: (() -> Void)?
-
+    
     //MARK: - localization
     
     //MARK: - subViews
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Palette.mainTextColor
-        label.font = UIFont.setNormFont(16)
-        label.text = "gin_apple_sd"
-        return label
-    }()
-    
-    private lazy var menuButton: UIButton = MagicButton(title: "", titleColor: Palette.appTintColor) {
-        print("header menu button tapped")
-        self.goToMenuAction?()
-    }
-    
     private lazy var avatarImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +65,8 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         self.goToEditAction?()
     }
     
+    private lazy var separator = Separator(backgroundColor: Palette.separatorColor)
+    
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -93,8 +80,6 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     }
     //MARK: - methods
     private func setupButtons() {
-        menuButton.setBackgroundImage(UIImage(named: "3lines"), for: .normal)
-        
         detailButton.titleLabel?.font = UIFont.setMedFont(14)
         detailButton.setTitleColor(Palette.accentTextColor, for: .highlighted)
         
@@ -109,31 +94,22 @@ class ProfileHeaderTableViewCell: UITableViewCell {
 extension ProfileHeaderTableViewCell {
     private func setupViews() {
         contentView.backgroundColor = Palette.appTintColor
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(menuButton)
         contentView.addSubview(avatarImage)
         contentView.addSubview(fullNameLabel)
         contentView.addSubview(profLabel)
         contentView.addSubview(exclamatImage)
         contentView.addSubview(detailButton)
         contentView.addSubview(editButton)
+        contentView.addSubview(separator)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 26),
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            
-            menuButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 18),
-            menuButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18),
-            menuButton.widthAnchor.constraint(equalToConstant: 20),
-            menuButton.heightAnchor.constraint(equalToConstant: 10),
-            
-            avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 26),
-            avatarImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 14),
+            avatarImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
+            avatarImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
             avatarImage.widthAnchor.constraint(equalToConstant: 60),
             avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor),
             
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 10),
-            fullNameLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 22),
+            fullNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 22),
             
             profLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 10),
             profLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 3),
@@ -150,8 +126,13 @@ extension ProfileHeaderTableViewCell {
             editButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             editButton.topAnchor.constraint(equalTo: detailButton.bottomAnchor, constant: 25),
             editButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            editButton.heightAnchor.constraint(equalToConstant: 47)
+            editButton.heightAnchor.constraint(equalToConstant: 47),
             
+            separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            separator.topAnchor.constraint(equalTo: editButton.bottomAnchor, constant: 15),
+            separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            separator.heightAnchor.constraint(equalToConstant: 0.5)
         ])
     }
 }

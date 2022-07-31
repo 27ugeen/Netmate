@@ -54,6 +54,9 @@ class PhotoTableViewCell: UITableViewCell {
         
         return view
     }()
+    
+    private lazy var separator = Separator(backgroundColor: Palette.separatorColor)
+    
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -84,20 +87,27 @@ extension PhotoTableViewCell {
         contentView.addSubview(titleLableView)
         contentView.addSubview(buttonView)
         contentView.addSubview(photosPreview)
+        contentView.addSubview(separator)
         
         NSLayoutConstraint.activate([
-            titleLableView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            titleLableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 12),
+            titleLableView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16),
             
             buttonView.centerYAnchor.constraint(equalTo: titleLableView.centerYAnchor),
-            buttonView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            buttonView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             buttonView.heightAnchor.constraint(equalToConstant: 24),
             
             photosPreview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant:  12),
-            photosPreview.topAnchor.constraint(equalTo: titleLableView.bottomAnchor, constant: 12),
+            photosPreview.topAnchor.constraint(equalTo: titleLableView.bottomAnchor, constant: 10),
             photosPreview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            photosPreview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            photosPreview.heightAnchor.constraint(equalToConstant: photoWidth)
+//            photosPreview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+            photosPreview.heightAnchor.constraint(equalToConstant: photoWidth),
+            
+            separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            separator.topAnchor.constraint(equalTo: photosPreview.bottomAnchor, constant: 10),
+            separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            separator.heightAnchor.constraint(equalToConstant: 0.5)
         ])
     }
 }

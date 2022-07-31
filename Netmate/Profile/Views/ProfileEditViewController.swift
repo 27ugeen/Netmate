@@ -13,11 +13,13 @@ class ProfileEditViewController: UIViewController {
     //MARK: - subviews
     private lazy var leftButton: UIButton = MagicButton(title: "", titleColor: Palette.appTintColor) {
         print("edit left button tapped")
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.popViewController(animated: true)
     }
     
     private lazy var rightButton: UIButton = MagicButton(title: "", titleColor: Palette.appTintColor) {
         print("edit right button tapped")
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.popViewController(animated: true)
     }
     

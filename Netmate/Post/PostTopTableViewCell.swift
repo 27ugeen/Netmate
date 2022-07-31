@@ -53,9 +53,10 @@ class PostTopTableViewCell: UITableViewCell {
     private lazy var postImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.backgroundColor = Palette.secondBackColor
         image.image = UIImage(named: "Gal_Gadot")
+        image.layer.cornerRadius = 8
         image.clipsToBounds = true
         return image
     }()
@@ -94,8 +95,9 @@ extension PostTopTableViewCell {
 
             postImageView.leadingAnchor.constraint(equalTo: vLineImageView.leadingAnchor, constant: 24),
             postImageView.topAnchor.constraint(equalTo: showMoreLabel.bottomAnchor, constant: 15),
-            postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
-//            postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+//            postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
+            postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            postImageView.widthAnchor.constraint(equalTo: postDescriptionLabel.widthAnchor),
             postImageView.heightAnchor.constraint(equalToConstant: 125)
         ])
     }

@@ -5,7 +5,6 @@
 //  Created by GiN Eugene on 25/7/2022.
 //
 
-import Foundation
 import UIKit
 
 final class MagicButton: UIButton {
