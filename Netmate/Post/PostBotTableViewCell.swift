@@ -24,12 +24,11 @@ class PostBotTableViewCell: UITableViewCell {
     //MARK: - localization
     
     //MARK: - subviews
-    private lazy var likesImageView: UIImageView = {
+    lazy var likesImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = Palette.secondBackColor
-        image.image = UIImage(named: "heart")
+        image.image = UIImage(named: "heart")?.withTintColor(Palette.mainTextColor)
         return image
     }()
     
@@ -46,8 +45,7 @@ class PostBotTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = Palette.secondBackColor
-        image.image = UIImage(named: "speech_bubble")
+        image.image = UIImage(named: "speech_bubble")?.withTintColor(Palette.mainTextColor)
         return image
     }()
     
@@ -64,8 +62,7 @@ class PostBotTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = Palette.secondBackColor
-        image.image = UIImage(named: "bookmark")
+        image.image = UIImage(named: "bookmark")?.withTintColor(Palette.mainTextColor)
         return image
     }()
     

@@ -33,8 +33,7 @@ class FriendsListTableViewCell: UITableViewCell {
     private lazy var hLineImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
-        image.image = UIImage(named: "hLine")?.withTintColor(Palette.accentTextColor)
+        image.backgroundColor = Palette.separatorColor
         return image
     }()
     //MARK: - init
@@ -60,15 +59,12 @@ extension FriendsListTableViewCell {
             friendsCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             friendsCollectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             friendsCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//            friendsCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            friendsCollectionView.heightAnchor.constraint(equalToConstant: 60),
             
             hLineImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             hLineImageView.topAnchor.constraint(equalTo: friendsCollectionView.bottomAnchor, constant: 15),
+            hLineImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             hLineImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            hLineImageView.widthAnchor.constraint(equalTo: friendsCollectionView.widthAnchor),
-            hLineImageView.heightAnchor.constraint(equalToConstant: 1)
-            
+            hLineImageView.heightAnchor.constraint(equalToConstant: 0.5)
         ])
     }
 }

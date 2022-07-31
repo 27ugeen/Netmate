@@ -202,7 +202,7 @@ extension FavoriteViewController: BonsaiControllerDelegate {
         
 //        return CGRect(origin: CGPoint(x: containerViewFrame.width / 2, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height / 4))
         
-        return CGRect(origin: CGPoint(x: 24, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width - 48, height: containerViewFrame.height / 4))
+        return CGRect(origin: CGPoint(x: 24, y: containerViewFrame.height / 8), size: CGSize(width: containerViewFrame.width - 48, height: containerViewFrame.height / 4))
         
 //        return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
     }

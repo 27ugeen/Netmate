@@ -27,8 +27,7 @@ class PostTopTableViewCell: UITableViewCell {
     private lazy var vLineImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
-        image.image = UIImage(named: "vLine")
+        image.backgroundColor = Palette.mainTextColor
         return image
     }()
     
@@ -84,7 +83,6 @@ extension PostTopTableViewCell {
             vLineImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
             vLineImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             vLineImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-            vLineImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -40),
             vLineImageView.widthAnchor.constraint(equalToConstant: 1),
             
             postDescriptionLabel.leadingAnchor.constraint(equalTo: vLineImageView.trailingAnchor, constant: 24),
@@ -97,7 +95,7 @@ extension PostTopTableViewCell {
             postImageView.leadingAnchor.constraint(equalTo: vLineImageView.leadingAnchor, constant: 24),
             postImageView.topAnchor.constraint(equalTo: showMoreLabel.bottomAnchor, constant: 15),
             postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
-            postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+//            postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             postImageView.heightAnchor.constraint(equalToConstant: 125)
         ])
     }

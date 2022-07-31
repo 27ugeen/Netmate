@@ -12,7 +12,7 @@ class MainHeaderTableViewCell: UITableViewCell {
     static let cellId = "MainHeaderTableViewCell"
     
     //MARK: - subviews
-    private lazy var newsLabel: UILabel = {
+    private lazy var friendsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
@@ -24,8 +24,7 @@ class MainHeaderTableViewCell: UITableViewCell {
     private lazy var hLineImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
-        image.image = UIImage(named: "hLine")?.withTintColor(Palette.accentTextColor)
+        image.backgroundColor = Palette.accentTextColor
         return image
     }()
     
@@ -44,19 +43,18 @@ class MainHeaderTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension MainHeaderTableViewCell {
     private func setupViews() {
-        contentView.addSubview(newsLabel)
+        contentView.addSubview(friendsLabel)
         contentView.addSubview(hLineImageView)
         
         NSLayoutConstraint.activate([
-            newsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            newsLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            friendsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            friendsLabel.topAnchor.constraint(equalTo: self.topAnchor),
             
-            hLineImageView.leadingAnchor.constraint(equalTo: newsLabel.leadingAnchor),
-            hLineImageView.topAnchor.constraint(equalTo: newsLabel.bottomAnchor, constant: 2),
+            hLineImageView.leadingAnchor.constraint(equalTo: friendsLabel.leadingAnchor),
+            hLineImageView.topAnchor.constraint(equalTo: friendsLabel.bottomAnchor, constant: 5),
             hLineImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
-            //TODO: - change line width for ipad
-            hLineImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            hLineImageView.heightAnchor.constraint(equalToConstant: 1)
+            hLineImageView.widthAnchor.constraint(equalTo: friendsLabel.widthAnchor),
+            hLineImageView.heightAnchor.constraint(equalToConstant: 0.5)
         ])
         
     }
