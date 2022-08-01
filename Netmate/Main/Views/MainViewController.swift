@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     var goToProfileVCAction: (() -> Void)?
+    var goToFollowerVCAction: (() -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -121,6 +122,9 @@ extension MainViewController: UITableViewDataSource {
             friedsListCell.selectionStyle = .none
             friedsListCell.goToProfileAction = {
                 self.goToProfileVCAction?()
+            }
+            friedsListCell.goToFollowerAction = {
+                self.goToFollowerVCAction?()
             }
             return friedsListCell
         default:

@@ -51,7 +51,7 @@ class ProfileEditViewController: UIViewController {
         text.backgroundColor = Palette.secondBackColor
         text.layer.cornerRadius = 8
         text.font = UIFont.setNormFont(12)
-        text.tintColor = Palette.secondTextColor
+        text.tintColor = Palette.accentTextColor
         text.autocapitalizationType = .none
         text.placeholder = "First name"
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
@@ -75,7 +75,7 @@ class ProfileEditViewController: UIViewController {
         text.backgroundColor = Palette.secondBackColor
         text.layer.cornerRadius = 8
         text.font = UIFont.setNormFont(12)
-        text.tintColor = Palette.secondTextColor
+        text.tintColor = Palette.accentTextColor
         text.autocapitalizationType = .none
         text.placeholder = "Last name"
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
@@ -116,7 +116,7 @@ class ProfileEditViewController: UIViewController {
         text.backgroundColor = Palette.secondBackColor
         text.layer.cornerRadius = 8
         text.font = UIFont.setNormFont(12)
-        text.tintColor = Palette.secondTextColor
+        text.tintColor = Palette.accentTextColor
         text.autocapitalizationType = .none
         text.placeholder = "10.03.2022"
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
@@ -140,7 +140,7 @@ class ProfileEditViewController: UIViewController {
         text.backgroundColor = Palette.secondBackColor
         text.layer.cornerRadius = 8
         text.font = UIFont.setNormFont(12)
-        text.tintColor = Palette.secondTextColor
+        text.tintColor = Palette.accentTextColor
         text.autocapitalizationType = .none
         text.placeholder = "Write the name"
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))

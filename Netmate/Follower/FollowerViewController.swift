@@ -1,22 +1,23 @@
 //
-//  ProfileViewController.swift
+//  FollowerViewController.swift
 //  Netmate
 //
-//  Created by GiN Eugene on 27/7/2022.
+//  Created by GiN Eugene on 1/8/2022.
 //
 
 import UIKit
+import iOSIntPackage
 import BonsaiController
 
-class ProfileViewController: UIViewController {
+class FollowerViewController: UIViewController {
     //MARK: - props
-    private let headerCellID = ProfileHeaderTableViewCell.cellId
+    private let headerCellID = FollowerHeaderTableViewCell.cellId
     private let photoCellID = PhotoTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
     var goToInfoVCAction: (() -> Void)?
-    var goToEditVCAction: (() -> Void)?
-    var goToPhotoGalleryAction: (() -> Void)?
+//    var goToEditVCAction: (() -> Void)?
+//    var goToPhotoGalleryAction: (() -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -24,11 +25,13 @@ class ProfileViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setNormFont(16)
-        label.text = "gin_apple_sd"
+        label.text = "user_profile_name"
         return label
     }()
     
-    private lazy var menuBarButton = UIBarButtonItem(image: UIImage(named: "3lines"), style: .plain, target: self, action: #selector(menuTapped))
+    private lazy var backBarButton = UIBarButtonItem(image: UIImage(named: "backArrow"), style: .plain, target: self, action: #selector(backTapped))
+    
+    private lazy var menuBarButton = UIBarButtonItem(image: UIImage(named: "3dots"), style: .plain, target: self, action: #selector(menuTapped))
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -49,33 +52,27 @@ class ProfileViewController: UIViewController {
     //MARK: - methods
     private func setupTabBarView() {
         let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
-        self.navigationItem.setLeftBarButtonItems([leftBarTitle], animated: true)
+        self.navigationItem.setLeftBarButtonItems([backBarButton, leftBarTitle], animated: true)
         self.navigationItem.setRightBarButtonItems([menuBarButton], animated: true)
         self.navigationController?.navigationBar.tintColor = Palette.accentTextColor
     }
     @objc private func menuTapped() {
-        let menuVC = MenuViewController(menuVM: MenuViewModel().self)
-        menuVC.transitioningDelegate = self
-        menuVC.modalPresentationStyle = .custom
-        self.present(menuVC, animated: true)
-        
-        menuVC.backAction = {
-            self.dismiss(animated: true)
-        }
-//        self.goToMenuAction?()
+        print("follower menu btn tapped")
     }
-
+    @objc private func backTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 //MARK: - setupViews
-extension ProfileViewController {
+extension FollowerViewController {
     private func setupViews() {
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
         
-        tableView.register(ProfileHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
+        tableView.register(FollowerHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
-        
+
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -88,20 +85,20 @@ extension ProfileViewController {
     }
 }
 //MARK: - UITableViewDataSource
-extension ProfileViewController: UITableViewDataSource {
+extension FollowerViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! ProfileHeaderTableViewCell
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! FollowerHeaderTableViewCell
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
-        
+
         switch indexPath.row {
         case 0:
             headerCell.selectionStyle = .none
@@ -114,28 +111,27 @@ extension ProfileViewController: UITableViewDataSource {
                 infoVC.cancelAction = {
                     self.dismiss(animated: true)
                 }
-//                self.goToInfoVCAction?()
-            }
-            headerCell.goToEditAction = {
-                self.goToEditVCAction?()
             }
             return headerCell
         case 1:
             photoCell.selectionStyle = .none
             return photoCell
         default:
-//            feedCell.separator(hide: true)
+            feedCell.selectionStyle = .none
+            feedCell.separator(hide: true)
             return feedCell
         }
     }
 
 }
 //MARK: - UITableViewDelegate
-extension ProfileViewController: UITableViewDelegate {
+extension FollowerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 1 {
-            self.goToPhotoGalleryAction?()
+            let photoVC = PhotoViewController(imagePublisherFacade: ImagePublisherFacade().self)
+            self.navigationController?.pushViewController(photoVC, animated: true)
+//            self.goToPhotoGalleryAction?()
         }
     }
     
@@ -151,33 +147,33 @@ extension ProfileViewController: UITableViewDelegate {
     }
 }
 //MARK: - BonsaiControllerDelegate
-extension ProfileViewController: BonsaiControllerDelegate {
-    
+extension FollowerViewController: BonsaiControllerDelegate {
+
     // return the frame of your Bonsai View Controller
     func frameOfPresentedView(in containerViewFrame: CGRect) -> CGRect {
-        
+
         return CGRect(origin: CGPoint(x: containerViewFrame.height / 8, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height))
-        
+
 //        return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
     }
-    
+
     // return a Bonsai Controller with SlideIn or Bubble transition animator
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-    
+
         /// With Background Color ///
-    
+
         // Slide animation from .left, .right, .top, .bottom
         return BonsaiController(fromDirection: .right, backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-        
+
         // or Bubble animation initiated from a view
 //        return BonsaiController(fromView: UIView(), backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-    
-    
+
+
         /// With Blur Style ///
-        
+
         // Slide animation from .left, .right, .top, .bottom
         //return BonsaiController(fromDirection: .bottom, blurEffectStyle: .light, presentedViewController: presented, delegate: self)
-        
+
         // or Bubble animation initiated from a view
 //        return BonsaiController(fromView: UIView(), blurEffectStyle: .systemChromeMaterialDark,  presentedViewController: presented, delegate: self)
     }

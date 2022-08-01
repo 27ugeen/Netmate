@@ -70,10 +70,10 @@ class RegisterConfirmViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         text.backgroundColor = Palette.appTintColor
         text.layer.borderColor = Palette.textFieldBorderColor.cgColor
+        text.tintColor = Palette.accentTextColor
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 8
         text.font = UIFont.setNormFont(16)
-        text.tintColor = Palette.mainTextColor
         text.autocapitalizationType = .none
         text.placeholder = "________"
         text.textAlignment = .center
@@ -116,6 +116,7 @@ class RegisterConfirmViewController: UIViewController {
     //MARK: - methods
     private func setupButton() {
         registerButton.setBackgroundColor(Palette.btnWithBordColor, forState: .normal)
+        registerButton.setTitleColor(Palette.accentTextColor, for: .highlighted)
         registerButton.titleLabel?.font = UIFont.setMedFont(16)
         registerButton.layer.cornerRadius = 8
         registerButton.clipsToBounds = true

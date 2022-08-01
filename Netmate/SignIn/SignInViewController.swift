@@ -51,10 +51,10 @@ class SignInViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         text.backgroundColor = Palette.appTintColor
         text.layer.borderColor = Palette.textFieldBorderColor.cgColor
+        text.tintColor = Palette.accentTextColor
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 8
         text.font = UIFont.setNormFont(16)
-        text.tintColor = Palette.mainTextColor
         text.autocapitalizationType = .none
         text.placeholder = "+38___-___-__-__"
         text.textAlignment = .center
@@ -62,7 +62,7 @@ class SignInViewController: UIViewController {
         return text
     }()
     
-    private lazy var nextButton = MagicButton(title: "CONFIRM", titleColor: Palette.btnWithBordTitleColor) {
+    private lazy var confirmButton = MagicButton(title: "CONFIRM", titleColor: Palette.btnWithBordTitleColor) {
         self.goToProfile()
     }
     //MARK: - init
@@ -90,23 +90,25 @@ class SignInViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = true
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     //MARK: - methods
     private func setupButton() {
-        nextButton.setBackgroundColor(Palette.btnWithBordColor, forState: .normal)
-        nextButton.titleLabel?.font = UIFont.setMedFont(16)
-        nextButton.layer.cornerRadius = 8
-        nextButton.clipsToBounds = true
+        confirmButton.setBackgroundColor(Palette.btnWithBordColor, forState: .normal)
+        confirmButton.setTitleColor(Palette.accentTextColor, for: .highlighted)
+        confirmButton.titleLabel?.font = UIFont.setMedFont(16)
+        confirmButton.layer.cornerRadius = 8
+        confirmButton.clipsToBounds = true
     }
     
     private func goToProfile() {
         let tabBC = appCoordinator.start()
-        self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.pushViewController(tabBC, animated: true)
         print("Current user:  is signed in")
     }
@@ -128,7 +130,7 @@ extension SignInViewController {
         contentView.addSubview(topLabel)
         contentView.addSubview(midSubLabel)
         contentView.addSubview(phoneTextField)
-        contentView.addSubview(nextButton)
+        contentView.addSubview(confirmButton)
         
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -155,11 +157,11 @@ extension SignInViewController {
             phoneTextField.heightAnchor.constraint(equalToConstant: 48),
             phoneTextField.widthAnchor.constraint(equalToConstant: 260),
             
-            nextButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            nextButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 148),
-            nextButton.heightAnchor.constraint(equalToConstant: 48),
-            nextButton.widthAnchor.constraint(equalToConstant: 200),
-            nextButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            confirmButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            confirmButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 148),
+            confirmButton.heightAnchor.constraint(equalToConstant: 48),
+            confirmButton.widthAnchor.constraint(equalToConstant: 200),
+            confirmButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }

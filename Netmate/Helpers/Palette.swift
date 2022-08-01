@@ -18,7 +18,7 @@ struct Palette {
     
     static let separatorColor = UIColor.createColor(lightMode: UIColor(rgb: 0x7E8183), darkMode: UIColor(rgb: 0x7E8183))
     static let btnWithBordColor = UIColor.createColor(lightMode: UIColor(rgb: 0x263238), darkMode: .darkGray)
-    static let btnWithBordTitleColor = UIColor.createColor(lightMode: UIColor(rgb: 0xFFFFFF), darkMode: UIColor(rgb: 0xF69707))
+    static let btnWithBordTitleColor = UIColor.createColor(lightMode: UIColor(rgb: 0xFFFFFF), darkMode: UIColor(rgb: 0xFFFFFF))
     static let btnNoBordTitleColor = UIColor.createColor(lightMode: UIColor(rgb: 0x1F1E1E), darkMode: .white)
     
     static let textFieldBorderColor = UIColor.createColor(lightMode: UIColor(rgb: 0x263238), darkMode: .white)

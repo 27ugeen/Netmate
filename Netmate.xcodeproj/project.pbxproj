@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110B4F072897E55A00652520 /* FollowerHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110B4F062897E55A00652520 /* FollowerHeaderTableViewCell.swift */; };
 		113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113621DE2893F59100EE5C5F /* RadioButton.swift */; };
 		11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E14289142D900A8AFE3 /* ProfileViewController.swift */; };
 		11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */; };
@@ -55,10 +56,12 @@
 		117682C32897C4F100D8DCB3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117682C22897C4F100D8DCB3 /* PhotoViewController.swift */; };
 		117BA2BF2896A8F200B9F501 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117BA2BE2896A8F200B9F501 /* Separator.swift */; };
 		118FFAF12897C9CC0082A766 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 118FFAF02897C9CC0082A766 /* iOSIntPackage */; };
+		118FFAF32897D48D0082A766 /* FollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118FFAF22897D48D0082A766 /* FollowerViewController.swift */; };
 		4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110B4F062897E55A00652520 /* FollowerHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		113621DE2893F59100EE5C5F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		11431E14289142D900A8AFE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		1172710E2892DB080084D204 /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
 		117682C22897C4F100D8DCB3 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		117BA2BE2896A8F200B9F501 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
+		118FFAF22897D48D0082A766 /* FollowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerViewController.swift; sourceTree = "<group>"; };
 		78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.release.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.release.xcconfig"; sourceTree = "<group>"; };
 		F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.debug.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				115A32C5289538F000873DB9 /* Menu */,
 				11431E16289142DF00A8AFE3 /* Profile */,
 				11431E1B28919E1B00A8AFE3 /* Favorite */,
+				118FFAF42897D4920082A766 /* Follower */,
 				11573E482890427A00819116 /* FriedsList */,
 				1172710A2892D4C40084D204 /* Info */,
 				11573E4B2890441400819116 /* Feed */,
@@ -432,6 +437,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		118FFAF42897D4920082A766 /* Follower */ = {
+			isa = PBXGroup;
+			children = (
+				118FFAF22897D48D0082A766 /* FollowerViewController.swift */,
+				110B4F062897E55A00652520 /* FollowerHeaderTableViewCell.swift */,
+			);
+			path = Follower;
+			sourceTree = "<group>";
+		};
 		C8469C57D8868439AE601DBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +591,7 @@
 				117682C32897C4F100D8DCB3 /* PhotoViewController.swift in Sources */,
 				11727106289294020084D204 /* PhotoCollectionViewCell.swift in Sources */,
 				11431E262891A93C00A8AFE3 /* AppCoordinator.swift in Sources */,
+				110B4F072897E55A00652520 /* FollowerHeaderTableViewCell.swift in Sources */,
 				11431E212891A8B600A8AFE3 /* Coordinator.swift in Sources */,
 				11573E45288FF3F000819116 /* FriendsListCollectionViewCell.swift in Sources */,
 				11431E1D28919FEC00A8AFE3 /* FavoriteSearchHeaderView.swift in Sources */,
@@ -594,6 +609,7 @@
 				1156B807288EA54500F58577 /* Palette.swift in Sources */,
 				1172710F2892DB080084D204 /* InfoViewModel.swift in Sources */,
 				11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */,
+				118FFAF32897D48D0082A766 /* FollowerViewController.swift in Sources */,
 				11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */,
 				11471D522892FD8D00A5EB57 /* ProfileEditViewController.swift in Sources */,
 				11431E1A28919E1300A8AFE3 /* FavoriteViewController.swift in Sources */,

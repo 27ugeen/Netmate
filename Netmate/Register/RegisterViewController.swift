@@ -57,13 +57,14 @@ class RegisterViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         text.backgroundColor = Palette.appTintColor
         text.layer.borderColor = Palette.textFieldBorderColor.cgColor
+        text.tintColor = Palette.accentTextColor
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 8
         text.font = UIFont.setNormFont(16)
-        text.tintColor = Palette.mainTextColor
         text.autocapitalizationType = .none
         text.placeholder = "+38___-___-__-__"
         text.textAlignment = .center
+        text.becomeFirstResponder()
         return text
     }()
     
@@ -108,6 +109,7 @@ class RegisterViewController: UIViewController {
     //MARK: - methods
     private func setupButton() {
         nextButton.setBackgroundColor(Palette.btnWithBordColor, forState: .normal)
+        nextButton.setTitleColor(Palette.accentTextColor, for: .highlighted)
         nextButton.titleLabel?.font = UIFont.setMedFont(16)
         nextButton.layer.cornerRadius = 8
         nextButton.clipsToBounds = true

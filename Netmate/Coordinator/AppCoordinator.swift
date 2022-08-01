@@ -42,6 +42,7 @@ final class AppCoordinator: AppBaseCoordinatorProtocol {
         mainCoordinator.parentCoordinator = self
         mainNavVC.tabBarItem = UITabBarItem(title: "Main", image: UIImage(named: "house"), tag: 0)
         
+        
         let profileNavVC = profileCoordinator.start()
         profileCoordinator.parentCoordinator = self
         profileNavVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "person"), tag: 1)

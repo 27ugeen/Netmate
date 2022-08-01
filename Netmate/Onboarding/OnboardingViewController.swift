@@ -72,6 +72,7 @@ class OnboardingViewController: UIViewController {
     //MARK: - methods
     private func setupButtons() {
         registerButton.setBackgroundColor(Palette.btnWithBordColor, forState: .normal)
+        registerButton.setTitleColor(Palette.accentTextColor, for: .highlighted)
         registerButton.titleLabel?.font = UIFont.setMedFont(16)
         registerButton.layer.cornerRadius = 8
         registerButton.clipsToBounds = true

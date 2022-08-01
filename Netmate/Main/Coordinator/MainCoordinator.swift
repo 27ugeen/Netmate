@@ -28,13 +28,21 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
             self.goToProfileVC()
         }
         
+        mainVC.goToFollowerVCAction = {
+            self.goToFollowerVC()
+        }
+        
         rootViewController = UINavigationController(rootViewController: mainVC)
         return rootViewController
     }
     
     func goToProfileVC() {
-        let profVC = ProfileViewController()
-        navigationRootViewController?.pushViewController(profVC, animated: true)
+        rootViewController.tabBarController?.selectedIndex = 1
+    }
+    
+    func goToFollowerVC() {
+        let followerVC = FollowerViewController()
+        navigationRootViewController?.pushViewController(followerVC, animated: true)
     }
     
 }
