@@ -52,7 +52,9 @@
 		117271092892D0440084D204 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271082892D0440084D204 /* InfoViewController.swift */; };
 		1172710C2892D6610084D204 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172710B2892D6610084D204 /* InfoTableViewCell.swift */; };
 		1172710F2892DB080084D204 /* InfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172710E2892DB080084D204 /* InfoViewModel.swift */; };
+		117682C32897C4F100D8DCB3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117682C22897C4F100D8DCB3 /* PhotoViewController.swift */; };
 		117BA2BF2896A8F200B9F501 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117BA2BE2896A8F200B9F501 /* Separator.swift */; };
+		118FFAF12897C9CC0082A766 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 118FFAF02897C9CC0082A766 /* iOSIntPackage */; };
 		4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +106,7 @@
 		117271082892D0440084D204 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		1172710B2892D6610084D204 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		1172710E2892DB080084D204 /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
+		117682C22897C4F100D8DCB3 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		117BA2BE2896A8F200B9F501 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.release.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				118FFAF12897C9CC0082A766 /* iOSIntPackage in Frameworks */,
 				4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +399,7 @@
 		11727107289296110084D204 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				117682C22897C4F100D8DCB3 /* PhotoViewController.swift */,
 				117271032892939B0084D204 /* PhotoTableViewCell.swift */,
 				11727105289294020084D204 /* PhotoCollectionViewCell.swift */,
 			);
@@ -453,6 +458,9 @@
 			dependencies = (
 			);
 			name = Netmate;
+			packageProductDependencies = (
+				118FFAF02897C9CC0082A766 /* iOSIntPackage */,
+			);
 			productName = Netmate;
 			productReference = 1156B7E8288E9AC000F58577 /* Netmate.app */;
 			productType = "com.apple.product-type.application";
@@ -481,6 +489,9 @@
 				Base,
 			);
 			mainGroup = 1156B7DF288E9ABF00F58577;
+			packageReferences = (
+				118FFAEF2897C9CC0082A766 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+			);
 			productRefGroup = 1156B7E9288E9AC000F58577 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -563,6 +574,7 @@
 				11573E50289054C000819116 /* PostBotTableViewCell.swift in Sources */,
 				1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */,
 				11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */,
+				117682C32897C4F100D8DCB3 /* PhotoViewController.swift in Sources */,
 				11727106289294020084D204 /* PhotoCollectionViewCell.swift in Sources */,
 				11431E262891A93C00A8AFE3 /* AppCoordinator.swift in Sources */,
 				11431E212891A8B600A8AFE3 /* Coordinator.swift in Sources */,
@@ -802,6 +814,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		118FFAEF2897C9CC0082A766 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TrueMax/iOSIntPackage/";
+			requirement = {
+				branch = imagepublisher;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		118FFAF02897C9CC0082A766 /* iOSIntPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 118FFAEF2897C9CC0082A766 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			productName = iOSIntPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1156B7E0288E9ABF00F58577 /* Project object */;
 }

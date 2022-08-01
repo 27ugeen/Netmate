@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     
     var goToInfoVCAction: (() -> Void)?
     var goToEditVCAction: (() -> Void)?
-//    var goToMenuAction: (() -> Void)?
+    var goToPhotoGalleryAction: (() -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -134,10 +134,10 @@ extension ProfileViewController: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        if indexPath.row == 0 {
-//            self.goToPhotoGalleryAction?()
-//        }
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == 1 {
+            self.goToPhotoGalleryAction?()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

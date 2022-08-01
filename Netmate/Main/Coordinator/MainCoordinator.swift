@@ -24,9 +24,17 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
     }
     //MARK: - methods
     func start() -> UIViewController {
+        mainVC.goToProfileVCAction = {
+            self.goToProfileVC()
+        }
         
         rootViewController = UINavigationController(rootViewController: mainVC)
         return rootViewController
+    }
+    
+    func goToProfileVC() {
+        let profVC = ProfileViewController()
+        navigationRootViewController?.pushViewController(profVC, animated: true)
     }
     
 }

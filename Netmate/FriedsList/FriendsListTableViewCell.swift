@@ -12,6 +12,8 @@ class FriendsListTableViewCell: UITableViewCell {
     static let cellId = "FriendsListTableViewCell"
     private let collectionCellId = FriendListCollectionViewCell.cellId
     
+    var goToProfileAction: (() -> Void)?
+    
     //MARK: - subviews
     private lazy var friendsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -106,6 +108,9 @@ extension FriendsListTableViewCell: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            self.goToProfileAction?()
+        }
         print("Index: \(indexPath.item)")
     }
 }

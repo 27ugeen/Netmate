@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 protocol ProfileBaseCoordinatorProtocol: CoordinatorProtocol {
     
@@ -35,6 +36,11 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
             
         }
         
+        profileVC.goToPhotoGalleryAction = { [weak self] in
+            self?.goToPhotoVC()
+            
+        }
+        
         rootViewController = UINavigationController(rootViewController: profileVC)
         return rootViewController
     }
@@ -47,5 +53,11 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     func goToProfEditVC() {
         let profEditVC = ProfileEditViewController()
         navigationRootViewController?.pushViewController(profEditVC, animated: true)
+    }
+    
+    func goToPhotoVC() {
+        let imgPubFascade = ImagePublisherFacade()
+        let photoVC = PhotoViewController(imagePublisherFacade: imgPubFascade)
+        navigationRootViewController?.pushViewController(photoVC, animated: true)
     }
 }

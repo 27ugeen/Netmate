@@ -32,6 +32,6 @@ class PhotoStorage {
     ]
 }
 
-//struct ImgStorage {
-//    static let arrImg = reciveImagesArrFromPhotoStorage(photos: PhotosStorage.self)
-//}
+struct ImgStorage {
+    static let arrImg = reciveImagesArrFromPhotoStorage(photos: PhotoStorage.self)
+}

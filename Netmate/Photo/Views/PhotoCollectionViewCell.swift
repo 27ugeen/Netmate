@@ -12,7 +12,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     static let cellId = "PhotoCollectionViewCell"
     
     //MARK: - subviews
-    let imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = Palette.appTintColor
