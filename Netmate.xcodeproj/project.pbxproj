@@ -354,8 +354,8 @@
 		11573E482890427A00819116 /* FriedsList */ = {
 			isa = PBXGroup;
 			children = (
-				11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */,
 				11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */,
+				11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */,
 			);
 			path = FriedsList;
 			sourceTree = "<group>";

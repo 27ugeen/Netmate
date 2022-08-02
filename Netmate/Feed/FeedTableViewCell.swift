@@ -15,6 +15,12 @@ class FeedTableViewCell: UITableViewCell {
     
     var showMoreAction: (() -> Void)?
     
+    var model: Friend? {
+        didSet {
+            postTableView.reloadData()
+        }
+    }
+    
 //    var post: Post? {
 //        didSet {
 //            postAuthorLabel.text = "\(postAuthor): \(String(describing: (post?.author ?? "unknown")))"
@@ -28,7 +34,7 @@ class FeedTableViewCell: UITableViewCell {
     //MARK: - localization
     
     //MARK: - subviews
-    private lazy var authorImageView: UIImageView = {
+    lazy var authorImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
@@ -39,7 +45,7 @@ class FeedTableViewCell: UITableViewCell {
         return image
     }()
     
-    private lazy var authorLabel: UILabel = {
+    lazy var authorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
@@ -48,7 +54,7 @@ class FeedTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var descriptLabel: UILabel = {
+    lazy var descriptLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.secondTextColor
@@ -142,6 +148,8 @@ extension FeedTableViewCell: UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
+            postTopCell.postDescriptionLabel.text = model?.feed[indexPath.row].post.article
+            postTopCell.postImageView.image = model?.avatar
             postTopCell.showMoreAction = {
                 self.showMoreAction?()
             }

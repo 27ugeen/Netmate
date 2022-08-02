@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     var goToProfileVCAction: (() -> Void)?
-    var goToFollowerVCAction: (() -> Void)?
+    var goToFollowerVCAction: ((Int) -> Void)?
     var goToFeedDetailVCAction: (() -> Void)?
     
     //MARK: - subviews
@@ -120,13 +120,13 @@ extension MainViewController: UITableViewDataSource {
             headerCell.selectionStyle = .none
             return headerCell
         case 1:
-            friedsListCell.selectionStyle = .none
             friedsListCell.goToProfileAction = {
                 self.goToProfileVCAction?()
             }
-            friedsListCell.goToFollowerAction = {
-                self.goToFollowerVCAction?()
+            friedsListCell.goToFollowerAction = { idx in
+                self.goToFollowerVCAction?(idx)
             }
+            friedsListCell.selectionStyle = .none
             return friedsListCell
         default:
             feedCell.selectionStyle = .none

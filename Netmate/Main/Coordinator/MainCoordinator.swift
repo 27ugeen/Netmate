@@ -28,8 +28,8 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
             self.goToProfileVC()
         }
         
-        mainVC.goToFollowerVCAction = {
-            self.goToFollowerVC()
+        mainVC.goToFollowerVCAction = { idx in
+            self.goToFollowerVC(idx)
         }
         
         mainVC.goToFeedDetailVCAction = {
@@ -44,8 +44,8 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
         rootViewController.tabBarController?.selectedIndex = 1
     }
     
-    func goToFollowerVC() {
-        let followerVC = FollowerViewController()
+    func goToFollowerVC(_ index: Int) {
+        let followerVC = FollowerViewController(idx: index)
         navigationRootViewController?.pushViewController(followerVC, animated: true)
     }
     

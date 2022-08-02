@@ -13,7 +13,7 @@ class FriendsListTableViewCell: UITableViewCell {
     private let collectionCellId = FriendListCollectionViewCell.cellId
     
     var goToProfileAction: (() -> Void)?
-    var goToFollowerAction: (() -> Void)?
+    var goToFollowerAction: ((Int) -> Void)?
     
     //MARK: - subviews
     private lazy var friendsCollectionView: UICollectionView = {
@@ -113,7 +113,7 @@ extension FriendsListTableViewCell: UICollectionViewDelegateFlowLayout {
         case 0:
             self.goToProfileAction?()
         default:
-            self.goToFollowerAction?()
+            self.goToFollowerAction?(indexPath.item)
         }
         print("Index: \(indexPath.item)")
     }

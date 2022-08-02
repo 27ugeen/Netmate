@@ -16,6 +16,7 @@ class FollowerViewController: UIViewController {
     private let photoCellID = PhotoTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
+    var idx: Int
     var goToInfoVCAction: (() -> Void)?
 //    var goToEditVCAction: (() -> Void)?
 //    var goToPhotoGalleryAction: (() -> Void)?
@@ -44,6 +45,15 @@ class FollowerViewController: UIViewController {
     }()
     
     //MARK: - init
+    init(idx: Int) {
+        self.idx = idx
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,9 +112,13 @@ extension FollowerViewController: UITableViewDataSource {
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
 
+        let profileModel = FriendsStorage.tableModel[indexPath.section].friends[idx - 1]
         switch indexPath.row {
         case 0:
             headerCell.selectionStyle = .none
+            headerCell.avatarImage.image = profileModel.avatar
+            headerCell.fullNameLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
+            headerCell.profLabel.text = "\(profileModel.profession)"
             headerCell.goToInfoAction = {
                 let infoVC = InfoViewController(infoVM: InfoViewModel().self)
                 infoVC.transitioningDelegate = self
@@ -120,9 +134,15 @@ extension FollowerViewController: UITableViewDataSource {
             return buttonsCell
         case 2:
             photoCell.selectionStyle = .none
+            photoCell.model = profileModel
             return photoCell
         default:
             feedCell.selectionStyle = .none
+            feedCell.model = profileModel
+            
+            feedCell.authorLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
+            feedCell.authorImageView.image = profileModel.avatar
+            feedCell.descriptLabel.text = profileModel.profession
             feedCell.showMoreAction = {
                 let vc = FeedDetailViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -158,33 +178,14 @@ extension FollowerViewController: UITableViewDelegate {
 }
 //MARK: - BonsaiControllerDelegate
 extension FollowerViewController: BonsaiControllerDelegate {
-
     // return the frame of your Bonsai View Controller
     func frameOfPresentedView(in containerViewFrame: CGRect) -> CGRect {
-
         return CGRect(origin: CGPoint(x: containerViewFrame.height / 8, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height))
-
-//        return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
     }
 
     // return a Bonsai Controller with SlideIn or Bubble transition animator
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-
-        /// With Background Color ///
-
         // Slide animation from .left, .right, .top, .bottom
         return BonsaiController(fromDirection: .right, backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-
-        // or Bubble animation initiated from a view
-//        return BonsaiController(fromView: UIView(), backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-
-
-        /// With Blur Style ///
-
-        // Slide animation from .left, .right, .top, .bottom
-        //return BonsaiController(fromDirection: .bottom, blurEffectStyle: .light, presentedViewController: presented, delegate: self)
-
-        // or Bubble animation initiated from a view
-//        return BonsaiController(fromView: UIView(), blurEffectStyle: .systemChromeMaterialDark,  presentedViewController: presented, delegate: self)
     }
 }

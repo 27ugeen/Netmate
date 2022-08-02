@@ -33,7 +33,7 @@ class PostTopTableViewCell: UITableViewCell {
         return image
     }()
     
-    private lazy var postDescriptionLabel: UILabel = {
+    lazy var postDescriptionLabel: UILabel = {
         let description = UILabel()
         description.translatesAutoresizingMaskIntoConstraints = false
         description.font = UIFont.setNormFont(14)
@@ -48,7 +48,7 @@ class PostTopTableViewCell: UITableViewCell {
         self.showMoreAction?()
     }
     
-    private lazy var postImageView: UIImageView = {
+    lazy var postImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
