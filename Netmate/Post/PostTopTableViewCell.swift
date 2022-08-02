@@ -11,6 +11,8 @@ class PostTopTableViewCell: UITableViewCell {
     //MARK: - props
     static let cellId = "PostTopTableViewCell"
     
+    var showMoreAction: (() -> Void)?
+    
 //    var post: Post? {
 //        didSet {
 //            postAuthorLabel.text = "\(postAuthor): \(String(describing: (post?.author ?? "unknown")))"
@@ -41,14 +43,10 @@ class PostTopTableViewCell: UITableViewCell {
         return description
     }()
     
-    private lazy var showMoreLabel: UILabel = {
-        let description = UILabel()
-        description.translatesAutoresizingMaskIntoConstraints = false
-        description.font = UIFont.setSBFont(12)
-        description.textColor = Palette.linkTextcolor
-        description.text = "Show more..."
-        return description
-    }()
+    private lazy var showMoreButton = MagicButton(title: "Show more...", titleColor: Palette.linkTextcolor) {
+        print("showMore btn post tapped")
+        self.showMoreAction?()
+    }
     
     private lazy var postImageView: UIImageView = {
         let image = UIImageView()
@@ -74,10 +72,11 @@ class PostTopTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension PostTopTableViewCell {
     private func setupViews() {
+        self.showMoreButton.titleLabel?.font = UIFont.setSBFont(12)
         contentView.backgroundColor = Palette.secondBackColor
         contentView.addSubview(vLineImageView)
         contentView.addSubview(postDescriptionLabel)
-        contentView.addSubview(showMoreLabel)
+        contentView.addSubview(showMoreButton)
         contentView.addSubview(postImageView)
         
         NSLayoutConstraint.activate([
@@ -90,12 +89,12 @@ extension PostTopTableViewCell {
             postDescriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             postDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             
-            showMoreLabel.leadingAnchor.constraint(equalTo: vLineImageView.trailingAnchor, constant: 24),
-            showMoreLabel.topAnchor.constraint(equalTo: postDescriptionLabel.bottomAnchor, constant: 3),
+            showMoreButton.leadingAnchor.constraint(equalTo: vLineImageView.trailingAnchor, constant: 24),
+            showMoreButton.topAnchor.constraint(equalTo: postDescriptionLabel.bottomAnchor, constant: 3),
+            showMoreButton.heightAnchor.constraint(equalToConstant: 15),
 
             postImageView.leadingAnchor.constraint(equalTo: vLineImageView.leadingAnchor, constant: 24),
-            postImageView.topAnchor.constraint(equalTo: showMoreLabel.bottomAnchor, constant: 15),
-//            postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
+            postImageView.topAnchor.constraint(equalTo: showMoreButton.bottomAnchor, constant: 15),
             postImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             postImageView.widthAnchor.constraint(equalTo: postDescriptionLabel.widthAnchor),
             postImageView.heightAnchor.constraint(equalToConstant: 125)

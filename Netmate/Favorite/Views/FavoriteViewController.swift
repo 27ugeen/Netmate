@@ -15,6 +15,7 @@ class FavoriteViewController: UIViewController {
     private let favSearchID = FavoriteSearchHeaderView.cellId
     
     var goToSearchAction: (() -> Void)?
+    var goToFeedDetailAction: (() -> Void)?
     
     //MARK: - localization
 //    private let postAuthor = "post_author".localized()
@@ -143,16 +144,10 @@ extension FavoriteViewController: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID, for: indexPath) as! FeedTableViewCell
-//        let postLikes = String.localizedStringWithFormat("post_likes".localized(), favoriteViewModel.favoritePosts[indexPath.row].likes)
-        
-//        cell.postAuthorLabel.text = "\(postAuthor): \(favoriteViewModel.favoritePosts[indexPath.row].author)"
-//        cell.postTitleLabel.text = favoriteViewModel.favoritePosts[indexPath.row].title
-//        cell.postImageView.image = favoriteViewModel.favoritePosts[indexPath.row].image
-//        cell.postDescriptionLabel.text = favoriteViewModel.favoritePosts[indexPath.row].description
-//        cell.postlikesLabel.text = postLikes
-//        cell.postViewsLabel.text = "\(postViews): \(favoriteViewModel.favoritePosts[indexPath.row].views)"
+        feedCell.showMoreAction = {
+            self.goToFeedDetailAction?()
+        }
         return feedCell
         
     }

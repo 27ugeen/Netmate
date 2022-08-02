@@ -1,30 +1,18 @@
 //
-//  PostBotTableViewCell.swift
+//  FeedDetailBotTableViewCell.swift
 //  Netmate
 //
-//  Created by GiN Eugene on 26/7/2022.
+//  Created by GiN Eugene on 2/8/2022.
 //
 
 import UIKit
 
-class PostBotTableViewCell: UITableViewCell {
+class FeedDetailBotTableViewCell: UITableViewCell {
     //MARK: - props
-    static let cellId = "PostBotTableViewCell"
-    
-//    var post: Post? {
-//        didSet {
-//            postAuthorLabel.text = "\(postAuthor): \(String(describing: (post?.author ?? "unknown")))"
-//            postTitleLabel.text = post?.title
-//            postImageView.image = post?.image
-//            postDescriptionLabel.text = post?.descript
-//            postlikesLabel.text = String.localizedStringWithFormat(postLikes, (post?.likes ?? 0))
-//            postViewsLabel.text = "\(postViews): \(String(describing: (post?.views ?? 0)))"
-//        }
-//    }
-    //MARK: - localization
+    static let cellId = "FeedDetailBotTableViewCell"
     
     //MARK: - subviews
-    lazy var likesImageView: UIImageView = {
+    private lazy var likesImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
@@ -66,9 +54,12 @@ class PostBotTableViewCell: UITableViewCell {
         return image
     }()
     
+    private lazy var botSeparator = Separator(backgroundColor: Palette.separatorColor)
+    
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setupViews()
     }
     
@@ -77,36 +68,42 @@ class PostBotTableViewCell: UITableViewCell {
     }
 }
 //MARK: - setupViews
-extension PostBotTableViewCell {
+extension FeedDetailBotTableViewCell {
     private func setupViews() {
-        contentView.backgroundColor = Palette.secondBackColor
+        contentView.backgroundColor = Palette.appTintColor
         contentView.addSubview(likesImageView)
         contentView.addSubview(likesLabel)
         contentView.addSubview(commentsImageView)
         contentView.addSubview(commentsLabel)
         contentView.addSubview(bookmarkImageView)
+        contentView.addSubview(botSeparator)
         
         NSLayoutConstraint.activate([
-            likesImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 52),
+            likesImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             likesImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            likesImageView.widthAnchor.constraint(equalToConstant: 20),
+            likesImageView.widthAnchor.constraint(equalToConstant: 24),
             likesImageView.heightAnchor.constraint(equalTo: likesImageView.widthAnchor),
             
             likesLabel.leadingAnchor.constraint(equalTo: likesImageView.trailingAnchor, constant: 10),
             likesLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            commentsImageView.leadingAnchor.constraint(equalTo: likesLabel.trailingAnchor, constant: 30),
+            commentsImageView.leadingAnchor.constraint(equalTo: likesLabel.trailingAnchor, constant: 24),
             commentsImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            commentsImageView.widthAnchor.constraint(equalToConstant: 20),
+            commentsImageView.widthAnchor.constraint(equalToConstant: 24),
             commentsImageView.heightAnchor.constraint(equalTo: commentsImageView.widthAnchor),
             
             commentsLabel.leadingAnchor.constraint(equalTo: commentsImageView.trailingAnchor, constant: 10),
             commentsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             bookmarkImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            bookmarkImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
-            bookmarkImageView.widthAnchor.constraint(equalToConstant: 18),
-            bookmarkImageView.heightAnchor.constraint(equalToConstant: 20)
+            bookmarkImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            bookmarkImageView.widthAnchor.constraint(equalToConstant: 20),
+            bookmarkImageView.heightAnchor.constraint(equalToConstant: 24),
+            
+            botSeparator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            botSeparator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            botSeparator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            botSeparator.heightAnchor.constraint(equalToConstant: 0.5)
         ])
     }
 }

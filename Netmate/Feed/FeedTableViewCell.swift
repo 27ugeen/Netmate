@@ -13,6 +13,8 @@ class FeedTableViewCell: UITableViewCell {
     private let postTopCellID = PostTopTableViewCell.cellId
     private let postBotCellID = PostBotTableViewCell.cellId
     
+    var showMoreAction: (() -> Void)?
+    
 //    var post: Post? {
 //        didSet {
 //            postAuthorLabel.text = "\(postAuthor): \(String(describing: (post?.author ?? "unknown")))"
@@ -140,6 +142,9 @@ extension FeedTableViewCell: UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
+            postTopCell.showMoreAction = {
+                self.showMoreAction?()
+            }
             return postTopCell
         default:
             postBotCell.separator(hide: true)

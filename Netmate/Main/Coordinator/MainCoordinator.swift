@@ -32,6 +32,10 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
             self.goToFollowerVC()
         }
         
+        mainVC.goToFeedDetailVCAction = {
+            self.goToFeedDetailVC()
+        }
+        
         rootViewController = UINavigationController(rootViewController: mainVC)
         return rootViewController
     }
@@ -43,6 +47,11 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
     func goToFollowerVC() {
         let followerVC = FollowerViewController()
         navigationRootViewController?.pushViewController(followerVC, animated: true)
+    }
+    
+    func goToFeedDetailVC() {
+        let feedDetailVC = FeedDetailViewController()
+        navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
     }
     
 }

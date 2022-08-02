@@ -33,12 +33,14 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
         
         profileVC.goToEditVCAction = { [weak self] in
             self?.goToProfEditVC()
-            
         }
         
         profileVC.goToPhotoGalleryAction = { [weak self] in
             self?.goToPhotoVC()
-            
+        }
+        
+        profileVC.goToFeedDetailAction = {
+            self.goToFeedDetailVC()
         }
         
         rootViewController = UINavigationController(rootViewController: profileVC)
@@ -59,5 +61,10 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
         let imgPubFascade = ImagePublisherFacade()
         let photoVC = PhotoViewController(imagePublisherFacade: imgPubFascade)
         navigationRootViewController?.pushViewController(photoVC, animated: true)
+    }
+    
+    func goToFeedDetailVC() {
+        let feedDetailVC = FeedDetailViewController()
+        navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
     }
 }

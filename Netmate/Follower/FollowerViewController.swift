@@ -118,7 +118,10 @@ extension FollowerViewController: UITableViewDataSource {
             return photoCell
         default:
             feedCell.selectionStyle = .none
-            feedCell.separator(hide: true)
+            feedCell.showMoreAction = {
+                let vc = FeedDetailViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             return feedCell
         }
     }

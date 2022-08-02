@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     var goToInfoVCAction: (() -> Void)?
     var goToEditVCAction: (() -> Void)?
     var goToPhotoGalleryAction: (() -> Void)?
+    var goToFeedDetailAction: (() -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -124,7 +125,9 @@ extension ProfileViewController: UITableViewDataSource {
             photoCell.selectionStyle = .none
             return photoCell
         default:
-//            feedCell.separator(hide: true)
+            feedCell.showMoreAction = {
+                self.goToFeedDetailAction?()
+            }
             return feedCell
         }
     }

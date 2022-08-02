@@ -24,9 +24,16 @@ class FavoriteCoordinator: FavoriteBaseCoordinatorProtocol {
     }
     //MARK: - methods
     func start() -> UIViewController {
+        favVC.goToFeedDetailAction = {
+            self.goToFeedDetailVC()
+        }
         
         rootViewController = UINavigationController(rootViewController: favVC)
         return rootViewController
     }
     
+    func goToFeedDetailVC() {
+        let feedDetailVC = FeedDetailViewController()
+        navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
+    }
 }
