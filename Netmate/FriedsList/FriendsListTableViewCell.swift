@@ -84,7 +84,7 @@ extension FriendsListTableViewCell: UICollectionViewDataSource {
             cell.imageView.image = UIImage(named: "surfer")
             cell.plusImageView.layer.opacity = 1
         default:
-            cell.imageView.image = FriendsStorage.tableModel[indexPath.section].friends[indexPath.item - 1].photo
+            cell.imageView.image = FriendsStorage.tableModel[indexPath.section].friends[indexPath.item - 1].avatar
         }
         
         return cell

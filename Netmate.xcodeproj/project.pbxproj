@@ -38,7 +38,7 @@
 		11573E40288FEE7E00819116 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E3F288FEE7E00819116 /* MainViewController.swift */; };
 		11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */; };
 		11573E45288FF3F000819116 /* FriendsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */; };
-		11573E47288FF8DA00819116 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E46288FF8DA00819116 /* FriendsList.swift */; };
+		11573E47288FF8DA00819116 /* FriendsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E46288FF8DA00819116 /* FriendsStorage.swift */; };
 		11573E4A2890440F00819116 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E492890440F00819116 /* FeedTableViewCell.swift */; };
 		11573E4D2890527100819116 /* PostTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E4C2890527100819116 /* PostTopTableViewCell.swift */; };
 		11573E50289054C000819116 /* PostBotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11573E4F289054C000819116 /* PostBotTableViewCell.swift */; };
@@ -52,7 +52,7 @@
 		116041E52899225B00C3D82C /* FollowerButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116041E42899225B00C3D82C /* FollowerButtonsTableViewCell.swift */; };
 		116041E72899262F00C3D82C /* ProfileButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116041E62899262F00C3D82C /* ProfileButtonsTableViewCell.swift */; };
 		117270FF28926ACE0084D204 /* MainHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117270FE28926ACE0084D204 /* MainHeaderTableViewCell.swift */; };
-		117271012892927B0084D204 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271002892927B0084D204 /* Photo.swift */; };
+		117271012892927B0084D204 /* PhotoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271002892927B0084D204 /* PhotoStorage.swift */; };
 		117271042892939B0084D204 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271032892939B0084D204 /* PhotoTableViewCell.swift */; };
 		11727106289294020084D204 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11727105289294020084D204 /* PhotoCollectionViewCell.swift */; };
 		117271092892D0440084D204 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117271082892D0440084D204 /* InfoViewController.swift */; };
@@ -99,7 +99,7 @@
 		11573E3F288FEE7E00819116 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewCell.swift; sourceTree = "<group>"; };
 		11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListCollectionViewCell.swift; sourceTree = "<group>"; };
-		11573E46288FF8DA00819116 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
+		11573E46288FF8DA00819116 /* FriendsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsStorage.swift; sourceTree = "<group>"; };
 		11573E492890440F00819116 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		11573E4C2890527100819116 /* PostTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTopTableViewCell.swift; sourceTree = "<group>"; };
 		11573E4F289054C000819116 /* PostBotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBotTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		116041E42899225B00C3D82C /* FollowerButtonsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerButtonsTableViewCell.swift; sourceTree = "<group>"; };
 		116041E62899262F00C3D82C /* ProfileButtonsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonsTableViewCell.swift; sourceTree = "<group>"; };
 		117270FE28926ACE0084D204 /* MainHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		117271002892927B0084D204 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		117271002892927B0084D204 /* PhotoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStorage.swift; sourceTree = "<group>"; };
 		117271032892939B0084D204 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		11727105289294020084D204 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		117271082892D0440084D204 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +261,7 @@
 			children = (
 				1156B7EB288E9AC000F58577 /* AppDelegate.swift */,
 				1156B7ED288E9AC000F58577 /* SceneDelegate.swift */,
+				116041E828992ED300C3D82C /* DataStorage */,
 				1156B7F6288E9AC200F58577 /* LaunchScreen.storyboard */,
 				1156B7F9288E9AC200F58577 /* Info.plist */,
 				1156B7F4288E9AC200F58577 /* Assets.xcassets */,
@@ -353,7 +354,6 @@
 		11573E482890427A00819116 /* FriedsList */ = {
 			isa = PBXGroup;
 			children = (
-				11573E46288FF8DA00819116 /* FriendsList.swift */,
 				11573E42288FF24A00819116 /* FriendsListTableViewCell.swift */,
 				11573E44288FF3F000819116 /* FriendsListCollectionViewCell.swift */,
 			);
@@ -415,10 +415,18 @@
 			path = FeedDetail;
 			sourceTree = "<group>";
 		};
+		116041E828992ED300C3D82C /* DataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				11573E46288FF8DA00819116 /* FriendsStorage.swift */,
+				117271002892927B0084D204 /* PhotoStorage.swift */,
+			);
+			path = DataStorage;
+			sourceTree = "<group>";
+		};
 		117271022892937B0084D204 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				117271002892927B0084D204 /* Photo.swift */,
 				11727107289296110084D204 /* Views */,
 			);
 			path = Photo;
@@ -637,7 +645,7 @@
 				11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */,
 				11471D522892FD8D00A5EB57 /* ProfileEditViewController.swift in Sources */,
 				11431E1A28919E1300A8AFE3 /* FavoriteViewController.swift in Sources */,
-				117271012892927B0084D204 /* Photo.swift in Sources */,
+				117271012892927B0084D204 /* PhotoStorage.swift in Sources */,
 				116041DC2898FF5200C3D82C /* FeedDetailViewController.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,
 				115A32C72895394E00873DB9 /* MenuTableViewCell.swift in Sources */,
@@ -646,7 +654,7 @@
 				11573E40288FEE7E00819116 /* MainViewController.swift in Sources */,
 				116041E72899262F00C3D82C /* ProfileButtonsTableViewCell.swift in Sources */,
 				116041E52899225B00C3D82C /* FollowerButtonsTableViewCell.swift in Sources */,
-				11573E47288FF8DA00819116 /* FriendsList.swift in Sources */,
+				11573E47288FF8DA00819116 /* FriendsStorage.swift in Sources */,
 				116041E02899061900C3D82C /* FeedDetailPostTableViewCell.swift in Sources */,
 				11431E362891AFB700A8AFE3 /* LocalAuthorizationService.swift in Sources */,
 			);
