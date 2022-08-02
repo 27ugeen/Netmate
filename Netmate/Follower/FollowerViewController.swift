@@ -11,7 +11,8 @@ import BonsaiController
 
 class FollowerViewController: UIViewController {
     //MARK: - props
-    private let headerCellID = FollowerHeaderTableViewCell.cellId
+    private let headerCellID = ProfileHeaderTableViewCell.cellId
+    private let buttonsCellID = FollowerButtonsTableViewCell.cellId
     private let photoCellID = PhotoTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
@@ -69,7 +70,8 @@ extension FollowerViewController {
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
         
-        tableView.register(FollowerHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
+        tableView.register(ProfileHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
+        tableView.register(FollowerButtonsTableViewCell.self, forCellReuseIdentifier: buttonsCellID)
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
 
@@ -95,7 +97,8 @@ extension FollowerViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! FollowerHeaderTableViewCell
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! ProfileHeaderTableViewCell
+        let buttonsCell = tableView.dequeueReusableCell(withIdentifier: buttonsCellID) as! FollowerButtonsTableViewCell
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
 
@@ -114,6 +117,8 @@ extension FollowerViewController: UITableViewDataSource {
             }
             return headerCell
         case 1:
+            return buttonsCell
+        case 2:
             photoCell.selectionStyle = .none
             return photoCell
         default:
@@ -141,8 +146,10 @@ extension FollowerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 180
+            return 96
         case 1:
+            return 86
+        case 2:
             return 140
         default:
             return 400

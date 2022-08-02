@@ -11,6 +11,7 @@ import BonsaiController
 class ProfileViewController: UIViewController {
     //MARK: - props
     private let headerCellID = ProfileHeaderTableViewCell.cellId
+    private let buttonsCellID = ProfileButtonsTableViewCell.cellId
     private let photoCellID = PhotoTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
@@ -74,6 +75,7 @@ extension ProfileViewController {
         self.view.addSubview(tableView)
         
         tableView.register(ProfileHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
+        tableView.register(ProfileButtonsTableViewCell.self, forCellReuseIdentifier: buttonsCellID)
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
         
@@ -100,12 +102,17 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! ProfileHeaderTableViewCell
+        let buttonsCell = tableView.dequeueReusableCell(withIdentifier: buttonsCellID) as! ProfileButtonsTableViewCell
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
         
         switch indexPath.row {
         case 0:
             headerCell.selectionStyle = .none
+            headerCell.avatarImage.image = UIImage(named: "surfer")
+            headerCell.fullNameLabel.text = "Gin Egene"
+            headerCell.profLabel.text = "Apple software developer"
+            
             headerCell.goToInfoAction = {
                 let infoVC = InfoViewController(infoVM: InfoViewModel().self)
                 infoVC.transitioningDelegate = self
@@ -117,11 +124,13 @@ extension ProfileViewController: UITableViewDataSource {
                 }
 //                self.goToInfoVCAction?()
             }
-            headerCell.goToEditAction = {
-                self.goToEditVCAction?()
-            }
             return headerCell
         case 1:
+            buttonsCell.goToEditAction = {
+                self.goToEditVCAction?()
+            }
+            return buttonsCell
+        case 2:
             photoCell.selectionStyle = .none
             return photoCell
         default:
@@ -145,8 +154,10 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 180
+            return 96
         case 1:
+            return 86
+        case 2:
             return 140
         default:
             return 400
