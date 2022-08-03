@@ -14,7 +14,7 @@ class PhotoTableViewCell: UITableViewCell {
     private let photoWidth = (UIScreen.main.bounds.width - 48) / 4
     private let photoCellID = PhotoCollectionViewCell.cellId
     
-    var model: Friend? {
+    var model: User? {
         didSet {
             photosPreview.reloadData()
         }

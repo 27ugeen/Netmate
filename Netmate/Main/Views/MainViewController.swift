@@ -39,9 +39,9 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var resetBarButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(clearFilter))
-    
     private lazy var searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searcAction))
+    
+    private lazy var bellBarButton = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: .plain, target: self, action: #selector(bellTapped))
     
     //MARK: - init
     override func viewDidLoad() {
@@ -59,28 +59,21 @@ class MainViewController: UIViewController {
         
         let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
         self.navigationItem.setLeftBarButtonItems([leftBarTitle], animated: true)
-        self.navigationItem.setRightBarButtonItems([searchBarButton, resetBarButton], animated: true)
+        self.navigationItem.setRightBarButtonItems([bellBarButton, searchBarButton], animated: true)
         self.navigationController?.navigationBar.tintColor = Palette.mainTextColor
     }
     
     @objc private func searcAction() {
-        let searchVC = FavoriteSearchViewController()
-        searchVC.transitioningDelegate = self
-        searchVC.modalPresentationStyle = .custom
-        self.navigationController?.present(searchVC, animated: true)
-//        self.goToSearchAction?()
+        print("main search btn tapped")
     }
     
-    @objc private func clearFilter() {
-        UserDefaults.standard.set("", forKey: "author")
-//        favoriteViewModel.getAllFavoritePosts()
-        tableView.reloadData()
+    @objc private func bellTapped() {
+        print("main bell btn tapped")
     }
 }
 //MARK: - setupConstraints
 extension MainViewController {
     private func setupViews() {
-
         
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
@@ -102,18 +95,15 @@ extension MainViewController {
 }
 //MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return FeedStorage.tableModel.count + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! MainHeaderTableViewCell
         let friedsListCell = tableView.dequeueReusableCell(withIdentifier: friedsListCellID) as! FriendsListTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
+        
         
         switch indexPath.row {
         case 0:
@@ -130,6 +120,12 @@ extension MainViewController: UITableViewDataSource {
             return friedsListCell
         default:
             feedCell.selectionStyle = .none
+            let feedModel = FeedStorage.tableModel[indexPath.row - 2]
+            feedCell.authorLabel.text = "\(feedModel.firstName) \(feedModel.lastName)"
+            feedCell.descriptLabel.text = "\(feedModel.profession)"
+            feedCell.authorImageView.image = feedModel.avatar
+            
+            feedCell.model = feedModel.feed[0]
             feedCell.showMoreAction = {
                 self.goToFeedDetailVCAction?()
             }

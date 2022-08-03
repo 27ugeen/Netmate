@@ -73,7 +73,7 @@ extension FriendsListTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return FriendsStorage.tableModel[section].friends.count + 1
+        return FriendsStorage.tableModel.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -84,7 +84,7 @@ extension FriendsListTableViewCell: UICollectionViewDataSource {
             cell.imageView.image = UIImage(named: "surfer")
             cell.plusImageView.layer.opacity = 1
         default:
-            cell.imageView.image = FriendsStorage.tableModel[indexPath.section].friends[indexPath.item - 1].avatar
+            cell.imageView.image = FriendsStorage.tableModel[indexPath.item - 1].avatar
         }
         
         return cell

@@ -103,7 +103,7 @@ extension FollowerViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return FriendsStorage.tableModel[idx - 1].feed.count + 3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,7 +112,8 @@ extension FollowerViewController: UITableViewDataSource {
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
 
-        let profileModel = FriendsStorage.tableModel[indexPath.section].friends[idx - 1]
+//        let profileModel = FriendsStorage.tableModel[indexPath.section].friends[idx - 1]
+        let profileModel = FriendsStorage.tableModel[idx - 1]
         switch indexPath.row {
         case 0:
             headerCell.selectionStyle = .none
@@ -138,11 +139,12 @@ extension FollowerViewController: UITableViewDataSource {
             return photoCell
         default:
             feedCell.selectionStyle = .none
-            feedCell.model = profileModel
+            feedCell.model = profileModel.feed[indexPath.row - 3]
             
             feedCell.authorLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
             feedCell.authorImageView.image = profileModel.avatar
             feedCell.descriptLabel.text = profileModel.profession
+            
             feedCell.showMoreAction = {
                 let vc = FeedDetailViewController()
                 self.navigationController?.pushViewController(vc, animated: true)

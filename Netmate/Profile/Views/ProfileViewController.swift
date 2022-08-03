@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController {
     private let photoCellID = PhotoTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
+    private let profileModel = UserStorage.tableModel[0]
+    
     var goToInfoVCAction: (() -> Void)?
     var goToEditVCAction: (() -> Void)?
     var goToPhotoGalleryAction: (() -> Void)?
@@ -92,12 +94,8 @@ extension ProfileViewController {
 }
 //MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return UserStorage.tableModel[0].feed.count + 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,9 +107,9 @@ extension ProfileViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             headerCell.selectionStyle = .none
-            headerCell.avatarImage.image = UIImage(named: "surfer")
-            headerCell.fullNameLabel.text = "Gin Egene"
-            headerCell.profLabel.text = "Apple software developer"
+            headerCell.avatarImage.image = profileModel.avatar
+            headerCell.fullNameLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
+            headerCell.profLabel.text = "\(profileModel.profession)"
             
             headerCell.goToInfoAction = {
                 let infoVC = InfoViewController(infoVM: InfoViewModel().self)
@@ -132,8 +130,14 @@ extension ProfileViewController: UITableViewDataSource {
             return buttonsCell
         case 2:
             photoCell.selectionStyle = .none
+            photoCell.model = profileModel
             return photoCell
         default:
+            feedCell.authorImageView.image = profileModel.avatar
+            feedCell.authorLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
+            feedCell.descriptLabel.text = "\(profileModel.profession)"
+            feedCell.model = profileModel.feed[indexPath.row - 3]
+            
             feedCell.showMoreAction = {
                 self.goToFeedDetailAction?()
             }
@@ -166,33 +170,13 @@ extension ProfileViewController: UITableViewDelegate {
 }
 //MARK: - BonsaiControllerDelegate
 extension ProfileViewController: BonsaiControllerDelegate {
-    
     // return the frame of your Bonsai View Controller
     func frameOfPresentedView(in containerViewFrame: CGRect) -> CGRect {
-        
         return CGRect(origin: CGPoint(x: containerViewFrame.height / 8, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height))
-        
-//        return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
     }
-    
     // return a Bonsai Controller with SlideIn or Bubble transition animator
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-    
-        /// With Background Color ///
-    
         // Slide animation from .left, .right, .top, .bottom
         return BonsaiController(fromDirection: .right, backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-        
-        // or Bubble animation initiated from a view
-//        return BonsaiController(fromView: UIView(), backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-    
-    
-        /// With Blur Style ///
-        
-        // Slide animation from .left, .right, .top, .bottom
-        //return BonsaiController(fromDirection: .bottom, blurEffectStyle: .light, presentedViewController: presented, delegate: self)
-        
-        // or Bubble animation initiated from a view
-//        return BonsaiController(fromView: UIView(), blurEffectStyle: .systemChromeMaterialDark,  presentedViewController: presented, delegate: self)
     }
 }

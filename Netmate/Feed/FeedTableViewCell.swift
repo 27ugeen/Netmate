@@ -15,7 +15,7 @@ class FeedTableViewCell: UITableViewCell {
     
     var showMoreAction: (() -> Void)?
     
-    var model: Friend? {
+    var model: Feed? {
         didSet {
             postTableView.reloadData()
         }
@@ -37,7 +37,7 @@ class FeedTableViewCell: UITableViewCell {
     lazy var authorImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.backgroundColor = Palette.appTintColor
         image.image = UIImage(named: "Gal_Gadot")
         image.layer.cornerRadius = 30
@@ -72,7 +72,7 @@ class FeedTableViewCell: UITableViewCell {
         return image
     }()
     
-    private let postTableView: UITableView = {
+    let postTableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.automaticallyAdjustsScrollIndicatorInsets = false
@@ -148,8 +148,8 @@ extension FeedTableViewCell: UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            postTopCell.postDescriptionLabel.text = model?.feed[indexPath.row].post.article
-            postTopCell.postImageView.image = model?.avatar
+            postTopCell.postDescriptionLabel.text = model?.article
+            postTopCell.postImageView.image = model?.image
             postTopCell.showMoreAction = {
                 self.showMoreAction?()
             }
