@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		112CE367289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112CE366289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift */; };
 		113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113621DE2893F59100EE5C5F /* RadioButton.swift */; };
 		11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E14289142D900A8AFE3 /* ProfileViewController.swift */; };
 		11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		112CE366289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubscribtionTableViewCell.swift; sourceTree = "<group>"; };
 		113621DE2893F59100EE5C5F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		11431E14289142D900A8AFE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				11471D512892FD8D00A5EB57 /* ProfileEditViewController.swift */,
 				11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */,
 				116041E62899262F00C3D82C /* ProfileButtonsTableViewCell.swift */,
+				112CE366289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */,
 				117682C32897C4F100D8DCB3 /* PhotoViewController.swift in Sources */,
 				11727106289294020084D204 /* PhotoCollectionViewCell.swift in Sources */,
+				112CE367289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift in Sources */,
 				11431E262891A93C00A8AFE3 /* AppCoordinator.swift in Sources */,
 				11431E212891A8B600A8AFE3 /* Coordinator.swift in Sources */,
 				11573E45288FF3F000819116 /* FriendsListCollectionViewCell.swift in Sources */,

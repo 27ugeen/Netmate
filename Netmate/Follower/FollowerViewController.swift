@@ -13,6 +13,7 @@ class FollowerViewController: UIViewController {
     //MARK: - props
     private let headerCellID = ProfileHeaderTableViewCell.cellId
     private let buttonsCellID = FollowerButtonsTableViewCell.cellId
+    private let subscriptCellID = ProfileSubscribtionTableViewCell.cellId
     private let photoCellID = PhotoTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
@@ -82,6 +83,7 @@ extension FollowerViewController {
         
         tableView.register(ProfileHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
         tableView.register(FollowerButtonsTableViewCell.self, forCellReuseIdentifier: buttonsCellID)
+        tableView.register(ProfileSubscribtionTableViewCell.self, forCellReuseIdentifier: subscriptCellID)
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
 
@@ -98,17 +100,14 @@ extension FollowerViewController {
 }
 //MARK: - UITableViewDataSource
 extension FollowerViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FriendsStorage.tableModel[idx - 1].feed.count + 3
+        return FriendsStorage.tableModel[idx - 1].feed.count + 4
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! ProfileHeaderTableViewCell
         let buttonsCell = tableView.dequeueReusableCell(withIdentifier: buttonsCellID) as! FollowerButtonsTableViewCell
+        let subscriptCell = tableView.dequeueReusableCell(withIdentifier: subscriptCellID) as! ProfileSubscribtionTableViewCell
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
 
@@ -134,12 +133,14 @@ extension FollowerViewController: UITableViewDataSource {
         case 1:
             return buttonsCell
         case 2:
+            return subscriptCell
+        case 3:
             photoCell.selectionStyle = .none
             photoCell.model = profileModel
             return photoCell
         default:
             feedCell.selectionStyle = .none
-            feedCell.model = profileModel.feed[indexPath.row - 3]
+            feedCell.model = profileModel.feed[indexPath.row - 4]
             
             feedCell.authorLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
             feedCell.authorImageView.image = profileModel.avatar
@@ -172,6 +173,8 @@ extension FollowerViewController: UITableViewDelegate {
         case 1:
             return 86
         case 2:
+            return 91
+        case 3:
             return 140
         default:
             return 400

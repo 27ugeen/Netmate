@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController {
     //MARK: - props
     private let headerCellID = ProfileHeaderTableViewCell.cellId
     private let buttonsCellID = ProfileButtonsTableViewCell.cellId
+    private let subscriptCellID = ProfileSubscribtionTableViewCell.cellId
     private let photoCellID = PhotoTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
@@ -78,6 +79,7 @@ extension ProfileViewController {
         
         tableView.register(ProfileHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
         tableView.register(ProfileButtonsTableViewCell.self, forCellReuseIdentifier: buttonsCellID)
+        tableView.register(ProfileSubscribtionTableViewCell.self, forCellReuseIdentifier: subscriptCellID)
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
         
@@ -95,12 +97,13 @@ extension ProfileViewController {
 //MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserStorage.tableModel[0].feed.count + 3
+        return UserStorage.tableModel[0].feed.count + 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! ProfileHeaderTableViewCell
         let buttonsCell = tableView.dequeueReusableCell(withIdentifier: buttonsCellID) as! ProfileButtonsTableViewCell
+        let subscriptCell = tableView.dequeueReusableCell(withIdentifier: subscriptCellID) as! ProfileSubscribtionTableViewCell
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
         
@@ -129,6 +132,8 @@ extension ProfileViewController: UITableViewDataSource {
             }
             return buttonsCell
         case 2:
+            return subscriptCell
+        case 3:
             photoCell.selectionStyle = .none
             photoCell.model = profileModel
             return photoCell
@@ -136,7 +141,7 @@ extension ProfileViewController: UITableViewDataSource {
             feedCell.authorImageView.image = profileModel.avatar
             feedCell.authorLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
             feedCell.descriptLabel.text = "\(profileModel.profession)"
-            feedCell.model = profileModel.feed[indexPath.row - 3]
+            feedCell.model = profileModel.feed[indexPath.row - 4]
             
             feedCell.showMoreAction = {
                 self.goToFeedDetailAction?()
@@ -150,7 +155,7 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 2 {
+        if indexPath.row == 3 {
             self.goToPhotoGalleryAction?()
         }
     }
@@ -162,6 +167,8 @@ extension ProfileViewController: UITableViewDelegate {
         case 1:
             return 86
         case 2:
+            return 91
+        case 3:
             return 140
         default:
             return 400

@@ -104,7 +104,6 @@ extension MainViewController: UITableViewDataSource {
         let friedsListCell = tableView.dequeueReusableCell(withIdentifier: friedsListCellID) as! FriendsListTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
         
-        
         switch indexPath.row {
         case 0:
             headerCell.selectionStyle = .none
