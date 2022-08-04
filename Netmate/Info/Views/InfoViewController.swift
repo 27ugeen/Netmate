@@ -106,8 +106,7 @@ extension InfoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let infoCell = tableView.dequeueReusableCell(withIdentifier: infoCell) as! InfoTableViewCell
-        infoCell.nameLabel.text = infoVM.fields[indexPath.row].name
-        infoCell.valueLabel.text = infoVM.fields[indexPath.row].value
+        infoCell.infoButton.setTitle(infoVM.fields[indexPath.row].name, for: .normal)
         
         infoCell.selectionStyle = .none
         infoCell.backgroundColor = .clear

@@ -12,23 +12,27 @@ class InfoTableViewCell: UITableViewCell {
     static let cellId = "InfoTableViewCell"
     
     //MARK: - subviews
-    lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Palette.secondTextColor
-        label.font = UIFont.setMedFont(12)
-        label.text = "nameLabel"
-        return label
-    }()
+    lazy var infoButton = MagicButton(title: "", titleColor: Palette.mainTextColor) {
+        print("info btn tapped")
+    }
     
-    lazy var valueLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Palette.mainTextColor
-        label.font = UIFont.setNormFont(14)
-        label.text = "valueLabel"
-        return label
-    }()
+//    lazy var nameLabel: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.textColor = Palette.secondTextColor
+//        label.font = UIFont.setMedFont(12)
+//        label.text = "nameLabel"
+//        return label
+//    }()
+//
+//    lazy var valueLabel: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.textColor = Palette.mainTextColor
+//        label.font = UIFont.setNormFont(14)
+//        label.text = "valueLabel"
+//        return label
+//    }()
     
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -42,17 +46,14 @@ class InfoTableViewCell: UITableViewCell {
     }
     //MARK: - methods
     private func setupViews() {
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(valueLabel)
+        infoButton.titleLabel?.font = UIFont.setNormFont(14)
+        infoButton.setTitleColor(Palette.accentTextColor, for: .highlighted)
+        contentView.addSubview(infoButton)
         
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            infoButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            infoButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            infoButton.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 }
