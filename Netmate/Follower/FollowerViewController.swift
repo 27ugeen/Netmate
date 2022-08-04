@@ -45,6 +45,8 @@ class FollowerViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var topSeparator = Separator(backgroundColor: Palette.separatorColor)
+    
     //MARK: - init
     init(idx: Int) {
         self.idx = idx
@@ -79,6 +81,7 @@ class FollowerViewController: UIViewController {
 extension FollowerViewController {
     private func setupViews() {
         self.view.backgroundColor = Palette.appTintColor
+        self.view.addSubview(topSeparator)
         self.view.addSubview(tableView)
         
         tableView.register(ProfileHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
@@ -91,8 +94,13 @@ extension FollowerViewController {
         tableView.delegate = self
         
         NSLayoutConstraint.activate([
+            topSeparator.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            topSeparator.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            topSeparator.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            topSeparator.heightAnchor.constraint(equalToConstant: 0.5),
+            
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: topSeparator.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])

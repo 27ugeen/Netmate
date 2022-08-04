@@ -21,8 +21,6 @@ class ProfileButtonsTableViewCell: UITableViewCell {
         self.goToEditAction?()
     }
     
-    private lazy var separator = Separator(backgroundColor: Palette.separatorColor)
-    
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -48,18 +46,12 @@ extension ProfileButtonsTableViewCell {
     private func setupViews() {
         contentView.backgroundColor = Palette.appTintColor
         contentView.addSubview(editButton)
-        contentView.addSubview(separator)
         
         NSLayoutConstraint.activate([
             editButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             editButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
             editButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            editButton.heightAnchor.constraint(equalToConstant: 45),
-            
-            separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            separator.heightAnchor.constraint(equalToConstant: 0.5)
+            editButton.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
 }

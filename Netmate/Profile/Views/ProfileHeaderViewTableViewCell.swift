@@ -14,8 +14,6 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     var goToInfoAction: (() -> Void)?
     
     //MARK: - subviews
-    private lazy var topSeparator = Separator(backgroundColor: Palette.separatorColor)
-    
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +77,6 @@ class ProfileHeaderTableViewCell: UITableViewCell {
 extension ProfileHeaderTableViewCell {
     private func setupViews() {
         contentView.backgroundColor = Palette.appTintColor
-        contentView.addSubview(topSeparator)
         contentView.addSubview(avatarImage)
         contentView.addSubview(fullNameLabel)
         contentView.addSubview(profLabel)
@@ -87,18 +84,13 @@ extension ProfileHeaderTableViewCell {
         contentView.addSubview(detailButton)
         
         NSLayoutConstraint.activate([
-            topSeparator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            topSeparator.topAnchor.constraint(equalTo: contentView.topAnchor),
-            topSeparator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            topSeparator.heightAnchor.constraint(equalToConstant: 0.5),
-            
             avatarImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             avatarImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             avatarImage.widthAnchor.constraint(equalToConstant: 80),
             avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor),
             
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 15),
-            fullNameLabel.topAnchor.constraint(equalTo: topSeparator.bottomAnchor, constant: 15),
+            fullNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             
             profLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
             profLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 5),

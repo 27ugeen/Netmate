@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		112CE367289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112CE366289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift */; };
+		112CE369289BA76D008B2B06 /* ProfileNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112CE368289BA76D008B2B06 /* ProfileNotesTableViewCell.swift */; };
 		113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113621DE2893F59100EE5C5F /* RadioButton.swift */; };
 		11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E14289142D900A8AFE3 /* ProfileViewController.swift */; };
 		11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */; };
@@ -63,11 +64,13 @@
 		117BA2BF2896A8F200B9F501 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117BA2BE2896A8F200B9F501 /* Separator.swift */; };
 		118FFAF12897C9CC0082A766 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 118FFAF02897C9CC0082A766 /* iOSIntPackage */; };
 		118FFAF32897D48D0082A766 /* FollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118FFAF22897D48D0082A766 /* FollowerViewController.swift */; };
+		11C3A9FE289BBB5F006039D9 /* ImgTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3A9FD289BBB5F006039D9 /* ImgTitleButton.swift */; };
 		4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		112CE366289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubscribtionTableViewCell.swift; sourceTree = "<group>"; };
+		112CE368289BA76D008B2B06 /* ProfileNotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotesTableViewCell.swift; sourceTree = "<group>"; };
 		113621DE2893F59100EE5C5F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		11431E14289142D900A8AFE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 		117682C22897C4F100D8DCB3 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		117BA2BE2896A8F200B9F501 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		118FFAF22897D48D0082A766 /* FollowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerViewController.swift; sourceTree = "<group>"; };
+		11C3A9FD289BBB5F006039D9 /* ImgTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgTitleButton.swift; sourceTree = "<group>"; };
 		78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.release.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.release.xcconfig"; sourceTree = "<group>"; };
 		F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.debug.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 				11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */,
 				116041E62899262F00C3D82C /* ProfileButtonsTableViewCell.swift */,
 				112CE366289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift */,
+				112CE368289BA76D008B2B06 /* ProfileNotesTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 				1156B801288EA3B100F58577 /* MagicButton.swift */,
 				113621DE2893F59100EE5C5F /* RadioButton.swift */,
 				117BA2BE2896A8F200B9F501 /* Separator.swift */,
+				11C3A9FD289BBB5F006039D9 /* ImgTitleButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -652,6 +658,8 @@
 				117271012892927B0084D204 /* PhotoStorage.swift in Sources */,
 				116041DC2898FF5200C3D82C /* FeedDetailViewController.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,
+				112CE369289BA76D008B2B06 /* ProfileNotesTableViewCell.swift in Sources */,
+				11C3A9FE289BBB5F006039D9 /* ImgTitleButton.swift in Sources */,
 				115A32C72895394E00873DB9 /* MenuTableViewCell.swift in Sources */,
 				1156B7EE288E9AC000F58577 /* SceneDelegate.swift in Sources */,
 				113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */,

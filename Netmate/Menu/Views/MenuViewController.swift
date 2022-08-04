@@ -46,12 +46,11 @@ class MenuViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var botHLineImageView: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = Palette.separatorColor
-        return image
-    }()
+    private lazy var botHLineImageView = Separator(backgroundColor: Palette.separatorColor)
+    
+    private lazy var settingsButton = RadioButtonView(title: "Settings", titleColor: Palette.mainTextColor, titleFont: UIFont.setNormFont(14), isSelected: false, imgSize: CGSize(width: 20, height: 20), imgPadding: 14) {
+        print("settings menu btn tapped")
+    }
     
     private lazy var logOutButton = RadioButtonView(title: "Log Out", titleColor: Palette.mainTextColor, titleFont: UIFont.setNormFont(14), isSelected: false, imgSize: CGSize(width: 20, height: 20), imgPadding: 14) {
         print("logOut menu btn tapped")
@@ -71,7 +70,16 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupButtons()
         setupViews()
+    }
+    //MARK: - methods
+    private func setupButtons() {
+        self.backButton.setBackgroundImage(UIImage(named: "backArrow"), for: .normal)
+        self.settingsButton.radioImageView.image = UIImage(systemName: "gearshape")
+        self.settingsButton.radioImageView.tintColor = Palette.mainTextColor
+        self.logOutButton.radioImageView.image = UIImage(systemName: "xmark.octagon")
+        self.logOutButton.radioImageView.tintColor = Palette.accentTextColor
     }
 }
 //MARK: - setupViews
@@ -79,15 +87,13 @@ extension MenuViewController {
     private func setupViews() {
         self.navigationController?.isNavigationBarHidden = true
         self.view.backgroundColor = Palette.secondBackColor
-        self.backButton.setBackgroundImage(UIImage(named: "backArrow"), for: .normal)
-        self.logOutButton.radioImageView.image = UIImage(systemName: "xmark.octagon")
-        self.logOutButton.radioImageView.tintColor = .systemRed
-        
+
         self.view.addSubview(backButton)
         self.view.addSubview(nameLabel)
         self.view.addSubview(topHLineImageView)
         self.view.addSubview(tableView)
         self.view.addSubview(botHLineImageView)
+        self.view.addSubview(settingsButton)
         self.view.addSubview(logOutButton)
         
         tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: menuCell)
@@ -119,8 +125,13 @@ extension MenuViewController {
             botHLineImageView.widthAnchor.constraint(equalTo: topHLineImageView.widthAnchor),
             botHLineImageView.heightAnchor.constraint(equalTo: topHLineImageView.heightAnchor),
             
+            settingsButton.leadingAnchor.constraint(equalTo: backButton.leadingAnchor),
+            settingsButton.topAnchor.constraint(equalTo: botHLineImageView.bottomAnchor, constant: 15),
+            settingsButton.widthAnchor.constraint(equalToConstant: 100),
+            settingsButton.heightAnchor.constraint(equalToConstant: 20),
+            
             logOutButton.leadingAnchor.constraint(equalTo: backButton.leadingAnchor),
-            logOutButton.topAnchor.constraint(equalTo: botHLineImageView.bottomAnchor, constant: 15),
+            logOutButton.topAnchor.constraint(equalTo: settingsButton.bottomAnchor, constant: 15),
             logOutButton.widthAnchor.constraint(equalToConstant: 100),
             logOutButton.heightAnchor.constraint(equalToConstant: 20)
         ])
