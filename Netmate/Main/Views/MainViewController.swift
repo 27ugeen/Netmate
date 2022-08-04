@@ -16,7 +16,7 @@ class MainViewController: UIViewController {
     
     var goToProfileVCAction: (() -> Void)?
     var goToFollowerVCAction: ((Int) -> Void)?
-    var goToFeedDetailVCAction: (() -> Void)?
+    var goToFeedDetailVCAction: ((_ model: User) -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -126,7 +126,7 @@ extension MainViewController: UITableViewDataSource {
             
             feedCell.model = feedModel.feed[0]
             feedCell.showMoreAction = {
-                self.goToFeedDetailVCAction?()
+                self.goToFeedDetailVCAction?(feedModel)
             }
             
             feedCell.menuAction = {

@@ -13,6 +13,11 @@ class FeedDetailViewController: UIViewController {
     private let postCellID = FeedDetailPostTableViewCell.cellId
     private let botCellID = FeedDetailBotTableViewCell.cellId
     
+    var model: User? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -80,10 +85,6 @@ extension FeedDetailViewController {
 }
 //MARK: - UITableViewDataSource
 extension FeedDetailViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -96,9 +97,14 @@ extension FeedDetailViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             headerCell.selectionStyle = .none
+            headerCell.avatarImage.image = model?.avatar
+            headerCell.nicknameLabel.text = model?.nickName
+            headerCell.profLabel.text = model?.profession
             return headerCell
         case 1:
             postCell.selectionStyle = .none
+            postCell.postImageView.image = model?.feed[0].image
+            postCell.postLabel.text = model?.feed[0].article
             return postCell
         default:
             botCell.selectionStyle = .none

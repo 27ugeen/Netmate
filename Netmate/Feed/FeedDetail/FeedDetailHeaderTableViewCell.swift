@@ -14,33 +14,33 @@ class FeedDetailHeaderTableViewCell: UITableViewCell {
     //MARK: - subviews
     private lazy var topSeparator = Separator(backgroundColor: Palette.separatorColor)
     
-    private lazy var avatarImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "Margot_Robbie_2")
-        image.layer.cornerRadius = 15
-        image.clipsToBounds = true
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
+    lazy var avatarImage: UIImageView = {
+    let image = UIImageView()
+    image.translatesAutoresizingMaskIntoConstraints = false
+    image.image = UIImage(named: "Margot_Robbie_2")
+    image.layer.cornerRadius = 15
+    image.clipsToBounds = true
+    image.contentMode = .scaleAspectFill
+    return image
+}()
     
-    private lazy var nicknameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Palette.accentTextColor
-        label.font = UIFont.setMedFont(12)
-        label.text = "follower_nickname"
-        return label
-    }()
+    lazy var nicknameLabel: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textColor = Palette.accentTextColor
+    label.font = UIFont.setMedFont(12)
+    label.text = "follower_nickname"
+    return label
+}()
     
-    private lazy var proffLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Palette.secondTextColor
-        label.font = UIFont.setNormFont(12)
-        label.text = "follower_proff"
-        return label
-    }()
+    lazy var profLabel: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textColor = Palette.secondTextColor
+    label.font = UIFont.setNormFont(12)
+    label.text = "follower_proff"
+    return label
+}()
     
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -60,7 +60,7 @@ extension FeedDetailHeaderTableViewCell {
         contentView.addSubview(topSeparator)
         contentView.addSubview(avatarImage)
         contentView.addSubview(nicknameLabel)
-        contentView.addSubview(proffLabel)
+        contentView.addSubview(profLabel)
         
         NSLayoutConstraint.activate([
             topSeparator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -76,8 +76,8 @@ extension FeedDetailHeaderTableViewCell {
             nicknameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 16),
             nicknameLabel.topAnchor.constraint(equalTo: avatarImage.topAnchor),
             
-            proffLabel.leadingAnchor.constraint(equalTo: nicknameLabel.leadingAnchor),
-            proffLabel.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor),
+            profLabel.leadingAnchor.constraint(equalTo: nicknameLabel.leadingAnchor),
+            profLabel.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor),
         ])
     }
 }

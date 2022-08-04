@@ -64,7 +64,6 @@
 		117BA2BF2896A8F200B9F501 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117BA2BE2896A8F200B9F501 /* Separator.swift */; };
 		118FFAF12897C9CC0082A766 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 118FFAF02897C9CC0082A766 /* iOSIntPackage */; };
 		118FFAF32897D48D0082A766 /* FollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118FFAF22897D48D0082A766 /* FollowerViewController.swift */; };
-		11C3A9FE289BBB5F006039D9 /* ImgTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3A9FD289BBB5F006039D9 /* ImgTitleButton.swift */; };
 		11C3AA00289C1A1F006039D9 /* FeedMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3A9FF289C1A1F006039D9 /* FeedMenuViewController.swift */; };
 		11C3AA02289C1BE3006039D9 /* FeedMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3AA01289C1BE3006039D9 /* FeedMenuTableViewCell.swift */; };
 		11C3AA04289C1D18006039D9 /* FeedMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3AA03289C1D18006039D9 /* FeedMenuViewModel.swift */; };
@@ -132,7 +131,6 @@
 		117682C22897C4F100D8DCB3 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		117BA2BE2896A8F200B9F501 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		118FFAF22897D48D0082A766 /* FollowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerViewController.swift; sourceTree = "<group>"; };
-		11C3A9FD289BBB5F006039D9 /* ImgTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgTitleButton.swift; sourceTree = "<group>"; };
 		11C3A9FF289C1A1F006039D9 /* FeedMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenuViewController.swift; sourceTree = "<group>"; };
 		11C3AA01289C1BE3006039D9 /* FeedMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenuTableViewCell.swift; sourceTree = "<group>"; };
 		11C3AA03289C1D18006039D9 /* FeedMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenuViewModel.swift; sourceTree = "<group>"; };
@@ -281,10 +279,10 @@
 			children = (
 				1156B7EB288E9AC000F58577 /* AppDelegate.swift */,
 				1156B7ED288E9AC000F58577 /* SceneDelegate.swift */,
-				116041E828992ED300C3D82C /* DataStorage */,
 				1156B7F6288E9AC200F58577 /* LaunchScreen.storyboard */,
 				1156B7F9288E9AC200F58577 /* Info.plist */,
 				1156B7F4288E9AC200F58577 /* Assets.xcassets */,
+				116041E828992ED300C3D82C /* DataStorage */,
 				11431E222891A8DD00A8AFE3 /* Coordinator */,
 				1156B810288EBDA100F58577 /* Fonts */,
 				1156B808288EA63900F58577 /* Helpers */,
@@ -313,7 +311,6 @@
 				1156B801288EA3B100F58577 /* MagicButton.swift */,
 				113621DE2893F59100EE5C5F /* RadioButton.swift */,
 				117BA2BE2896A8F200B9F501 /* Separator.swift */,
-				11C3A9FD289BBB5F006039D9 /* ImgTitleButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -711,7 +708,6 @@
 				116041DC2898FF5200C3D82C /* FeedDetailViewController.swift in Sources */,
 				1156B7EC288E9AC000F58577 /* AppDelegate.swift in Sources */,
 				112CE369289BA76D008B2B06 /* ProfileNotesTableViewCell.swift in Sources */,
-				11C3A9FE289BBB5F006039D9 /* ImgTitleButton.swift in Sources */,
 				115A32C72895394E00873DB9 /* MenuTableViewCell.swift in Sources */,
 				1156B7EE288E9AC000F58577 /* SceneDelegate.swift in Sources */,
 				113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */,

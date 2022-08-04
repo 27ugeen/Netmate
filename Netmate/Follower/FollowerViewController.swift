@@ -65,6 +65,9 @@ class FollowerViewController: UIViewController {
     }
     //MARK: - methods
     private func setupTabBarView() {
+        let profileModel = FeedStorage.tableModel[idx - 1]
+        self.titleLabel.text = profileModel.nickName
+        
         let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
         self.navigationItem.setLeftBarButtonItems([backBarButton, leftBarTitle], animated: true)
         self.navigationItem.setRightBarButtonItems([menuBarButton], animated: true)
@@ -109,7 +112,7 @@ extension FollowerViewController {
 //MARK: - UITableViewDataSource
 extension FollowerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FriendsStorage.tableModel[idx - 1].feed.count + 4
+        return FeedStorage.tableModel[idx - 1].feed.count + 4
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -120,7 +123,7 @@ extension FollowerViewController: UITableViewDataSource {
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
 
 //        let profileModel = FriendsStorage.tableModel[indexPath.section].friends[idx - 1]
-        let profileModel = FriendsStorage.tableModel[idx - 1]
+        let profileModel = FeedStorage.tableModel[idx - 1]
         switch indexPath.row {
         case 0:
             headerCell.selectionStyle = .none
