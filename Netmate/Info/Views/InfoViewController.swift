@@ -9,7 +9,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
     //MARK: - props
-    private let infoCell = InfoTableViewCell.cellId
+    private let infoCellID = InfoTableViewCell.cellId
     private let infoVM: InfoViewModel
     
     var cancelAction: (() -> Void)?
@@ -72,7 +72,7 @@ extension InfoViewController {
         self.view.addSubview(hLineImageView)
         self.view.addSubview(tableView)
         
-        tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: infoCell)
+        tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: infoCellID)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -105,7 +105,7 @@ extension InfoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let infoCell = tableView.dequeueReusableCell(withIdentifier: infoCell) as! InfoTableViewCell
+        let infoCell = tableView.dequeueReusableCell(withIdentifier: infoCellID) as! InfoTableViewCell
         infoCell.infoButton.setTitle(infoVM.fields[indexPath.row].name, for: .normal)
         
         infoCell.selectionStyle = .none

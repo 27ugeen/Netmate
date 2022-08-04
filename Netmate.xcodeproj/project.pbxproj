@@ -65,6 +65,9 @@
 		118FFAF12897C9CC0082A766 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 118FFAF02897C9CC0082A766 /* iOSIntPackage */; };
 		118FFAF32897D48D0082A766 /* FollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118FFAF22897D48D0082A766 /* FollowerViewController.swift */; };
 		11C3A9FE289BBB5F006039D9 /* ImgTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3A9FD289BBB5F006039D9 /* ImgTitleButton.swift */; };
+		11C3AA00289C1A1F006039D9 /* FeedMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3A9FF289C1A1F006039D9 /* FeedMenuViewController.swift */; };
+		11C3AA02289C1BE3006039D9 /* FeedMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3AA01289C1BE3006039D9 /* FeedMenuTableViewCell.swift */; };
+		11C3AA04289C1D18006039D9 /* FeedMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3AA03289C1D18006039D9 /* FeedMenuViewModel.swift */; };
 		4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +131,9 @@
 		117BA2BE2896A8F200B9F501 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		118FFAF22897D48D0082A766 /* FollowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerViewController.swift; sourceTree = "<group>"; };
 		11C3A9FD289BBB5F006039D9 /* ImgTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgTitleButton.swift; sourceTree = "<group>"; };
+		11C3A9FF289C1A1F006039D9 /* FeedMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenuViewController.swift; sourceTree = "<group>"; };
+		11C3AA01289C1BE3006039D9 /* FeedMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenuTableViewCell.swift; sourceTree = "<group>"; };
+		11C3AA03289C1D18006039D9 /* FeedMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenuViewModel.swift; sourceTree = "<group>"; };
 		78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.release.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.release.xcconfig"; sourceTree = "<group>"; };
 		F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.debug.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -374,6 +380,7 @@
 			children = (
 				11573E492890440F00819116 /* FeedTableViewCell.swift */,
 				116041E3289906EC00C3D82C /* FeedDetail */,
+				11C3AA07289C1F02006039D9 /* FeedMenu */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -484,6 +491,32 @@
 				116041E42899225B00C3D82C /* FollowerButtonsTableViewCell.swift */,
 			);
 			path = Follower;
+			sourceTree = "<group>";
+		};
+		11C3AA05289C1ED9006039D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11C3AA03289C1D18006039D9 /* FeedMenuViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		11C3AA06289C1EF4006039D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				11C3A9FF289C1A1F006039D9 /* FeedMenuViewController.swift */,
+				11C3AA01289C1BE3006039D9 /* FeedMenuTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		11C3AA07289C1F02006039D9 /* FeedMenu */ = {
+			isa = PBXGroup;
+			children = (
+				11C3AA06289C1EF4006039D9 /* Views */,
+				11C3AA05289C1ED9006039D9 /* Model */,
+			);
+			path = FeedMenu;
 			sourceTree = "<group>";
 		};
 		C8469C57D8868439AE601DBD /* Frameworks */ = {
@@ -624,12 +657,14 @@
 				116041E22899062B00C3D82C /* FeedDetailBotTableViewCell.swift in Sources */,
 				1156B800288E9E3F00F58577 /* OnboardingViewController.swift in Sources */,
 				117BA2BF2896A8F200B9F501 /* Separator.swift in Sources */,
+				11C3AA04289C1D18006039D9 /* FeedMenuViewModel.swift in Sources */,
 				11431E2D2891AAE500A8AFE3 /* ProfileCoordinator.swift in Sources */,
 				11573E4D2890527100819116 /* PostTopTableViewCell.swift in Sources */,
 				11573E50289054C000819116 /* PostBotTableViewCell.swift in Sources */,
 				1156B813288ED39900F58577 /* RegisterViewController.swift in Sources */,
 				11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */,
 				117682C32897C4F100D8DCB3 /* PhotoViewController.swift in Sources */,
+				11C3AA00289C1A1F006039D9 /* FeedMenuViewController.swift in Sources */,
 				11727106289294020084D204 /* PhotoCollectionViewCell.swift in Sources */,
 				112CE367289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift in Sources */,
 				11431E262891A93C00A8AFE3 /* AppCoordinator.swift in Sources */,
@@ -642,6 +677,7 @@
 				11431E1F2891A27100A8AFE3 /* FavoriteSearchViewController.swift in Sources */,
 				11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */,
 				116041DE289905F100C3D82C /* FeedDetailHeaderTableViewCell.swift in Sources */,
+				11C3AA02289C1BE3006039D9 /* FeedMenuTableViewCell.swift in Sources */,
 				117271042892939B0084D204 /* PhotoTableViewCell.swift in Sources */,
 				1156B802288EA3B100F58577 /* MagicButton.swift in Sources */,
 				1156B815288F0D1500F58577 /* SignInViewController.swift in Sources */,

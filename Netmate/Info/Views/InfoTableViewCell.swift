@@ -15,25 +15,6 @@ class InfoTableViewCell: UITableViewCell {
     lazy var infoButton = MagicButton(title: "", titleColor: Palette.mainTextColor) {
         print("info btn tapped")
     }
-    
-//    lazy var nameLabel: UILabel = {
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.textColor = Palette.secondTextColor
-//        label.font = UIFont.setMedFont(12)
-//        label.text = "nameLabel"
-//        return label
-//    }()
-//
-//    lazy var valueLabel: UILabel = {
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.textColor = Palette.mainTextColor
-//        label.font = UIFont.setNormFont(14)
-//        label.text = "valueLabel"
-//        return label
-//    }()
-    
     //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

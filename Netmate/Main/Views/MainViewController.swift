@@ -128,6 +128,16 @@ extension MainViewController: UITableViewDataSource {
             feedCell.showMoreAction = {
                 self.goToFeedDetailVCAction?()
             }
+            
+            feedCell.menuAction = {
+                let feedMenuVC = FeedMenuViewController(feedMenuVM: FeedMenuViewModel().self)
+                feedMenuVC.transitioningDelegate = self
+                feedMenuVC.modalPresentationStyle = .custom
+                feedMenuVC.menuAction = {
+                    feedMenuVC.dismiss(animated: true)
+                }
+                self.present(feedMenuVC, animated: true)
+            }
             return feedCell
         }
     }
@@ -155,7 +165,7 @@ extension MainViewController: BonsaiControllerDelegate {
         
 //        return CGRect(origin: CGPoint(x: containerViewFrame.width / 2, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height / 4))
         
-        return CGRect(origin: CGPoint(x: 24, y: containerViewFrame.height / 8), size: CGSize(width: containerViewFrame.width - 48, height: containerViewFrame.height / 4))
+        return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height * 0.7), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
         
 //        return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
     }
@@ -166,7 +176,7 @@ extension MainViewController: BonsaiControllerDelegate {
         /// With Background Color ///
     
         // Slide animation from .left, .right, .top, .bottom
-        return BonsaiController(fromDirection: .top, backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
+        return BonsaiController(fromDirection: .bottom, backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
         
         // or Bubble animation initiated from a view
 //        return BonsaiController(fromView: UIView(), backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)

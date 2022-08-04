@@ -14,6 +14,7 @@ class FeedTableViewCell: UITableViewCell {
     private let postBotCellID = PostBotTableViewCell.cellId
     
     var showMoreAction: (() -> Void)?
+    var menuAction: (() -> Void)?
     
     var model: Feed? {
         didSet {
@@ -63,20 +64,15 @@ class FeedTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var menuImageView: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
-        image.backgroundColor = Palette.appTintColor
-        image.image = UIImage(named: "3dots")
-        return image
-    }()
+    private lazy var menuButton = MagicButton(title: "", titleColor: Palette.mainTextColor) {
+        print("feed menu btn tapped")
+        self.menuAction?()
+    }
     
     let postTableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.automaticallyAdjustsScrollIndicatorInsets = false
-//        table.contentInsetAdjustmentBehavior = .never
         table.isScrollEnabled = false
         table.separatorStyle = .singleLine
         table.backgroundColor = Palette.appTintColor
@@ -99,11 +95,13 @@ class FeedTableViewCell: UITableViewCell {
 //MARK: - setupViews
 extension FeedTableViewCell {
     private func setupViews() {
+        self.menuButton.setBackgroundImage(UIImage(named: "3dots"), for: .normal)
+        
         contentView.backgroundColor = Palette.appTintColor
         contentView.addSubview(authorImageView)
         contentView.addSubview(authorLabel)
         contentView.addSubview(descriptLabel)
-        contentView.addSubview(menuImageView)
+        contentView.addSubview(menuButton)
         contentView.addSubview(postTableView)
         
         postTableView.register(PostTopTableViewCell.self, forCellReuseIdentifier: postTopCellID)
@@ -124,10 +122,10 @@ extension FeedTableViewCell {
             descriptLabel.leadingAnchor.constraint(equalTo: authorImageView.trailingAnchor, constant: 24),
             descriptLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 4),
             
-            menuImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
-            menuImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
-            menuImageView.widthAnchor.constraint(equalToConstant: 5),
-            menuImageView.heightAnchor.constraint(equalToConstant: 21),
+            menuButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
+            menuButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
+            menuButton.widthAnchor.constraint(equalToConstant: 5),
+            menuButton.heightAnchor.constraint(equalToConstant: 21),
             
             postTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             postTableView.topAnchor.constraint(equalTo: authorImageView.bottomAnchor, constant: 12),
