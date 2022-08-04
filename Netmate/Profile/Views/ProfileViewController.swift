@@ -8,6 +8,12 @@
 import UIKit
 import BonsaiController
 
+private enum TransitionType {
+    case none
+    case bubble
+    case slide(fromDirection: Direction)
+}
+
 class ProfileViewController: UIViewController {
     //MARK: - props
     private let headerCellID = ProfileHeaderTableViewCell.cellId
@@ -18,6 +24,8 @@ class ProfileViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     private let profileModel = UserStorage.tableModel[0]
+    
+    private var transitionType: TransitionType = .none
     
     var goToInfoVCAction: (() -> Void)?
     var goToEditVCAction: (() -> Void)?
@@ -53,6 +61,14 @@ class ProfileViewController: UIViewController {
         setupViews()
     }
     //MARK: - methods
+    private func showSmallVC(vc: UIViewController, transition: TransitionType) {
+        self.transitionType = transition
+        
+        vc.transitioningDelegate = self
+        vc.modalPresentationStyle = .custom
+        present(vc, animated: true)
+    }
+    
     private func setupTabBarView() {
         let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
         self.navigationItem.setLeftBarButtonItems([leftBarTitle], animated: true)
@@ -61,9 +77,8 @@ class ProfileViewController: UIViewController {
     }
     @objc private func menuTapped() {
         let menuVC = MenuViewController(menuVM: MenuViewModel().self)
-        menuVC.transitioningDelegate = self
-        menuVC.modalPresentationStyle = .custom
-        self.present(menuVC, animated: true)
+        
+        self.showSmallVC(vc: menuVC, transition: .slide(fromDirection: .right))
         
         menuVC.backAction = {
             self.dismiss(animated: true)
@@ -119,9 +134,8 @@ extension ProfileViewController: UITableViewDataSource {
             
             headerCell.goToInfoAction = {
                 let infoVC = InfoViewController(infoVM: InfoViewModel().self)
-                infoVC.transitioningDelegate = self
-                infoVC.modalPresentationStyle = .custom
-                self.present(infoVC, animated: true)
+                
+                self.showSmallVC(vc: infoVC, transition: .slide(fromDirection: .right))
                 
                 infoVC.cancelAction = {
                     self.dismiss(animated: true)
@@ -147,6 +161,15 @@ extension ProfileViewController: UITableViewDataSource {
             feedCell.authorLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
             feedCell.descriptLabel.text = "\(profileModel.profession)"
             feedCell.model = profileModel.feed[indexPath.row - 5]
+            
+            feedCell.menuAction = {
+                let feedMenuVC =  ProfileFeedMenuViewController(profileFeedMenuVM: ProfileViewModel().self)
+                self.showSmallVC(vc: feedMenuVC, transition: .bubble)
+                
+                feedMenuVC.menuAction = {
+                    feedMenuVC.dismiss(animated: true)
+                }
+            }
             
             feedCell.showMoreAction = {
                 self.goToFeedDetailAction?()
@@ -186,11 +209,34 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: BonsaiControllerDelegate {
     // return the frame of your Bonsai View Controller
     func frameOfPresentedView(in containerViewFrame: CGRect) -> CGRect {
-        return CGRect(origin: CGPoint(x: containerViewFrame.height / 8, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height))
+        switch transitionType {
+        case .none:
+            return CGRect(origin: .zero, size: containerViewFrame.size)
+        case .bubble:
+            return CGRect(origin: CGPoint(x: 50, y: containerViewFrame.height * 0.4), size: CGSize(width: containerViewFrame.width - 75, height: 248))
+        case .slide:
+            return CGRect(origin: CGPoint(x: containerViewFrame.height / 8, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height))
+        }
     }
+    
     // return a Bonsai Controller with SlideIn or Bubble transition animator
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        // Slide animation from .left, .right, .top, .bottom
-        return BonsaiController(fromDirection: .right, backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
+        
+//        var blurEffectStyle = UIBlurEffect.Style.dark
+//
+//        if #available(iOS 13.0, *) {
+//            blurEffectStyle = .systemChromeMaterial
+//        }
+        
+        let backgroundColor = UIColor(white: 0, alpha: 0.5)
+        
+        switch transitionType {
+        case .none:
+            return nil
+        case .bubble:
+            return BonsaiController(fromView: UIView(), backgroundColor: backgroundColor, presentedViewController: presented, delegate: self)
+        case .slide(fromDirection: let fromDirection):
+            return BonsaiController(fromDirection: fromDirection, backgroundColor: backgroundColor, presentedViewController: presented, delegate: self)
+        }
     }
 }

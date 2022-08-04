@@ -68,6 +68,8 @@
 		11C3AA00289C1A1F006039D9 /* FeedMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3A9FF289C1A1F006039D9 /* FeedMenuViewController.swift */; };
 		11C3AA02289C1BE3006039D9 /* FeedMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3AA01289C1BE3006039D9 /* FeedMenuTableViewCell.swift */; };
 		11C3AA04289C1D18006039D9 /* FeedMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3AA03289C1D18006039D9 /* FeedMenuViewModel.swift */; };
+		11C3AA09289C2CED006039D9 /* ProfileFeedMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3AA08289C2CED006039D9 /* ProfileFeedMenuViewController.swift */; };
+		11C3AA0B289C443C006039D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3AA0A289C443C006039D9 /* ProfileViewModel.swift */; };
 		4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +136,8 @@
 		11C3A9FF289C1A1F006039D9 /* FeedMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenuViewController.swift; sourceTree = "<group>"; };
 		11C3AA01289C1BE3006039D9 /* FeedMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenuTableViewCell.swift; sourceTree = "<group>"; };
 		11C3AA03289C1D18006039D9 /* FeedMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenuViewModel.swift; sourceTree = "<group>"; };
+		11C3AA08289C2CED006039D9 /* ProfileFeedMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedMenuViewController.swift; sourceTree = "<group>"; };
+		11C3AA0A289C443C006039D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.release.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.release.xcconfig"; sourceTree = "<group>"; };
 		F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.debug.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 			children = (
 				11431E2B2891AACD00A8AFE3 /* Views */,
 				11431E2E2891AAEB00A8AFE3 /* Coordinator */,
+				11C3AA0C289C4448006039D9 /* Model */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				11431E14289142D900A8AFE3 /* ProfileViewController.swift */,
+				11C3AA08289C2CED006039D9 /* ProfileFeedMenuViewController.swift */,
 				11471D512892FD8D00A5EB57 /* ProfileEditViewController.swift */,
 				11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */,
 				116041E62899262F00C3D82C /* ProfileButtonsTableViewCell.swift */,
@@ -519,6 +525,14 @@
 			path = FeedMenu;
 			sourceTree = "<group>";
 		};
+		11C3AA0C289C4448006039D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11C3AA0A289C443C006039D9 /* ProfileViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C8469C57D8868439AE601DBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -665,6 +679,7 @@
 				11573E3D288FCA7D00819116 /* RegisterConfirmViewController.swift in Sources */,
 				117682C32897C4F100D8DCB3 /* PhotoViewController.swift in Sources */,
 				11C3AA00289C1A1F006039D9 /* FeedMenuViewController.swift in Sources */,
+				11C3AA09289C2CED006039D9 /* ProfileFeedMenuViewController.swift in Sources */,
 				11727106289294020084D204 /* PhotoCollectionViewCell.swift in Sources */,
 				112CE367289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift in Sources */,
 				11431E262891A93C00A8AFE3 /* AppCoordinator.swift in Sources */,
@@ -688,6 +703,7 @@
 				1172710F2892DB080084D204 /* InfoViewModel.swift in Sources */,
 				11573E43288FF24A00819116 /* FriendsListTableViewCell.swift in Sources */,
 				118FFAF32897D48D0082A766 /* FollowerViewController.swift in Sources */,
+				11C3AA0B289C443C006039D9 /* ProfileViewModel.swift in Sources */,
 				11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */,
 				11471D522892FD8D00A5EB57 /* ProfileEditViewController.swift in Sources */,
 				11431E1A28919E1300A8AFE3 /* FavoriteViewController.swift in Sources */,

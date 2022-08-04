@@ -119,10 +119,6 @@ extension PhotoTableViewCell {
 }
 //MARK: - UICollectionViewDataSource
 extension PhotoTableViewCell: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return FriendsStorage.tableModel.count
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
