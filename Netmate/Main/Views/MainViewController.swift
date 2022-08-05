@@ -10,6 +10,7 @@ import BonsaiController
 
 class MainViewController: UIViewController {
     //MARK: - props
+    private let mainVM: MainViewModel
     private let headerCellID = MainHeaderTableViewCell.cellId
     private let friedsListCellID = FriendsListTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
@@ -44,6 +45,14 @@ class MainViewController: UIViewController {
     private lazy var bellBarButton = UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: .plain, target: self, action: #selector(bellTapped))
     
     //MARK: - init
+    init(mainVM: MainViewModel) {
+        self.mainVM = mainVM
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,6 +79,24 @@ class MainViewController: UIViewController {
     @objc private func bellTapped() {
         print("main bell btn tapped")
     }
+    
+    @objc private func tapEdit(_ recognizer: UITapGestureRecognizer)  {
+        if recognizer.state == UIGestureRecognizer.State.ended {
+            let tapLocation = recognizer.location(in: self.tableView)
+            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
+                if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? FeedTableViewCell {
+                    guard tapIndexPath.row > 1 else { return }
+                    
+                    tappedCell.model = FeedStorage.tableModel[tapIndexPath.row - 2].feed[0]
+                    let user: User = FeedStorage.tableModel[tapIndexPath.row - 2]
+                    
+                    mainVM.addToFavoriteFeed(tappedCell.model!, user) { message in
+                        self.showAlertOk(message: message ?? "")
+                    }
+                }
+            }
+        }
+    }
 }
 //MARK: - setupConstraints
 extension MainViewController {
@@ -81,6 +108,10 @@ extension MainViewController {
         tableView.register(MainHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
         tableView.register(FriendsListTableViewCell.self, forCellReuseIdentifier: friedsListCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapEdit(_:)))
+        tapGesture.numberOfTapsRequired = 2
+        tableView.addGestureRecognizer(tapGesture)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -119,14 +150,14 @@ extension MainViewController: UITableViewDataSource {
             return friedsListCell
         default:
             feedCell.selectionStyle = .none
-            let feedModel = FeedStorage.tableModel[indexPath.row - 2]
-            feedCell.authorLabel.text = "\(feedModel.firstName) \(feedModel.lastName)"
-            feedCell.descriptLabel.text = "\(feedModel.profession)"
-            feedCell.authorImageView.image = feedModel.avatar
+            let userModel = FeedStorage.tableModel[indexPath.row - 2]
+            feedCell.authorLabel.text = "\(userModel.firstName) \(userModel.lastName)"
+            feedCell.descriptLabel.text = "\(userModel.profession)"
+            feedCell.authorImageView.image = userModel.avatar
             
-            feedCell.model = feedModel.feed[0]
+            feedCell.model = userModel.feed[0]
             feedCell.showMoreAction = {
-                self.goToFeedDetailVCAction?(feedModel, 0)
+                self.goToFeedDetailVCAction?(userModel, 0)
             }
             
             feedCell.menuAction = {
@@ -163,35 +194,13 @@ extension MainViewController: UITableViewDelegate {
 }
 //MARK: - BonsaiControllerDelegate
 extension MainViewController: BonsaiControllerDelegate {
-    
     // return the frame of your Bonsai View Controller
     func frameOfPresentedView(in containerViewFrame: CGRect) -> CGRect {
-        
-//        return CGRect(origin: CGPoint(x: containerViewFrame.width / 2, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height / 4))
-        
         return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height * 0.7), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
-        
-//        return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
     }
-    
     // return a Bonsai Controller with SlideIn or Bubble transition animator
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-    
-        /// With Background Color ///
-    
         // Slide animation from .left, .right, .top, .bottom
         return BonsaiController(fromDirection: .bottom, backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-        
-        // or Bubble animation initiated from a view
-//        return BonsaiController(fromView: UIView(), backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-    
-    
-        /// With Blur Style ///
-        
-        // Slide animation from .left, .right, .top, .bottom
-        //return BonsaiController(fromDirection: .bottom, blurEffectStyle: .light, presentedViewController: presented, delegate: self)
-        
-        // or Bubble animation initiated from a view
-//        return BonsaiController(fromView: UIView(), blurEffectStyle: .systemUltraThinMaterialDark,  presentedViewController: presented, delegate: self)
     }
 }

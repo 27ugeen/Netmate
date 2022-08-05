@@ -10,12 +10,12 @@ import BonsaiController
 
 class FavoriteViewController: UIViewController {
     //MARK: - props
-//    private let favoriteViewModel: FavoriteViewModel
+    private let favoriteViewModel: FavoriteViewModel
     private let feedCellID = FeedTableViewCell.cellId
     private let favSearchID = FavoriteSearchHeaderView.cellId
     
     var goToSearchAction: (() -> Void)?
-    var goToFeedDetailAction: (() -> Void)?
+    var goToFeedDetailAction: ((_ model: User, _ idx: Int) -> Void)?
     
     //MARK: - localization
 //    private let postAuthor = "post_author".localized()
@@ -50,14 +50,14 @@ class FavoriteViewController: UIViewController {
     private lazy var searchBarButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searcAction))
     
     //MARK: - init
-//    init(favoriteViewModel: FavoriteViewModel) {
-//        self.favoriteViewModel = favoriteViewModel
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    init(favoriteViewModel: FavoriteViewModel) {
+        self.favoriteViewModel = favoriteViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,10 +72,10 @@ class FavoriteViewController: UIViewController {
         
         if let unwrappedAuthor = author {
             guard unwrappedAuthor == "" else {
-                self.getFilteredPosts(filteredAuthor: unwrappedAuthor)
+                self.getFilteredFeed(filteredAuthor: unwrappedAuthor)
                 return
             }
-//            favoriteViewModel.getAllFavoritePosts()
+            favoriteViewModel.getAllFavoriteFeed()
             tableView.reloadData()
         }
     }
@@ -83,14 +83,14 @@ class FavoriteViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        if favoriteViewModel.favoritePosts.isEmpty {
-//            self.showAlert(message: findPostAlert)
-//        }
+        if favoriteViewModel.favoriteFeed.isEmpty {
+            self.showAlertOk(message: "no feed yet")
+        }
     }
     //MARK: - methods
-    func getFilteredPosts(filteredAuthor: String) {
+    func getFilteredFeed(filteredAuthor: String) {
         UserDefaults.standard.set(filteredAuthor, forKey: "author")
-//        favoriteViewModel.getFilteredPosts(postAuthor: filteredAuthor)
+        favoriteViewModel.getFilteredFeed(author: filteredAuthor)
         tableView.reloadData()
     }
     
@@ -98,13 +98,14 @@ class FavoriteViewController: UIViewController {
         let searchVC = FavoriteSearchViewController()
         searchVC.transitioningDelegate = self
         searchVC.modalPresentationStyle = .custom
+        searchVC.filterAction = self.getFilteredFeed
         self.navigationController?.present(searchVC, animated: true)
 //        self.goToSearchAction?()
     }
     
     @objc private func clearFilter() {
         UserDefaults.standard.set("", forKey: "author")
-//        favoriteViewModel.getAllFavoritePosts()
+        favoriteViewModel.getAllFavoriteFeed()
         tableView.reloadData()
     }
 }
@@ -139,17 +140,20 @@ extension FavoriteViewController {
 // MARK: - UITableViewDataSource
 extension FavoriteViewController: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return favoriteViewModel.favoritePosts.count
-        return 4
+        return favoriteViewModel.favoriteFeed.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID, for: indexPath) as! FeedTableViewCell
-        feedCell.showMoreAction = {
-            self.goToFeedDetailAction?()
-        }
-        return feedCell
+        let model = favoriteViewModel.favoriteFeed[indexPath.row]
+        let feedModel = Feed(article: model.article, image: model.image)
         
+        feedCell.authorImageView.image = model.avatar
+        feedCell.authorLabel.text = model.author
+        feedCell.descriptLabel.text = model.authorProf
+        feedCell.model = feedModel
+        
+        return feedCell
     }
 }
 // MARK: - UITableViewDelegate
@@ -157,14 +161,14 @@ extension FavoriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: favSearchID) as! FavoriteSearchHeaderView
         
-//        let author = UserDefaults.standard.string(forKey: "author")
-//        if author != "" {
-//            if let unwrappedAuthor = author {
-////                headerView.searchLabel.text = "\(filteredPosts) \"\(unwrappedAuthor)\""
-//            }
-//        } else {
-////            headerView.searchLabel.text = notFilteredPosts
-//        }
+        let author = UserDefaults.standard.string(forKey: "author")
+        if author != "" {
+            if let uAuthor = author {
+                headerView.searchLabel.text = "Feed filtered by author: \(uAuthor)"
+            }
+        } else {
+            headerView.searchLabel.text = "Not filtered"
+        }
         return headerView
     }
     
@@ -176,50 +180,28 @@ extension FavoriteViewController: UITableViewDelegate {
         return 30
     }
     
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let post = favoriteViewModel.favoritePosts[indexPath.row]
-//
-//        let deleteAction = UIContextualAction(style: .destructive, title: postDeleteAction) { _, _, complete in
-//            self.favoriteViewModel.removePostFromFavorite(post: post, index: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//            complete(true)
-//        }
-//        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-//        configuration.performsFirstActionWithFullSwipe = true
-//        return configuration
-//    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let feed = favoriteViewModel.favoriteFeed[indexPath.row]
+
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, complete in
+            self.favoriteViewModel.removeFeedFromFavorite(feed: feed, index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            complete(true)
+        }
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = true
+        return configuration
+    }
 }
 //MARK: - BonsaiControllerDelegate
 extension FavoriteViewController: BonsaiControllerDelegate {
-    
     // return the frame of your Bonsai View Controller
     func frameOfPresentedView(in containerViewFrame: CGRect) -> CGRect {
-        
-//        return CGRect(origin: CGPoint(x: containerViewFrame.width / 2, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height / 4))
-        
         return CGRect(origin: CGPoint(x: 24, y: containerViewFrame.height / 8), size: CGSize(width: containerViewFrame.width - 48, height: containerViewFrame.height / 4))
-        
-//        return CGRect(origin: CGPoint(x: 0, y: containerViewFrame.height / 4), size: CGSize(width: containerViewFrame.width, height: containerViewFrame.height / 3))
     }
-    
     // return a Bonsai Controller with SlideIn or Bubble transition animator
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-    
-        /// With Background Color ///
-    
         // Slide animation from .left, .right, .top, .bottom
         return BonsaiController(fromDirection: .top, backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-        
-        // or Bubble animation initiated from a view
-//        return BonsaiController(fromView: UIView(), backgroundColor: UIColor(white: 0, alpha: 0.5), presentedViewController: presented, delegate: self)
-    
-    
-        /// With Blur Style ///
-        
-        // Slide animation from .left, .right, .top, .bottom
-        //return BonsaiController(fromDirection: .bottom, blurEffectStyle: .light, presentedViewController: presented, delegate: self)
-        
-        // or Bubble animation initiated from a view
-//        return BonsaiController(fromView: UIView(), blurEffectStyle: .systemUltraThinMaterialDark,  presentedViewController: presented, delegate: self)
     }
 }

@@ -11,16 +11,6 @@ class PostBotTableViewCell: UITableViewCell {
     //MARK: - props
     static let cellId = "PostBotTableViewCell"
     
-//    var post: Post? {
-//        didSet {
-//            postAuthorLabel.text = "\(postAuthor): \(String(describing: (post?.author ?? "unknown")))"
-//            postTitleLabel.text = post?.title
-//            postImageView.image = post?.image
-//            postDescriptionLabel.text = post?.descript
-//            postlikesLabel.text = String.localizedStringWithFormat(postLikes, (post?.likes ?? 0))
-//            postViewsLabel.text = "\(postViews): \(String(describing: (post?.views ?? 0)))"
-//        }
-//    }
     //MARK: - localization
     
     //MARK: - subviews

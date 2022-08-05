@@ -24,16 +24,18 @@ class FavoriteCoordinator: FavoriteBaseCoordinatorProtocol {
     }
     //MARK: - methods
     func start() -> UIViewController {
-        favVC.goToFeedDetailAction = {
-            self.goToFeedDetailVC()
+        favVC.goToSearchAction = { [weak self] in
+            self?.goToSearchVC()
+            
         }
         
         rootViewController = UINavigationController(rootViewController: favVC)
         return rootViewController
     }
     
-    func goToFeedDetailVC() {
-        let feedDetailVC = FeedDetailViewController()
-        navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
+    func goToSearchVC() {
+        let searhcVC = FavoriteSearchViewController()
+        searhcVC.filterAction = favVC.getFilteredFeed
+        navigationRootViewController?.present(searhcVC, animated: true)
     }
 }

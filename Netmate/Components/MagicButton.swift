@@ -9,11 +9,9 @@ import UIKit
 
 final class MagicButton: UIButton {
     //MARK: - props
-    
     private let onTap: () -> Void
     
     //MARK: - init
-    
     init(title: String, titleColor: UIColor, onTap: @escaping () -> Void) {
         self.onTap = onTap
         super.init(frame: .zero)
@@ -29,7 +27,6 @@ final class MagicButton: UIButton {
         nil
     }
     //MARK: - methods
-    
     @objc private func buttonTapped() {
         self.onTap()
     }

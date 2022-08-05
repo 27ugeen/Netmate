@@ -19,7 +19,6 @@ class PhotoTableViewCell: UITableViewCell {
             photosPreview.reloadData()
         }
     }
-    
     //MARK: - localization
     //    private let photosCellLabel = "photos_cell_label".localized()
     
@@ -46,7 +45,6 @@ class PhotoTableViewCell: UITableViewCell {
     private lazy var photosPreview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -106,7 +104,6 @@ extension PhotoTableViewCell {
             photosPreview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant:  12),
             photosPreview.topAnchor.constraint(equalTo: titleLableView.bottomAnchor, constant: 10),
             photosPreview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-//            photosPreview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
             photosPreview.heightAnchor.constraint(equalToConstant: photoWidth),
             
             separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

@@ -12,7 +12,7 @@ class FavoriteSearchHeaderView: UITableViewHeaderFooterView {
     static let cellId = "FavoriteSearchHeaderView"
     
     //MARK: - subviews
-    private lazy var searchLabel: UILabel = {
+    lazy var searchLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.secondTextColor

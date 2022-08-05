@@ -171,7 +171,7 @@ extension FollowerViewController: UITableViewDataSource {
 extension FollowerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 2 {
+        if indexPath.row == 3 {
             let photoVC = PhotoViewController(imagePublisherFacade: ImagePublisherFacade().self)
             self.navigationController?.pushViewController(photoVC, animated: true)
 //            self.goToPhotoGalleryAction?()

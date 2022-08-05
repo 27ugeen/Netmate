@@ -22,11 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let localAuthorizationService = LocalAuthorizationService(localAuthContext: localAuthContext)
         
+        let mainVM = MainViewModel()
+        let favVM = FavoriteViewModel()
         let infoVM = InfoViewModel()
         
-        let mainVC = MainViewController()
+        let mainVC = MainViewController(mainVM: mainVM)
         let profileVC = ProfileViewController()
-        let favVC = FavoriteViewController()
+        let favVC = FavoriteViewController(favoriteViewModel: favVM)
         
         let mainCoord = MainCoordinator(rootViewController: rootVC, mainVC: mainVC)
         let profileCoord = ProfileCoordinator(rootViewController: rootVC, profileVC: profileVC, infoVM: infoVM)
