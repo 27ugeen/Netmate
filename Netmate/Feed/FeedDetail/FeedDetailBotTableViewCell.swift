@@ -80,27 +80,28 @@ extension FeedDetailBotTableViewCell {
         
         NSLayoutConstraint.activate([
             likesImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            likesImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            likesImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             likesImageView.widthAnchor.constraint(equalToConstant: 24),
             likesImageView.heightAnchor.constraint(equalTo: likesImageView.widthAnchor),
             
             likesLabel.leadingAnchor.constraint(equalTo: likesImageView.trailingAnchor, constant: 10),
-            likesLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            likesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 17),
             
             commentsImageView.leadingAnchor.constraint(equalTo: likesLabel.trailingAnchor, constant: 24),
-            commentsImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            commentsImageView.topAnchor.constraint(equalTo: likesImageView.topAnchor),
             commentsImageView.widthAnchor.constraint(equalToConstant: 24),
             commentsImageView.heightAnchor.constraint(equalTo: commentsImageView.widthAnchor),
             
             commentsLabel.leadingAnchor.constraint(equalTo: commentsImageView.trailingAnchor, constant: 10),
-            commentsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            commentsLabel.topAnchor.constraint(equalTo: likesLabel.topAnchor),
             
-            bookmarkImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            bookmarkImageView.topAnchor.constraint(equalTo: likesImageView.topAnchor),
             bookmarkImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
             bookmarkImageView.widthAnchor.constraint(equalToConstant: 20),
             bookmarkImageView.heightAnchor.constraint(equalToConstant: 24),
             
             botSeparator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            botSeparator.topAnchor.constraint(equalTo: commentsLabel.bottomAnchor, constant: 15),
             botSeparator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             botSeparator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             botSeparator.heightAnchor.constraint(equalToConstant: 0.5)

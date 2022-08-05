@@ -73,9 +73,8 @@ extension FeedDetailViewController {
         tableView.register(FeedDetailHeaderTableViewCell.self, forCellReuseIdentifier: headerCellID)
         tableView.register(FeedDetailPostTableViewCell.self, forCellReuseIdentifier: postCellID)
         tableView.register(FeedDetailBotTableViewCell.self, forCellReuseIdentifier: botCellID)
-//
+
         tableView.dataSource = self
-        tableView.delegate = self
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -92,9 +91,9 @@ extension FeedDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! FeedDetailHeaderTableViewCell
-        let postCell = tableView.dequeueReusableCell(withIdentifier: postCellID) as! FeedDetailPostTableViewCell
-        let botCell = tableView.dequeueReusableCell(withIdentifier: botCellID) as! FeedDetailBotTableViewCell
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID, for: indexPath) as! FeedDetailHeaderTableViewCell
+        let postCell = tableView.dequeueReusableCell(withIdentifier: postCellID, for: indexPath) as! FeedDetailPostTableViewCell
+        let botCell = tableView.dequeueReusableCell(withIdentifier: botCellID, for: indexPath) as! FeedDetailBotTableViewCell
 
         switch indexPath.row {
         case 0:
@@ -111,23 +110,6 @@ extension FeedDetailViewController: UITableViewDataSource {
         default:
             botCell.selectionStyle = .none
             return botCell
-        }
-    }
-
-}
-//MARK: - UITableViewDelegate
-extension FeedDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0:
-            return 61
-        case 1:
-            //TODO: - need height for context
-            return 400
-        default:
-            return 40
         }
     }
 }

@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     var goToProfileVCAction: (() -> Void)?
     var goToFollowerVCAction: ((_ idx: Int) -> Void)?
     var goToFeedDetailVCAction: ((_ model: User, _ idx: Int) -> Void)?
+    var goToFeedMenuVCAction: (() -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -161,13 +162,7 @@ extension MainViewController: UITableViewDataSource {
             }
             
             feedCell.menuAction = {
-                let feedMenuVC = FeedMenuViewController(feedMenuVM: FeedMenuViewModel().self)
-                feedMenuVC.transitioningDelegate = self
-                feedMenuVC.modalPresentationStyle = .custom
-                feedMenuVC.menuAction = {
-                    feedMenuVC.dismiss(animated: true)
-                }
-                self.present(feedMenuVC, animated: true)
+                self.goToFeedMenuVCAction?()
             }
             
             feedCell.avatarAction = {

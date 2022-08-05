@@ -9,7 +9,10 @@ import UIKit
 import iOSIntPackage
 
 protocol ProfileBaseCoordinatorProtocol: CoordinatorProtocol {
-    
+    func showSmallVC(vc: UIViewController, transition: TransitionType)
+    func goToMenuVC()
+    func goToInfoVC()
+    func goToPhotoVC()
 }
 
 class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
@@ -18,15 +21,27 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     var rootViewController: UIViewController
     private let profileVC: ProfileViewController
     private let infoVM: InfoViewModel
+    private let menuVM: MenuViewModel
+    private let profileVM: ProfileViewModel
     
     //MARK: - init
-    init(rootViewController: UIViewController, profileVC: ProfileViewController, infoVM: InfoViewModel) {
+    init(rootViewController: UIViewController, profileVC: ProfileViewController, infoVM: InfoViewModel, menuVM: MenuViewModel, profileVM: ProfileViewModel) {
         self.rootViewController = rootViewController
         self.profileVC = profileVC
         self.infoVM = infoVM
+        self.menuVM = menuVM
+        self.profileVM = profileVM
     }
     //MARK: - methods
     func start() -> UIViewController {
+        profileVC.goToProfileMenuVCAction = { [weak self] in
+            self?.goToMenuVC()
+        }
+        
+        profileVC.goToProfileFeedMenuVCAction = { [weak self] in
+            self?.goToFeedMenuVC()
+        }
+        
         profileVC.goToInfoVCAction = { [weak self] in
             self?.goToInfoVC()
         }
@@ -47,9 +62,36 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
         return rootViewController
     }
     
+    func showSmallVC(vc: UIViewController, transition: TransitionType) {
+        profileVC.transitionType = transition
+        
+        vc.transitioningDelegate = profileVC
+        vc.modalPresentationStyle = .custom
+        navigationRootViewController?.present(vc, animated: true)
+    }
+    
+    func goToMenuVC() {
+        let menuVC = MenuViewController(menuVM: menuVM)
+        self.showSmallVC(vc: menuVC, transition: .slide(fromDirection: .right))
+        menuVC.backAction = {
+            self.navigationRootViewController?.dismiss(animated: true)
+        }
+    }
+    
+    func goToFeedMenuVC() {
+        let feedMenuVC =  ProfileFeedMenuViewController(profileFeedMenuVM: profileVM)
+        self.showSmallVC(vc: feedMenuVC, transition: .bubble)
+        feedMenuVC.menuAction = {
+            self.navigationRootViewController?.dismiss(animated: true)
+        }
+    }
+    
     func goToInfoVC() {
         let infoVC = InfoViewController(infoVM: infoVM)
-        navigationRootViewController?.present(infoVC, animated: true)
+        self.showSmallVC(vc: infoVC, transition: .slide(fromDirection: .right))
+        infoVC.cancelAction = {
+            self.navigationRootViewController?.dismiss(animated: true)
+        }
     }
     
     func goToProfEditVC() {

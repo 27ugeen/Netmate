@@ -8,7 +8,7 @@
 import UIKit
 import BonsaiController
 
-private enum TransitionType {
+enum TransitionType {
     case none
     case bubble
     case slide(fromDirection: Direction)
@@ -25,8 +25,10 @@ class ProfileViewController: UIViewController {
     
     private let profileModel = UserStorage.tableModel[0]
     
-    private var transitionType: TransitionType = .none
+    var transitionType: TransitionType = .none
     
+    var goToProfileMenuVCAction: (() -> Void)?
+    var goToProfileFeedMenuVCAction: (() -> Void)?
     var goToInfoVCAction: (() -> Void)?
     var goToEditVCAction: (() -> Void)?
     var goToPhotoGalleryAction: (() -> Void)?
@@ -61,31 +63,17 @@ class ProfileViewController: UIViewController {
         setupViews()
     }
     //MARK: - methods
-    private func showSmallVC(vc: UIViewController, transition: TransitionType) {
-        self.transitionType = transition
-        
-        vc.transitioningDelegate = self
-        vc.modalPresentationStyle = .custom
-        present(vc, animated: true)
-    }
-    
     private func setupTabBarView() {
         let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
         self.navigationItem.setLeftBarButtonItems([leftBarTitle], animated: true)
         self.navigationItem.setRightBarButtonItems([menuBarButton], animated: true)
         self.navigationController?.navigationBar.tintColor = Palette.accentTextColor
     }
+    
     @objc private func menuTapped() {
-        let menuVC = MenuViewController(menuVM: MenuViewModel().self)
-        
-        self.showSmallVC(vc: menuVC, transition: .slide(fromDirection: .right))
-        
-        menuVC.backAction = {
-            self.dismiss(animated: true)
-        }
-//        self.goToMenuAction?()
+        self.goToProfileMenuVCAction?()
     }
-
+    
 }
 //MARK: - setupViews
 extension ProfileViewController {
@@ -133,14 +121,7 @@ extension ProfileViewController: UITableViewDataSource {
             headerCell.profLabel.text = "\(profileModel.profession)"
             
             headerCell.goToInfoAction = {
-                let infoVC = InfoViewController(infoVM: InfoViewModel().self)
-                
-                self.showSmallVC(vc: infoVC, transition: .slide(fromDirection: .right))
-                
-                infoVC.cancelAction = {
-                    self.dismiss(animated: true)
-                }
-//                self.goToInfoVCAction?()
+                self.goToInfoVCAction?()
             }
             return headerCell
         case 1:
@@ -163,12 +144,7 @@ extension ProfileViewController: UITableViewDataSource {
             feedCell.model = profileModel.feed[indexPath.row - 5]
             
             feedCell.menuAction = {
-                let feedMenuVC =  ProfileFeedMenuViewController(profileFeedMenuVM: ProfileViewModel().self)
-                self.showSmallVC(vc: feedMenuVC, transition: .bubble)
-                
-                feedMenuVC.menuAction = {
-                    feedMenuVC.dismiss(animated: true)
-                }
+                self.goToProfileFeedMenuVCAction?()
             }
             
             feedCell.showMoreAction = {
@@ -217,16 +193,8 @@ extension ProfileViewController: BonsaiControllerDelegate {
             return CGRect(origin: CGPoint(x: containerViewFrame.height / 8, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height))
         }
     }
-    
     // return a Bonsai Controller with SlideIn or Bubble transition animator
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        
-//        var blurEffectStyle = UIBlurEffect.Style.dark
-//
-//        if #available(iOS 13.0, *) {
-//            blurEffectStyle = .systemChromeMaterial
-//        }
-        
         let backgroundColor = UIColor(white: 0, alpha: 0.5)
         
         switch transitionType {

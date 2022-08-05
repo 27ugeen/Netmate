@@ -15,9 +15,8 @@ class FeedDetailPostTableViewCell: UITableViewCell {
     lazy var postImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleAspectFit
         image.backgroundColor = Palette.secondBackColor
-        image.image = UIImage(named: "Gal_Gadot")
         image.layer.cornerRadius = 8
         image.clipsToBounds = true
         return image
@@ -54,7 +53,8 @@ extension FeedDetailPostTableViewCell {
             postImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             postImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            postImageView.heightAnchor.constraint(equalToConstant: 212),
+            postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            postImageView.heightAnchor.constraint(equalTo: postImageView.widthAnchor),
             
             postLabel.leadingAnchor.constraint(equalTo: postImageView.leadingAnchor),
             postLabel.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: 15),

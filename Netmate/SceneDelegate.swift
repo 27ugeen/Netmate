@@ -23,15 +23,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let localAuthorizationService = LocalAuthorizationService(localAuthContext: localAuthContext)
         
         let mainVM = MainViewModel()
+        let profileVM = ProfileViewModel()
         let favVM = FavoriteViewModel()
         let infoVM = InfoViewModel()
+        let feedMenuVM = FeedMenuViewModel()
+        let profileMenuVM = MenuViewModel()
         
         let mainVC = MainViewController(mainVM: mainVM)
         let profileVC = ProfileViewController()
         let favVC = FavoriteViewController(favoriteViewModel: favVM)
         
-        let mainCoord = MainCoordinator(rootViewController: rootVC, mainVC: mainVC)
-        let profileCoord = ProfileCoordinator(rootViewController: rootVC, profileVC: profileVC, infoVM: infoVM)
+        let mainCoord = MainCoordinator(rootViewController: rootVC, mainVC: mainVC, feedMenuVM: feedMenuVM)
+        let profileCoord = ProfileCoordinator(rootViewController: rootVC, profileVC: profileVC, infoVM: infoVM, menuVM: profileMenuVM, profileVM: profileVM)
         let favCoord = FavoriteCoordinator(rootViewController: rootVC, favVC: favVC)
         
         let appCoordinator = AppCoordinator(mainCoordinator: mainCoord, profileCoordinator: profileCoord, favoriteCoordinator: favCoord)

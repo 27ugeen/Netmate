@@ -78,6 +78,8 @@ extension FeedDetailHeaderTableViewCell {
             
             profLabel.leadingAnchor.constraint(equalTo: nicknameLabel.leadingAnchor),
             profLabel.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor),
+            profLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            profLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
         ])
     }
 }
