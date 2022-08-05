@@ -32,8 +32,8 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
             self.goToFollowerVC(idx)
         }
         
-        mainVC.goToFeedDetailVCAction = { user in
-            self.goToFeedDetailVC(user)
+        mainVC.goToFeedDetailVCAction = { user, idx in
+            self.goToFeedDetailVC(user, idx)
         }
         
         rootViewController = UINavigationController(rootViewController: mainVC)
@@ -49,9 +49,10 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
         navigationRootViewController?.pushViewController(followerVC, animated: true)
     }
     
-    func goToFeedDetailVC(_ model: User) {
+    func goToFeedDetailVC(_ model: User, _ index: Int) {
         let feedDetailVC = FeedDetailViewController()
         feedDetailVC.model = model
+        feedDetailVC.feedIdx = index
         navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
     }
     

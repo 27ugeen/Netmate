@@ -13,6 +13,8 @@ class FeedDetailViewController: UIViewController {
     private let postCellID = FeedDetailPostTableViewCell.cellId
     private let botCellID = FeedDetailBotTableViewCell.cellId
     
+    var feedIdx: Int = 0
+    
     var model: User? {
         didSet {
             tableView.reloadData()
@@ -103,8 +105,8 @@ extension FeedDetailViewController: UITableViewDataSource {
             return headerCell
         case 1:
             postCell.selectionStyle = .none
-            postCell.postImageView.image = model?.feed[0].image
-            postCell.postLabel.text = model?.feed[0].article
+            postCell.postImageView.image = model?.feed[feedIdx].image
+            postCell.postLabel.text = model?.feed[feedIdx].article
             return postCell
         default:
             botCell.selectionStyle = .none

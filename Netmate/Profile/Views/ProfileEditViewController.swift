@@ -156,6 +156,12 @@ class ProfileEditViewController: UIViewController {
         setupButtons()
         setupViews()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.popViewController(animated: true)
+    }
     //MARK: - methods
     private func onRadioButtonTap(_ sender: Int) {
         if sender == 0 {

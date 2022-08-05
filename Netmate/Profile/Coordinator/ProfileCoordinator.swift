@@ -39,8 +39,8 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
             self?.goToPhotoVC()
         }
         
-        profileVC.goToFeedDetailAction = {
-            self.goToFeedDetailVC()
+        profileVC.goToFeedDetailAction = { model, idx in
+            self.goToFeedDetailVC(model, idx)
         }
         
         rootViewController = UINavigationController(rootViewController: profileVC)
@@ -63,8 +63,10 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
         navigationRootViewController?.pushViewController(photoVC, animated: true)
     }
     
-    func goToFeedDetailVC() {
+    func goToFeedDetailVC(_ model: User, _ index: Int) {
         let feedDetailVC = FeedDetailViewController()
+        feedDetailVC.model = model
+        feedDetailVC.feedIdx = index
         navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
     }
 }

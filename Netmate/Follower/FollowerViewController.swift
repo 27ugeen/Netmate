@@ -122,7 +122,6 @@ extension FollowerViewController: UITableViewDataSource {
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
 
-//        let profileModel = FriendsStorage.tableModel[indexPath.section].friends[idx - 1]
         let profileModel = FeedStorage.tableModel[idx - 1]
         switch indexPath.row {
         case 0:
@@ -158,8 +157,10 @@ extension FollowerViewController: UITableViewDataSource {
             feedCell.descriptLabel.text = profileModel.profession
             
             feedCell.showMoreAction = {
-                let vc = FeedDetailViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                let feedDetailVC = FeedDetailViewController()
+                feedDetailVC.model = profileModel
+                feedDetailVC.feedIdx = indexPath.row - 4
+                self.navigationController?.pushViewController(feedDetailVC, animated: true)
             }
             return feedCell
         }

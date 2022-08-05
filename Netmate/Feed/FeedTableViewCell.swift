@@ -15,6 +15,7 @@ class FeedTableViewCell: UITableViewCell {
     
     var showMoreAction: (() -> Void)?
     var menuAction: (() -> Void)?
+    var avatarAction: (() -> Void)?
     
     var model: Feed? {
         didSet {
@@ -43,6 +44,8 @@ class FeedTableViewCell: UITableViewCell {
         image.image = UIImage(named: "Gal_Gadot")
         image.layer.cornerRadius = 30
         image.clipsToBounds = true
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarTapped)))
         return image
     }()
     
@@ -90,6 +93,10 @@ class FeedTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    //MARK: - methods
+    @objc private func avatarTapped() {
+        self.avatarAction?()
     }
 }
 //MARK: - setupViews

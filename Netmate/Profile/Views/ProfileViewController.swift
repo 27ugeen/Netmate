@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController {
     var goToInfoVCAction: (() -> Void)?
     var goToEditVCAction: (() -> Void)?
     var goToPhotoGalleryAction: (() -> Void)?
-    var goToFeedDetailAction: (() -> Void)?
+    var goToFeedDetailAction: ((_ model: User, _ idx: Int) -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -172,12 +172,11 @@ extension ProfileViewController: UITableViewDataSource {
             }
             
             feedCell.showMoreAction = {
-                self.goToFeedDetailAction?()
+                self.goToFeedDetailAction?(self.profileModel, indexPath.row - 5)
             }
             return feedCell
         }
     }
-
 }
 //MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {

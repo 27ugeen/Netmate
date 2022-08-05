@@ -15,7 +15,7 @@ class ProfileViewModel {
     //MARK: - props
     let fields: [ProfileFeedMenu] = [
         ProfileFeedMenu(name: "Save to bookmarks"),
-        ProfileFeedMenu(name: "Pin"),
+        ProfileFeedMenu(name: "Pin  "),
         ProfileFeedMenu(name: "Disable comments"),
         ProfileFeedMenu(name: "Copy the link"),
         ProfileFeedMenu(name: "Archive the entry"),
