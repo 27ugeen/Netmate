@@ -14,9 +14,10 @@ class ProfileButtonsTableViewCell: UITableViewCell {
     var goToEditAction: (() -> Void)?
     
     //MARK: - localization
+    private let titleEdit = "edit_btn".localized()
     
     //MARK: - subViews
-    private lazy var editButton = MagicButton(title: "Edit profile", titleColor: Palette.appTintColor) {
+    private lazy var editButton = MagicButton(title: titleEdit, titleColor: Palette.appTintColor) {
         print("header edit button tapped")
         self.goToEditAction?()
     }

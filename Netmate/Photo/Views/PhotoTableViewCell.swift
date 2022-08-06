@@ -20,7 +20,7 @@ class PhotoTableViewCell: UITableViewCell {
         }
     }
     //MARK: - localization
-    //    private let photosCellLabel = "photos_cell_label".localized()
+        private let titlePhoto = "photo_title".localized()
     
     //MARK: - subviews
     private lazy var titleLableView: UILabel = {
@@ -28,7 +28,7 @@ class PhotoTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setMedFont(16)
-        label.text = "Photo"
+        label.text = titlePhoto
         return label
     }()
     

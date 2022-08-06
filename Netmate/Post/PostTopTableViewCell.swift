@@ -12,9 +12,10 @@ class PostTopTableViewCell: UITableViewCell {
     static let cellId = "PostTopTableViewCell"
     
     var showMoreAction: (() -> Void)?
-
-    //MARK: - localization
     
+    //MARK: - localization
+    private let showMore = "show_more_btn".localized()
+
     //MARK: - subviews
     private lazy var vLineImageView: UIImageView = {
         let image = UIImageView()
@@ -32,7 +33,7 @@ class PostTopTableViewCell: UITableViewCell {
         return description
     }()
     
-    private lazy var showMoreButton = MagicButton(title: "Show more...", titleColor: Palette.linkTextcolor) {
+    private lazy var showMoreButton = MagicButton(title: showMore, titleColor: Palette.linkTextcolor) {
         print("showMore btn post tapped")
         self.showMoreAction?()
     }

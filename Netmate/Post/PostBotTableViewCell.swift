@@ -11,8 +11,6 @@ class PostBotTableViewCell: UITableViewCell {
     //MARK: - props
     static let cellId = "PostBotTableViewCell"
     
-    //MARK: - localization
-    
     //MARK: - subviews
     lazy var likesImageView: UIImageView = {
         let image = UIImageView()

@@ -12,17 +12,21 @@ class ProfileSubscribtionTableViewCell: UITableViewCell {
     static let cellId = "ProfileSubscribtionTableViewCell"
     
     //MARK: - localization
+    private let publicationsTitle = "publications_btn".localized()
+    private let subscriptionsTitle = "subscriptions_btn".localized()
+    private let subscribersTitle = "subscribers_btn".localized()
+    private let subscribersQuantity = "subscribers_qtt".localized()
     
     //MARK: - subViews
-    private lazy var publicationsButton = MagicButton(title: "1400\npublications", titleColor: Palette.mainTextColor) {
+    private lazy var publicationsButton = MagicButton(title: "\("1400")\n\(publicationsTitle)", titleColor: Palette.mainTextColor) {
         print("subscription publications btn tapped")
     }
     
-    private lazy var subscriptionsButton = MagicButton(title: "477\nsubscriptions", titleColor: Palette.mainTextColor) {
+    private lazy var subscriptionsButton = MagicButton(title: "\("477")\n\(subscriptionsTitle)", titleColor: Palette.mainTextColor) {
         print("subscription subscriptionS btn tapped")
     }
     
-    private lazy var subscribersButton = MagicButton(title: "161 thous.\nsubscribers", titleColor: Palette.mainTextColor) {
+    private lazy var subscribersButton = MagicButton(title: "\("161") \(subscribersQuantity)\n\(subscribersTitle)", titleColor: Palette.mainTextColor) {
         print("subscription subscribers btn tapped")
     }
     

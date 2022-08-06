@@ -1,0 +1,120 @@
+/* 
+  Localizable.strings
+  Netmate
+
+  Created by GiN Eugene on 6/8/2022.
+  
+*/
+
+//MARK: - OnboardingViewController
+"reg_btn" = "REGISTER";
+"go_to_signin_btn" = "Already have an account";
+
+//MARK: - SignInViewController
+"top_lab" = "Welcom back";
+"mid_lab" = "Enter your phone number to sign in to your account";
+"confirm_btn" = "CONFIRM";
+
+//MARK: - RegisterViewController
+"mid_reg_lab" = "Enter your number";
+"mid_reg_sub_lab" = "Your phone number will be used to sign in to your account";
+"next_btn" = "NEXT";
+"bot_reg_sub_lab" = "By clicking the \"Next\" button you accept the User Agreement and Privacy Policy";
+
+//MARK: - RegisterConfirmViewController
+"top_conf_lab" = "Confirmation of registration";
+"mid_conf_lab" = "We sent an SMS whit a code to the number:";
+"mid_conf_sub_lab" = "Enter code from SMS";
+
+//MARK: - MainViewController
+"bar_main_title" = "Main";
+
+//MARK: - MainHeaderTableViewCell
+"news_btn" = "News";
+"forU_btn" = "For you";
+
+//MARK: - ProfileEditViewController
+"edit_title" = "Main information";
+"first_name" = "First name";
+"last_name" = "Last name";
+"sex" = "Sex";
+"male_btn" = "Male";
+"female_btn" = "Female";
+"birth_date" = "Birth date";
+"city_name" = "City name";
+"city_name_field" = "Write the name";
+
+//MARK: - ProfileHeaderTableViewCell
+"detail_btn" = "Detail information";
+
+//MARK: - ProfileButtonsTableViewCell
+"edit_btn" = "Edit profile";
+
+//MARK: - ProfileSubscribtionTableViewCell
+"publications_btn" = "publications";
+"subscriptions_btn" = "subscriptions";
+"subscribers_btn" = "subscribers";
+"subscribers_qtt" = "thous.";
+
+//MARK: - ProfileNotesTableViewCell
+"notes_btn" = "Notes";
+"history_btn" = "History";
+"photo_btn" = "Photo";
+
+//MARK: - MenuViewController
+"settings_btn" = "Settings";
+"log_out_btn" = "Log Out";
+
+//MARK: - MenuViewModel
+"bookmarks_btn" = "Bookmarks";
+"favorite_btn" = "Favorite";
+"files_btn" = "Files";
+"archive_btn" = "Archive";
+
+//MARK: - InfoViewController
+"info_title" = "Profile";
+
+//MARK: - InfoViewModel
+"general_info_btn" = "General information";
+"contacts_btn" = "Contacts";
+"interests_btn" = "Interests";
+"education_btn" = "Education";
+"career_btn" = "Career";
+
+//MARK: - ProfileViewModel
+"save_to_bookmarks_btn" = "Save to bookmarks";
+"pin_btn" = "Pin  ";
+"disable_comments_btn" = "Disable comments";
+"copy_the_link_btn" = "Copy the link";
+"archive_the_entry_btn" = "Archive the entry";
+"delete_btn" = "Delete";
+
+//MARK: - FeedMenuViewModel
+"enable_notific_btn" = "Enable notification";
+"share_in_btn" = "Share in...";
+"unsubscribe_btn" = "Unsubscribe";
+"complain_btn" = "Complain";
+
+//MARK: - PhotoTableViewCell
+"photo_title" = "Photo";
+
+//MARK: - PhotoViewController
+"photo_gallery_title" = "Photo gallery";
+
+//MARK: - FavoriteViewController
+"bar_fav_title" = "Favorite";
+"no_feed_yet" = "No feed yet";
+"filtered_feed" = "Feed filtered by author:";
+"not_filtered_feed" = "Not filtered";
+
+//MARK: - FavoriteSearchViewController
+"search_field" = "Enter author name";
+"cancel_btn" = "Cancel";
+"search_btn" = "Search";
+"search_author_alert" = "Enter something...";
+
+//MARK: - PostTopTableViewCell
+"show_more_btn" = "Show more...";
+
+//MARK: - showAlertOk
+"alert_error" = "Error";

@@ -13,12 +13,19 @@ struct Info {
 
 class InfoViewModel {
     //MARK: - props
-    let fields: [Info] = [
-        Info(name: "General information"),
-        Info(name: "Contacts"),
-        Info(name: "Interests"),
-        Info(name: "Education"),
-        Info(name: "Career")
+    lazy var fields: [Info] = [
+        Info(name: generalInfo),
+        Info(name: contacts),
+        Info(name: interests),
+        Info(name: education),
+        Info(name: career)
     ]
+    
+    //MARK: - localization
+    private let generalInfo = "general_info_btn".localized()
+    private let contacts = "contacts_btn".localized()
+    private let interests = "interests_btn".localized()
+    private let education = "education_btn".localized()
+    private let career = "career_btn".localized()
 }
 

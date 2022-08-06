@@ -14,6 +14,10 @@ class MenuViewController: UIViewController {
     
     var backAction: (() -> Void)?
     
+    //MARK: - localization
+    private let titleSettings = "settings_btn".localized()
+    private let titleLogOut = "log_out_btn".localized()
+    
     //MARK: - subviews
     private lazy var backButton: UIButton = MagicButton(title: "", titleColor: Palette.appTintColor) {
         print("menu back button tapped")
@@ -29,12 +33,7 @@ class MenuViewController: UIViewController {
         return label
     }()
     
-    private lazy var topHLineImageView: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = Palette.separatorColor
-        return image
-    }()
+    private lazy var topHLineImageView = Separator(backgroundColor: Palette.separatorColor)
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -48,14 +47,13 @@ class MenuViewController: UIViewController {
     
     private lazy var botHLineImageView = Separator(backgroundColor: Palette.separatorColor)
     
-    private lazy var settingsButton = RadioButtonView(title: "Settings", titleColor: Palette.mainTextColor, titleFont: UIFont.setNormFont(14), isSelected: false, imgSize: CGSize(width: 20, height: 20), imgPadding: 14) {
+    private lazy var settingsButton = RadioButtonView(title: titleSettings, titleColor: Palette.mainTextColor, titleFont: UIFont.setNormFont(14), isSelected: false, imgSize: CGSize(width: 20, height: 20), imgPadding: 14) {
         print("settings menu btn tapped")
     }
     
-    private lazy var logOutButton = RadioButtonView(title: "Log Out", titleColor: Palette.mainTextColor, titleFont: UIFont.setNormFont(14), isSelected: false, imgSize: CGSize(width: 20, height: 20), imgPadding: 14) {
+    private lazy var logOutButton = RadioButtonView(title: titleLogOut, titleColor: Palette.mainTextColor, titleFont: UIFont.setNormFont(14), isSelected: false, imgSize: CGSize(width: 20, height: 20), imgPadding: 14) {
         print("logOut menu btn tapped")
     }
-    
     
     //MARK: - init
     init(menuVM: MenuViewModel) {

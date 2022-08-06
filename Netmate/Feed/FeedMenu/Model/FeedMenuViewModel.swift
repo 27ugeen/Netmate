@@ -13,12 +13,20 @@ struct FeedMenu {
 
 class FeedMenuViewModel {
     //MARK: - props
-    let fields: [FeedMenu] = [
-        FeedMenu(name: "Save to bookmarks"),
-        FeedMenu(name: "Enable notifications"),
-        FeedMenu(name: "Copy the link"),
-        FeedMenu(name: "Share in..."),
-        FeedMenu(name: "Unsubscribe"),
-        FeedMenu(name: "Complain")
+    lazy var fields: [FeedMenu] = [
+        FeedMenu(name: saveToBookmarks),
+        FeedMenu(name: enableNotific),
+        FeedMenu(name: copyTheLink),
+        FeedMenu(name: shareIn),
+        FeedMenu(name: unsubscribe),
+        FeedMenu(name: complain)
     ]
+    
+    //MARK: - localization
+    private let saveToBookmarks = "save_to_bookmarks_btn".localized()
+    private let enableNotific = "enable_notific_btn".localized()
+    private let copyTheLink = "copy_the_link_btn".localized()
+    private let shareIn = "share_in_btn".localized()
+    private let unsubscribe = "unsubscribe_btn".localized()
+    private let complain = "complain_btn".localized()
 }

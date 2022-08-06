@@ -8,7 +8,11 @@
 import UIKit
 
 class RegisterConfirmViewController: UIViewController {
-    //MARK: - props
+    //MARK: - localization
+    private let titleTop = "top_conf_lab".localized()
+    private let titleMid = "mid_conf_lab".localized()
+    private let titleMidSub = "mid_conf_sub_lab".localized()
+    private let titleRegister = "reg_btn".localized()
     
     //MARK: - subviews
     private let scrollView: UIScrollView = {
@@ -28,7 +32,7 @@ class RegisterConfirmViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setSBFont(18)
         label.textColor = Palette.accentTextColor
-        label.text = "Confirmation of registration"
+        label.text = titleTop
         return label
     }()
     
@@ -37,7 +41,7 @@ class RegisterConfirmViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setNormFont(14)
         label.textColor = Palette.mainTextColor
-        label.text = "We sent an SMS whit a code to the number:"
+        label.text = titleMid
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -59,7 +63,7 @@ class RegisterConfirmViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setNormFont(12)
         label.textColor = Palette.secondTextColor
-        label.text = "Enter code from SMS"
+        label.text = titleMidSub
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -81,7 +85,7 @@ class RegisterConfirmViewController: UIViewController {
         return text
     }()
     
-    private lazy var registerButton = MagicButton(title: "REGISTER", titleColor: Palette.btnWithBordTitleColor) {
+    private lazy var registerButton = MagicButton(title: titleRegister, titleColor: Palette.btnWithBordTitleColor) {
         //        self.goToProfile()
     }
     

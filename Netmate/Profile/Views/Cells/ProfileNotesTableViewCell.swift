@@ -12,6 +12,9 @@ class ProfileNotesTableViewCell: UITableViewCell {
     static let cellId = "ProfileNotesTableViewCell"
     
     //MARK: - localization
+    private let notesTitle = "notes_btn".localized()
+    private let historyTitle = "history_btn".localized()
+    private let photoTitle = "photo_btn".localized()
     
     //MARK: - subViews
     private lazy var notesButton: UIButton = {
@@ -20,7 +23,7 @@ class ProfileNotesTableViewCell: UITableViewCell {
         config.imagePlacement = .top
         config.imagePadding = 12
         
-        var attText = AttributedString("Notes")
+        var attText = AttributedString(notesTitle)
         attText.font = UIFont.setNormFont(14)
         config.attributedTitle = attText
         config.baseForegroundColor = Palette.mainTextColor
@@ -39,7 +42,7 @@ class ProfileNotesTableViewCell: UITableViewCell {
         config.imagePlacement = .top
         config.imagePadding = 12
         
-        var attText = AttributedString("History")
+        var attText = AttributedString(historyTitle)
         attText.font = UIFont.setNormFont(14)
         config.attributedTitle = attText
         config.baseForegroundColor = Palette.mainTextColor
@@ -57,7 +60,7 @@ class ProfileNotesTableViewCell: UITableViewCell {
         config.imagePlacement = .top
         config.imagePadding = 12
         
-        var attText = AttributedString("Photo")
+        var attText = AttributedString(photoTitle)
         attText.font = UIFont.setNormFont(14)
         config.attributedTitle = attText
         config.baseForegroundColor = Palette.mainTextColor

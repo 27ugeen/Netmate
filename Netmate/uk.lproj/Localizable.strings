@@ -1,0 +1,120 @@
+/* 
+  Localizable.strings
+  Netmate
+
+  Created by GiN Eugene on 6/8/2022.
+  
+*/
+
+//MARK: - OnboardingViewController
+"reg_btn" = "ЗАРЕЄСТРУВАТИСЬ";
+"go_to_signin_btn" = "Уже є аккаунт";
+
+//MARK: - SignInViewController
+"top_lab" = "З поверненням";
+"mid_lab" = "Введіть номер телефону для входу в додаток";
+"confirm_btn" = "ПІДТВЕРДИТИ";
+
+//MARK: - RegisterViewController
+"mid_reg_lab" = "Введіть номер";
+"mid_reg_sub_lab" = "Ваш номер буде використовуватись для входу в обліковий запис";
+"next_btn" = "ДАЛІ";
+"bot_reg_sub_lab" = "Натискаючи кнопку \"Далі\", ви приймаєте Угоду користувача та Політику конфіденційності";
+
+//MARK: - RegisterConfirmViewController
+"top_conf_lab" = "Підтвердження реєстрації";
+"mid_conf_lab" = "Ми відправили SMS з кодом на номер:";
+"mid_conf_sub_lab" = "Введіть код із SMS";
+
+//MARK: - MainViewController
+"bar_main_title" = "Головна";
+
+//MARK: - MainHeaderTableViewCell
+"news_btn" = "Новини";
+"forU_btn" = "Для вас";
+
+//MARK: - ProfileEditViewController
+"edit_title" = "Основна інформація";
+"first_name" = "Імʼя";
+"last_name" = "Прізвище";
+"sex" = "Стать";
+"male_btn" = "Чоловіча";
+"female_btn" = "Жіноча";
+"birth_date" = "Дата народження";
+"city_name" = "Рідне місто";
+"city_name_field" = "Введіть назву";
+
+//MARK: - ProfileHeaderTableViewCell
+"detail_btn" = "Детальна інформація";
+
+//MARK: - ProfileButtonsTableViewCell
+"edit_btn" = "Редагувати";
+
+//MARK: - ProfileSubscribtionTableViewCell
+"publications_btn" = "публікацій";
+"subscriptions_btn" = "підписок";
+"subscribers_btn" = "підписників";
+"subscribers_qtt" = "тис.";
+
+//MARK: - ProfileNotesTableViewCell
+"notes_btn" = "Запис";
+"history_btn" = "Історія";
+"photo_btn" = "Фото";
+
+//MARK: - MenuViewController
+"settings_btn" = "Налаштування";
+"log_out_btn" = "Вийти";
+
+//MARK: - MenuViewModel
+"bookmarks_btn" = "Закладки";
+"favorite_btn" = "Улюблене";
+"files_btn" = "Файли";
+"archive_btn" = "Архіви";
+
+//MARK: - InfoViewController
+"info_title" = "Профіль";
+
+//MARK: - InfoViewModel
+"general_info_btn" = "Основна інформація";
+"contacts_btn" = "Контакти";
+"interests_btn" = "Інтереси";
+"education_btn" = "Освіта";
+"career_btn" = "Карʼєра";
+
+//MARK: - ProfileViewModel
+"save_to_bookmarks_btn" = "Зберегти в закладках";
+"pin_btn" = "Закріпити";
+"disable_comments_btn" = "Вимкнути коментарі";
+"copy_the_link_btn" = "Копіювати посилання";
+"archive_the_entry_btn" = "Архівувати запис";
+"delete_btn" = "Видалити";
+
+//MARK: - FeedMenuViewModel
+"enable_notific_btn" = "Увімкнути сповіщення";
+"share_in_btn" = "Поділитися в...";
+"unsubscribe_btn" = "Відмінити підписку";
+"complain_btn" = "Подати скаргу";
+
+//MARK: - PhotoTableViewCell
+"photo_title" = "Фото";
+
+//MARK: - PhotoViewController
+"photo_gallery_title" = "Фотогалерея";
+
+//MARK: - FavoriteViewController
+"bar_fav_title" = "Улюблене";
+"no_feed_yet" = "Ще немеє фіда";
+"filtered_feed" = "Фіди відфільтровані за автором:";
+"not_filtered_feed" = "Немає фільтру";
+
+//MARK: - FavoriteSearchViewController
+"search_field" = "Введіть автора";
+"cancel_btn" = "Відміна";
+"search_btn" = "Пошук";
+"search_author_alert" = "Введіть автора...";
+
+//MARK: - PostTopTableViewCell
+"show_more_btn" = "Показати більше...";
+
+//MARK: - showAlertOk
+"alert_error" = "Помилка";

@@ -73,7 +73,6 @@ class ProfileViewController: UIViewController {
     @objc private func menuTapped() {
         self.goToProfileMenuVCAction?()
     }
-    
 }
 //MARK: - setupViews
 extension ProfileViewController {

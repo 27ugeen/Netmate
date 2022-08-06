@@ -12,6 +12,11 @@ class SignInViewController: UIViewController {
     private let appCoordinator: AppCoordinator
     private let localAuthorizationService: LocalAuthorizationService
     
+    //MARK: - localization
+    private let titleTop = "top_lab".localized()
+    private let titleMid = "mid_lab".localized()
+    private let titleConfirm = "confirm_btn".localized()
+    
     //MARK: - subviews
     private let scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -30,17 +35,16 @@ class SignInViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setSBFont(18)
         label.textColor = Palette.accentTextColor
-        label.text = "Welcom back"
+        label.text = titleTop
         return label
     }()
-    
     
     private lazy var midSubLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setNormFont(14)
         label.textColor = Palette.secondTextColor
-        label.text = "Enter your phone number to sign in to your account"
+        label.text = titleMid
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -62,7 +66,7 @@ class SignInViewController: UIViewController {
         return text
     }()
     
-    private lazy var confirmButton = MagicButton(title: "CONFIRM", titleColor: Palette.btnWithBordTitleColor) {
+    private lazy var confirmButton = MagicButton(title: titleConfirm, titleColor: Palette.btnWithBordTitleColor) {
         self.goToProfile()
     }
     //MARK: - init

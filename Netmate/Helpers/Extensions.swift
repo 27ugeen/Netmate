@@ -31,7 +31,10 @@ public func reciveImagesArrFromPhotoStorage(photos: AnyObject) -> [UIImage] {
 
 extension UIViewController {
     func showAlertOk(message: String) {
-        let alertTitle = "Error"
+        //MARK: - localization
+        let errorTitle = "alert_error".localized()
+        
+        let alertTitle = errorTitle
         let alertOk = "Ok"
         let alertVC = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: alertOk, style: .default, handler: nil))
@@ -116,5 +119,9 @@ extension String {
             randomString += "\(base[base.index(base.startIndex, offsetBy: Int(randomValue))])"
         }
         return randomString
+    }
+    
+    func localized() -> String {
+        return NSLocalizedString(self, comment: "")
     }
 }

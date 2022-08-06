@@ -11,12 +11,16 @@ class MainHeaderTableViewCell: UITableViewCell {
     //MARK: - props
     static let cellId = "MainHeaderTableViewCell"
     
+    //MARK: - localization
+    private let titleNews = "news_btn".localized()
+    private let titleForU = "forU_btn".localized()
+    
     //MARK: - subviews
-    private lazy var newsButton = MagicButton(title: "News", titleColor: Palette.mainTextColor) {
+    private lazy var newsButton = MagicButton(title: titleNews, titleColor: Palette.mainTextColor) {
         print("main news btn tapped")
     }
     
-    private lazy var forUButton = MagicButton(title: "For you", titleColor: Palette.secondTextColor) {
+    private lazy var forUButton = MagicButton(title: titleForU, titleColor: Palette.secondTextColor) {
         print("main forU btn tapped")
     }
     

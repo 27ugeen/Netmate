@@ -18,13 +18,11 @@ class FavoriteViewController: UIViewController {
     var goToFeedDetailAction: ((_ model: User, _ idx: Int) -> Void)?
     
     //MARK: - localization
-    //    private let postAuthor = "post_author".localized()
-    //    private let postViews = "post_views".localized()
-    //    private let filteredPosts = "filtered_posts".localized()
-    //    private let notFilteredPosts = "not_filtered_posts".localized()
-    //    private let favoriteVCTitle = "bar_favorite".localized()
-    //    private let postDeleteAction = "post_delete_action".localized()
-    //    private let findPostAlert = "find_post_alert".localized()
+    private let titleBar = "bar_fav_title".localized()
+    private let noFeedYet = "no_feed_yet".localized()
+    private let filteredFeed = "filtered_feed".localized()
+    private let notFilteredFeed = "not_filtered_feed".localized()
+    private let deleteBtn = "delete_btn".localized()
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -32,7 +30,7 @@ class FavoriteViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setSBFont(18)
-        label.text = "Favorite"
+        label.text = titleBar
         return label
     }()
     
@@ -84,7 +82,7 @@ class FavoriteViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if favoriteViewModel.favoriteFeed.isEmpty {
-            self.showAlertOk(message: "no feed yet")
+            self.showAlertOk(message: noFeedYet)
         }
     }
     //MARK: - methods
@@ -162,10 +160,10 @@ extension FavoriteViewController: UITableViewDelegate {
         let author = UserDefaults.standard.string(forKey: "author")
         if author != "" {
             if let uAuthor = author {
-                headerView.searchLabel.text = "Feed filtered by author: \(uAuthor)"
+                headerView.searchLabel.text = "\(filteredFeed) \(uAuthor)"
             }
         } else {
-            headerView.searchLabel.text = "Not filtered"
+            headerView.searchLabel.text = notFilteredFeed
         }
         return headerView
     }
@@ -181,7 +179,7 @@ extension FavoriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let feed = favoriteViewModel.favoriteFeed[indexPath.row]
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, complete in
+        let deleteAction = UIContextualAction(style: .destructive, title: deleteBtn) { _, _, complete in
             self.favoriteViewModel.removeFeedFromFavorite(feed: feed, index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             complete(true)

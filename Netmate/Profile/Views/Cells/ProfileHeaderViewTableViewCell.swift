@@ -13,6 +13,9 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     
     var goToInfoAction: (() -> Void)?
     
+    //MARK: - localization
+    private let titleDetail = "detail_btn".localized()
+    
     //MARK: - subviews
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
@@ -52,7 +55,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         return image
     }()
     
-    private lazy var detailButton = MagicButton(title: "Detail information", titleColor: Palette.mainTextColor) {
+    private lazy var detailButton = MagicButton(title: titleDetail, titleColor: Palette.mainTextColor) {
         print("follower detail button tapped")
         self.goToInfoAction?()
     }

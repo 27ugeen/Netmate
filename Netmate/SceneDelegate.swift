@@ -36,13 +36,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let profileVC = ProfileViewController()
         let favVC = FavoriteViewController(favoriteViewModel: favVM)
         
-        let mainCoord = MainCoordinator(rootViewController: rootVC, mainVC: mainVC, infoVM: infoVM, feedMenuVM: feedMenuVM, imagePublisherFacade: imgPubFascade)
-        let profileCoord = ProfileCoordinator(rootViewController: rootVC, profileVC: profileVC, infoVM: infoVM, menuVM: profileMenuVM, profileVM: profileVM, imgPubFascade: imgPubFascade)
-        let favCoord = FavoriteCoordinator(rootViewController: rootVC, favVC: favVC)
+        let mainCoord = MainCoordinator(rootViewController: rootVC,
+                                        mainVC: mainVC,
+                                        infoVM: infoVM,
+                                        feedMenuVM: feedMenuVM,
+                                        imagePublisherFacade: imgPubFascade)
         
-        let appCoordinator = AppCoordinator(mainCoordinator: mainCoord, profileCoordinator: profileCoord, favoriteCoordinator: favCoord)
+        let profileCoord = ProfileCoordinator(rootViewController: rootVC,
+                                              profileVC: profileVC,
+                                              infoVM: infoVM,
+                                              menuVM: profileMenuVM,
+                                              profileVM: profileVM,
+                                              imgPubFascade: imgPubFascade)
         
-        let onBoardingVC = OnboardingViewController(coordinator: appCoordinator, localAuthorizationService: localAuthorizationService)
+        let favCoord = FavoriteCoordinator(rootViewController: rootVC,
+                                           favVC: favVC)
+        
+        let appCoordinator = AppCoordinator(mainCoordinator: mainCoord,
+                                            profileCoordinator: profileCoord,
+                                            favoriteCoordinator: favCoord)
+        
+        let onBoardingVC = OnboardingViewController(coordinator: appCoordinator,
+                                                    localAuthorizationService: localAuthorizationService)
+        
         let onBoardingNavVC = UINavigationController(rootViewController: onBoardingVC)
         
         window?.rootViewController = onBoardingNavVC

@@ -8,7 +8,16 @@
 import UIKit
 
 class ProfileEditViewController: UIViewController {
-    //MARK: - props
+    //MARK: - localization
+    private let titleEdit = "edit_title".localized()
+    private let firstName = "first_name".localized()
+    private let lastName = "last_name".localized()
+    private let sex = "sex".localized()
+    private let maleBtn = "male_btn".localized()
+    private let femaleBtn = "female_btn".localized()
+    private let birth_date = "birth_date".localized()
+    private let cityName = "city_name".localized()
+    private let cityNameField = "city_name_field".localized()
     
     //MARK: - subviews
     private lazy var leftButton: UIButton = MagicButton(title: "", titleColor: Palette.appTintColor) {
@@ -23,16 +32,12 @@ class ProfileEditViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    private let testButton = MagicButton(title: "Test", titleColor: Palette.mainTextColor) {
-        print("edit testButton tapped")
-    }
-    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setMedFont(16)
-        label.text = "Main information"
+        label.text = titleEdit
         return label
     }()
     
@@ -41,7 +46,7 @@ class ProfileEditViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setMedFont(12)
-        label.text = "First name"
+        label.text = firstName
         return label
     }()
     
@@ -53,7 +58,7 @@ class ProfileEditViewController: UIViewController {
         text.font = UIFont.setNormFont(12)
         text.tintColor = Palette.accentTextColor
         text.autocapitalizationType = .none
-        text.placeholder = "First name"
+        text.placeholder = firstName
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
         text.leftViewMode = .always
         text.textAlignment = .left
@@ -65,7 +70,7 @@ class ProfileEditViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setMedFont(12)
-        label.text = "Last name"
+        label.text = lastName
         return label
     }()
     
@@ -77,7 +82,7 @@ class ProfileEditViewController: UIViewController {
         text.font = UIFont.setNormFont(12)
         text.tintColor = Palette.accentTextColor
         text.autocapitalizationType = .none
-        text.placeholder = "Last name"
+        text.placeholder = lastName
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
         text.leftViewMode = .always
         text.textAlignment = .left
@@ -89,15 +94,15 @@ class ProfileEditViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setMedFont(12)
-        label.text = "Sex"
+        label.text = sex
         return label
     }()
     
-    private lazy var male = RadioButtonView(title: "Male", titleColor: Palette.mainTextColor, titleFont: UIFont.setMedFont(12), isSelected: true, imgSize: CGSize(width: 16, height: 16), imgPadding: 14) {
+    private lazy var male = RadioButtonView(title: maleBtn, titleColor: Palette.mainTextColor, titleFont: UIFont.setMedFont(12), isSelected: true, imgSize: CGSize(width: 16, height: 16), imgPadding: 14) {
         self.onRadioButtonTap(0)
     }
     
-    private lazy var female = RadioButtonView(title: "Female", titleColor: Palette.mainTextColor, titleFont: UIFont.setMedFont(12), isSelected: false, imgSize: CGSize(width: 16, height: 16), imgPadding: 14) {
+    private lazy var female = RadioButtonView(title: femaleBtn, titleColor: Palette.mainTextColor, titleFont: UIFont.setMedFont(12), isSelected: false, imgSize: CGSize(width: 16, height: 16), imgPadding: 14) {
         self.onRadioButtonTap(1)
     }
     
@@ -106,7 +111,7 @@ class ProfileEditViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setMedFont(12)
-        label.text = "Birth date"
+        label.text = birth_date
         return label
     }()
     
@@ -130,7 +135,7 @@ class ProfileEditViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setMedFont(12)
-        label.text = "City name"
+        label.text = cityName
         return label
     }()
     
@@ -142,7 +147,7 @@ class ProfileEditViewController: UIViewController {
         text.font = UIFont.setNormFont(12)
         text.tintColor = Palette.accentTextColor
         text.autocapitalizationType = .none
-        text.placeholder = "Write the name"
+        text.placeholder = cityNameField
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
         text.leftViewMode = .always
         text.textAlignment = .left

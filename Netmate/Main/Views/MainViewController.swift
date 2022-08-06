@@ -20,13 +20,16 @@ class MainViewController: UIViewController {
     var goToFeedDetailVCAction: ((_ model: User, _ idx: Int) -> Void)?
     var goToFeedMenuVCAction: (() -> Void)?
     
+    //MARK: - localization
+    private let titleBar = "bar_main_title".localized()
+    
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setSBFont(18)
-        label.text = "Main"
+        label.text = titleBar
         return label
     }()
     
@@ -59,6 +62,10 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupTabBarView()
     }
     //MARK: - methods

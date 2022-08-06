@@ -12,10 +12,10 @@ class FavoriteSearchViewController: UIViewController {
     var filterAction: ((_ author: String) -> Void)?
     
     //MARK: - localization
-//    private let searchField = "search_field".localized()
-//    private let cancelBtn = "cancel_btn".localized()
-//    private let searchBtn = "search_btn".localized()
-//    private let searchAuthorAlert = "search_author_alert".localized()
+    private let searchField = "search_field".localized()
+    private let cancelBtn = "cancel_btn".localized()
+    private let searchBtn = "search_btn".localized()
+    private let searchAuthorAlert = "search_author_alert".localized()
     
     //MARK: - subviews
     private let scrollView: UIScrollView = {
@@ -40,7 +40,7 @@ class FavoriteSearchViewController: UIViewController {
         text.font = UIFont.setNormFont(16)
         text.tintColor = Palette.accentTextColor
         text.autocapitalizationType = .none
-        text.placeholder = "Enter author name"
+        text.placeholder = searchField
         text.textAlignment = .left
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: text.frame.height))
         text.leftViewMode = .always
@@ -48,13 +48,13 @@ class FavoriteSearchViewController: UIViewController {
         return text
     }()
     
-    private lazy var cancelButton = MagicButton(title: "Cancel", titleColor: Palette.accentTextColor) {
+    private lazy var cancelButton = MagicButton(title: cancelBtn, titleColor: Palette.accentTextColor) {
         self.dismiss(animated: true)
     }
     
-    private lazy var searchButton = MagicButton(title: "Search", titleColor: Palette.btnWithBordTitleColor) {
+    private lazy var searchButton = MagicButton(title: searchBtn, titleColor: Palette.btnWithBordTitleColor) {
         guard self.searchTextField.text != "" else {
-            self.showAlertOk(message: "Enter something...")
+            self.showAlertOk(message: self.searchAuthorAlert)
             return
         }
         self.filterAction?(self.searchTextField.text ?? "")

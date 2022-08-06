@@ -19,7 +19,7 @@ class PhotoViewController: UIViewController {
         }
     }
     //MARK: - localization
-//    private let photosVCTitle = "photos_vc_title".localized()
+    private let titleGallery = "photo_gallery_title".localized()
     
     //MARK: - subviews
     private lazy var collectionView: UICollectionView = {
@@ -77,7 +77,7 @@ class PhotoViewController: UIViewController {
 //MARK: - setupViews
 extension PhotoViewController {
     func setupViews() {
-        self.title = "Photo"
+        self.title = titleGallery
         self.view.backgroundColor = Palette.appTintColor
         
         self.view.addSubview(collectionView)

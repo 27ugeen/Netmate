@@ -15,11 +15,18 @@ struct Menu {
 
 class MenuViewModel {
     //MARK: - props
-    let fields: [Menu] = [
-        Menu(image: UIImage(systemName: "star"), title: "Bookmarks"),
-        Menu(image: UIImage(systemName: "heart"), title: "Favorite"),
-        Menu(image: UIImage(systemName: "square.and.arrow.up"), title: "Files"),
-        Menu(image: UIImage(systemName: "link"), title: "Archive")
+    lazy var fields: [Menu] = [
+        Menu(image: UIImage(systemName: "star"), title: bookmarks),
+        Menu(image: UIImage(systemName: "heart"), title: favorite),
+        Menu(image: UIImage(systemName: "square.and.arrow.up"), title: files),
+        Menu(image: UIImage(systemName: "link"), title: archive)
     ]
+    
+    //MARK: - localization
+    private let bookmarks = "bookmarks_btn".localized()
+    private let favorite = "favorite_btn".localized()
+    private let files = "files_btn".localized()
+    private let archive = "archive_btn".localized()
+
 }
 

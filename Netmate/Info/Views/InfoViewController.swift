@@ -13,6 +13,8 @@ class InfoViewController: UIViewController {
     private let infoVM: InfoViewModel
     
     var cancelAction: (() -> Void)?
+    //MARK: - localization
+    private let titleProfile = "info_title".localized()
     
     //MARK: - subviews
     private lazy var cancelButton: UIButton = MagicButton(title: "", titleColor: Palette.appTintColor) {
@@ -25,7 +27,7 @@ class InfoViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setSBFont(18)
-        label.text = "Profile"
+        label.text = titleProfile
         return label
     }()
     

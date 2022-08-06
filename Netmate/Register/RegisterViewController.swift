@@ -8,7 +8,12 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
-    //MARK: - props
+    //MARK: - localization
+    private let titleReg = "reg_btn".localized()
+    private let titleMid = "mid_reg_lab".localized()
+    private let titleMidSub = "mid_reg_sub_lab".localized()
+    private let titleNext = "next_btn".localized()
+    private let titleBotSub = "bot_reg_sub_lab".localized()
     
     //MARK: - subviews
     private let scrollView: UIScrollView = {
@@ -28,7 +33,7 @@ class RegisterViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setSBFont(18)
         label.textColor = Palette.mainTextColor
-        label.text = "REGISTER"
+        label.text = titleReg
         return label
     }()
     
@@ -37,7 +42,7 @@ class RegisterViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setMedFont(16)
         label.textColor = Palette.mainTextColor
-        label.text = "Enter your number"
+        label.text = titleMid
         return label
     }()
     
@@ -46,7 +51,7 @@ class RegisterViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setMedFont(12)
         label.textColor = Palette.secondTextColor
-        label.text = "Your phone number will be used to sign in to your account"
+        label.text = titleMidSub
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -68,8 +73,7 @@ class RegisterViewController: UIViewController {
         return text
     }()
     
-    private lazy var nextButton = MagicButton(title: "NEXT", titleColor: Palette.btnWithBordTitleColor) {
-        //        self.goToProfile()
+    private lazy var nextButton = MagicButton(title: titleNext, titleColor: Palette.btnWithBordTitleColor) {
         let regConfVC = RegisterConfirmViewController()
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(regConfVC, animated: true)
@@ -80,7 +84,7 @@ class RegisterViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.setMedFont(12)
         label.textColor = Palette.secondTextColor
-        label.text = "By clicking the \"Next\" button you accept the User Agreement and Privacy Policy"
+        label.text = titleBotSub
         label.textAlignment = .center
         label.numberOfLines = 0
         return label

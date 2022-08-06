@@ -12,6 +12,10 @@ class OnboardingViewController: UIViewController {
     //MARK: - props
     private let appCoordinator: AppCoordinator
     private let localAuthorizationService: LocalAuthorizationService
+    
+    //MARK: - localization
+    private let titleRegister = "reg_btn".localized()
+    private let titleGoToSignin = "go_to_signin_btn".localized()
 
     //MARK: - subviews
     private let scrollView: UIScrollView = {
@@ -36,14 +40,13 @@ class OnboardingViewController: UIViewController {
         return image
     }()
     
-    private lazy var registerButton = MagicButton(title: "REGISTER", titleColor: Palette.btnWithBordTitleColor) {
-//        self.goToProfile()
+    private lazy var registerButton = MagicButton(title: titleRegister, titleColor: Palette.btnWithBordTitleColor) {
         let regVC = RegisterViewController()
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(regVC, animated: true)
     }
     
-    private lazy var goToLoginButton = MagicButton(title: "Already have an account", titleColor: Palette.btnNoBordTitleColor) {
+    private lazy var goToSigninButton = MagicButton(title: titleGoToSignin, titleColor: Palette.btnNoBordTitleColor) {
 //        self.isUserExists = !self.isUserExists
         let signInVC = SignInViewController(coordinator: self.appCoordinator, localAuthorizationService: self.localAuthorizationService)
         self.navigationItem.backButtonTitle = ""
@@ -77,7 +80,7 @@ class OnboardingViewController: UIViewController {
         registerButton.layer.cornerRadius = 8
         registerButton.clipsToBounds = true
         
-        goToLoginButton.titleLabel?.font = UIFont.setMedFont(14)
+        goToSigninButton.titleLabel?.font = UIFont.setMedFont(14)
     }
 
 }
@@ -92,7 +95,7 @@ extension OnboardingViewController {
         
         contentView.addSubview(logoImage)
         contentView.addSubview(registerButton)
-        contentView.addSubview(goToLoginButton)
+        contentView.addSubview(goToSigninButton)
         
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -117,11 +120,11 @@ extension OnboardingViewController {
             registerButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -56),
             registerButton.heightAnchor.constraint(equalToConstant: 48),
             
-            goToLoginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 56),
-            goToLoginButton.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 30),
-            goToLoginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -56),
-            goToLoginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            goToLoginButton.heightAnchor.constraint(equalToConstant: 20)
+            goToSigninButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 56),
+            goToSigninButton.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 30),
+            goToSigninButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -56),
+            goToSigninButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            goToSigninButton.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 }
