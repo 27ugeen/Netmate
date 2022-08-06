@@ -7,6 +7,7 @@
 
 import UIKit
 import LocalAuthentication
+import iOSIntPackage
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -22,6 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let localAuthorizationService = LocalAuthorizationService(localAuthContext: localAuthContext)
         
+        let imgPubFascade = ImagePublisherFacade()
+        
         let mainVM = MainViewModel()
         let profileVM = ProfileViewModel()
         let favVM = FavoriteViewModel()
@@ -33,8 +36,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let profileVC = ProfileViewController()
         let favVC = FavoriteViewController(favoriteViewModel: favVM)
         
-        let mainCoord = MainCoordinator(rootViewController: rootVC, mainVC: mainVC, feedMenuVM: feedMenuVM)
-        let profileCoord = ProfileCoordinator(rootViewController: rootVC, profileVC: profileVC, infoVM: infoVM, menuVM: profileMenuVM, profileVM: profileVM)
+        let mainCoord = MainCoordinator(rootViewController: rootVC, mainVC: mainVC, infoVM: infoVM, feedMenuVM: feedMenuVM, imagePublisherFacade: imgPubFascade)
+        let profileCoord = ProfileCoordinator(rootViewController: rootVC, profileVC: profileVC, infoVM: infoVM, menuVM: profileMenuVM, profileVM: profileVM, imgPubFascade: imgPubFascade)
         let favCoord = FavoriteCoordinator(rootViewController: rootVC, favVC: favVC)
         
         let appCoordinator = AppCoordinator(mainCoordinator: mainCoord, profileCoordinator: profileCoord, favoriteCoordinator: favCoord)

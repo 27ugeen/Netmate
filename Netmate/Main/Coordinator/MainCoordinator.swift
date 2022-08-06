@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 protocol MainBaseCoordinatorProtocol: CoordinatorProtocol {
     func goToProfileVC()
@@ -17,13 +18,17 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
     var parentCoordinator: AppBaseCoordinatorProtocol?
     var rootViewController: UIViewController
     private let mainVC: MainViewController
+    private let infoVM: InfoViewModel
     private let feedMenuVM: FeedMenuViewModel
+    private let imagePublisherFacade: ImagePublisherFacade
     
     //MARK: - init
-    init(rootViewController: UIViewController, mainVC: MainViewController, feedMenuVM: FeedMenuViewModel) {
+    init(rootViewController: UIViewController, mainVC: MainViewController, infoVM: InfoViewModel, feedMenuVM: FeedMenuViewModel, imagePublisherFacade: ImagePublisherFacade) {
         self.rootViewController = rootViewController
         self.mainVC = mainVC
+        self.infoVM = infoVM
         self.feedMenuVM = feedMenuVM
+        self.imagePublisherFacade = imagePublisherFacade
     }
     //MARK: - methods
     func start() -> UIViewController {
@@ -53,13 +58,35 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
     
     func goToFollowerVC(_ index: Int) {
         let followerVC = FollowerViewController(idx: index)
+        
+        followerVC.goToInfoVCAction = {
+            let infoVC = InfoViewController(infoVM: self.infoVM)
+            infoVC.transitioningDelegate = followerVC
+            infoVC.modalPresentationStyle = .custom
+            self.navigationRootViewController?.present(infoVC, animated: true)
+            
+            infoVC.cancelAction = {
+                infoVC.dismiss(animated: true)
+            }
+        }
+        
+        followerVC.goToFeedDetailVCAction = { model, idx in
+            let feedDetailVC = FeedDetailViewController(feedIdx: idx)
+            feedDetailVC.model = model
+            self.navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
+        }
+        
+        followerVC.goToPhotoGalleryAction = {
+            let photoVC = PhotoViewController(imagePublisherFacade: self.imagePublisherFacade)
+            self.navigationRootViewController?.pushViewController(photoVC, animated: true)
+        }
+        
         navigationRootViewController?.pushViewController(followerVC, animated: true)
     }
     
     func goToFeedDetailVC(_ model: User, _ index: Int) {
         let feedDetailVC = FeedDetailViewController(feedIdx: index)
         feedDetailVC.model = model
-        feedDetailVC.feedIdx = index
         navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
     }
     
@@ -72,5 +99,4 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
         }
         navigationRootViewController?.present(feedMenuVC, animated: true)
     }
-    
 }

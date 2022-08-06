@@ -23,14 +23,16 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     private let infoVM: InfoViewModel
     private let menuVM: MenuViewModel
     private let profileVM: ProfileViewModel
+    private let imgPubFascade: ImagePublisherFacade
     
     //MARK: - init
-    init(rootViewController: UIViewController, profileVC: ProfileViewController, infoVM: InfoViewModel, menuVM: MenuViewModel, profileVM: ProfileViewModel) {
+    init(rootViewController: UIViewController, profileVC: ProfileViewController, infoVM: InfoViewModel, menuVM: MenuViewModel, profileVM: ProfileViewModel, imgPubFascade: ImagePublisherFacade) {
         self.rootViewController = rootViewController
         self.profileVC = profileVC
         self.infoVM = infoVM
         self.menuVM = menuVM
         self.profileVM = profileVM
+        self.imgPubFascade = imgPubFascade
     }
     //MARK: - methods
     func start() -> UIViewController {
@@ -100,7 +102,6 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
     }
     
     func goToPhotoVC() {
-        let imgPubFascade = ImagePublisherFacade()
         let photoVC = PhotoViewController(imagePublisherFacade: imgPubFascade)
         navigationRootViewController?.pushViewController(photoVC, animated: true)
     }

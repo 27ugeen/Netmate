@@ -18,9 +18,10 @@ class FollowerViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     var idx: Int
+    
     var goToInfoVCAction: (() -> Void)?
-//    var goToEditVCAction: (() -> Void)?
-//    var goToPhotoGalleryAction: (() -> Void)?
+    var goToFeedDetailVCAction: ((_ model: User, _ idx: Int) -> Void)?
+    var goToPhotoGalleryAction: (() -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -129,15 +130,9 @@ extension FollowerViewController: UITableViewDataSource {
             headerCell.avatarImage.image = profileModel.avatar
             headerCell.fullNameLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
             headerCell.profLabel.text = "\(profileModel.profession)"
+            
             headerCell.goToInfoAction = {
-                let infoVC = InfoViewController(infoVM: InfoViewModel().self)
-                infoVC.transitioningDelegate = self
-                infoVC.modalPresentationStyle = .custom
-                self.present(infoVC, animated: true)
-                
-                infoVC.cancelAction = {
-                    self.dismiss(animated: true)
-                }
+                self.goToInfoVCAction?()
             }
             return headerCell
         case 1:
@@ -157,9 +152,7 @@ extension FollowerViewController: UITableViewDataSource {
             feedCell.descriptLabel.text = profileModel.profession
             
             feedCell.showMoreAction = {
-                let feedDetailVC = FeedDetailViewController(feedIdx: indexPath.row - 4)
-                feedDetailVC.model = profileModel
-                self.navigationController?.pushViewController(feedDetailVC, animated: true)
+                self.goToFeedDetailVCAction?(profileModel, indexPath.row - 4)
             }
             return feedCell
         }
@@ -171,9 +164,7 @@ extension FollowerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 3 {
-            let photoVC = PhotoViewController(imagePublisherFacade: ImagePublisherFacade().self)
-            self.navigationController?.pushViewController(photoVC, animated: true)
-//            self.goToPhotoGalleryAction?()
+            self.goToPhotoGalleryAction?()
         }
     }
     
@@ -198,7 +189,6 @@ extension FollowerViewController: BonsaiControllerDelegate {
     func frameOfPresentedView(in containerViewFrame: CGRect) -> CGRect {
         return CGRect(origin: CGPoint(x: containerViewFrame.height / 8, y: 0), size: CGSize(width: containerViewFrame.width / (4/3), height: containerViewFrame.height))
     }
-
     // return a Bonsai Controller with SlideIn or Bubble transition animator
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         // Slide animation from .left, .right, .top, .bottom
