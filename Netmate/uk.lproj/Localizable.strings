@@ -118,3 +118,6 @@
 
 //MARK: - showAlertOk
 "alert_error" = "Помилка";
+
+//MARK: - AppCoordinator
+"bar_prof_title" = "Профіль";

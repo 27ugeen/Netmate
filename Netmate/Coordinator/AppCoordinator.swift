@@ -30,26 +30,25 @@ final class AppCoordinator: AppBaseCoordinatorProtocol {
         self.favoriteCoordinator = favoriteCoordinator
     }
     
-    //MARK: - Localization
-//    let barProfile = "bar_profile".localized()
-//    let barFeed = "bar_feed".localized()
-//    let barFavorite = "bar_favorite".localized()
-//    let barMap = "bar_map".localized()
-    
+    //MARK: - localization
+    private let barMain = "bar_main_title".localized()
+    private let barProf = "bar_prof_title".localized()
+    private let barFav = "bar_fav_title".localized()
+
     //MARK: - methods
     func start() -> UIViewController {
         let mainNavVC = mainCoordinator.start()
         mainCoordinator.parentCoordinator = self
-        mainNavVC.tabBarItem = UITabBarItem(title: "Main", image: UIImage(named: "house"), tag: 0)
+        mainNavVC.tabBarItem = UITabBarItem(title: barMain, image: UIImage(named: "house"), tag: 0)
         
         
         let profileNavVC = profileCoordinator.start()
         profileCoordinator.parentCoordinator = self
-        profileNavVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "person"), tag: 1)
+        profileNavVC.tabBarItem = UITabBarItem(title: barProf, image: UIImage(named: "person"), tag: 1)
         
         let favoriteNavVC = favoriteCoordinator.start()
         favoriteCoordinator.parentCoordinator = self
-        favoriteNavVC.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(named: "heart"), tag: 2)
+        favoriteNavVC.tabBarItem = UITabBarItem(title: barFav, image: UIImage(named: "heart"), tag: 2)
         
         (rootViewController as? UITabBarController)?.viewControllers = [mainNavVC, profileNavVC, favoriteNavVC]
         
