@@ -18,13 +18,13 @@ class FavoriteViewController: UIViewController {
     var goToFeedDetailAction: ((_ model: User, _ idx: Int) -> Void)?
     
     //MARK: - localization
-//    private let postAuthor = "post_author".localized()
-//    private let postViews = "post_views".localized()
-//    private let filteredPosts = "filtered_posts".localized()
-//    private let notFilteredPosts = "not_filtered_posts".localized()
-//    private let favoriteVCTitle = "bar_favorite".localized()
-//    private let postDeleteAction = "post_delete_action".localized()
-//    private let findPostAlert = "find_post_alert".localized()
+    //    private let postAuthor = "post_author".localized()
+    //    private let postViews = "post_views".localized()
+    //    private let filteredPosts = "filtered_posts".localized()
+    //    private let notFilteredPosts = "not_filtered_posts".localized()
+    //    private let favoriteVCTitle = "bar_favorite".localized()
+    //    private let postDeleteAction = "post_delete_action".localized()
+    //    private let findPostAlert = "find_post_alert".localized()
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -54,7 +54,7 @@ class FavoriteViewController: UIViewController {
         self.favoriteViewModel = favoriteViewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -95,12 +95,7 @@ class FavoriteViewController: UIViewController {
     }
     
     @objc private func searcAction() {
-        let searchVC = FavoriteSearchViewController()
-        searchVC.transitioningDelegate = self
-        searchVC.modalPresentationStyle = .custom
-        searchVC.filterAction = self.getFilteredFeed
-        self.navigationController?.present(searchVC, animated: true)
-//        self.goToSearchAction?()
+        self.goToSearchAction?()
     }
     
     @objc private func clearFilter() {
@@ -134,7 +129,6 @@ extension FavoriteViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
     }
 }
 // MARK: - UITableViewDataSource
@@ -147,11 +141,15 @@ extension FavoriteViewController: UITableViewDataSource  {
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID, for: indexPath) as! FeedTableViewCell
         let model = favoriteViewModel.favoriteFeed[indexPath.row]
         let feedModel = Feed(article: model.article, image: model.image)
+        let userModel = User(avatar: model.avatar, firstName: model.author, lastName: "", nickName: model.author, profession: model.authorProf, photo: [], feed: [feedModel])
         
         feedCell.authorImageView.image = model.avatar
         feedCell.authorLabel.text = model.author
         feedCell.descriptLabel.text = model.authorProf
         feedCell.model = feedModel
+        feedCell.showMoreAction = {
+            self.goToFeedDetailAction?(userModel, 0)
+        }
         
         return feedCell
     }
@@ -182,7 +180,7 @@ extension FavoriteViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let feed = favoriteViewModel.favoriteFeed[indexPath.row]
-
+        
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, complete in
             self.favoriteViewModel.removeFeedFromFavorite(feed: feed, index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)

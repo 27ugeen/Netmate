@@ -57,7 +57,7 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
     }
     
     func goToFeedDetailVC(_ model: User, _ index: Int) {
-        let feedDetailVC = FeedDetailViewController()
+        let feedDetailVC = FeedDetailViewController(feedIdx: index)
         feedDetailVC.model = model
         feedDetailVC.feedIdx = index
         navigationRootViewController?.pushViewController(feedDetailVC, animated: true)

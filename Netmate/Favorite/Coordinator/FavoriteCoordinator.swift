@@ -26,7 +26,10 @@ class FavoriteCoordinator: FavoriteBaseCoordinatorProtocol {
     func start() -> UIViewController {
         favVC.goToSearchAction = { [weak self] in
             self?.goToSearchVC()
-            
+        }
+        
+        favVC.goToFeedDetailAction = { user, idx in
+            self.goToFeedDetailVC(user, idx)
         }
         
         rootViewController = UINavigationController(rootViewController: favVC)
@@ -34,8 +37,16 @@ class FavoriteCoordinator: FavoriteBaseCoordinatorProtocol {
     }
     
     func goToSearchVC() {
-        let searhcVC = FavoriteSearchViewController()
-        searhcVC.filterAction = favVC.getFilteredFeed
-        navigationRootViewController?.present(searhcVC, animated: true)
+        let searchVC = FavoriteSearchViewController()
+        searchVC.transitioningDelegate = favVC
+        searchVC.modalPresentationStyle = .custom
+        searchVC.filterAction = favVC.getFilteredFeed
+        navigationRootViewController?.present(searchVC, animated: true)
+    }
+    
+    func goToFeedDetailVC(_ model: User, _ index: Int) {
+        let feedDetailVC = FeedDetailViewController(feedIdx: index)
+        feedDetailVC.model = model
+        navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
     }
 }

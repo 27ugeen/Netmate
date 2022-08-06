@@ -157,9 +157,8 @@ extension FollowerViewController: UITableViewDataSource {
             feedCell.descriptLabel.text = profileModel.profession
             
             feedCell.showMoreAction = {
-                let feedDetailVC = FeedDetailViewController()
+                let feedDetailVC = FeedDetailViewController(feedIdx: indexPath.row - 4)
                 feedDetailVC.model = profileModel
-                feedDetailVC.feedIdx = indexPath.row - 4
                 self.navigationController?.pushViewController(feedDetailVC, animated: true)
             }
             return feedCell

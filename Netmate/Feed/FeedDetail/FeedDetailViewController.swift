@@ -13,7 +13,7 @@ class FeedDetailViewController: UIViewController {
     private let postCellID = FeedDetailPostTableViewCell.cellId
     private let botCellID = FeedDetailBotTableViewCell.cellId
     
-    var feedIdx: Int = 0
+    var feedIdx: Int
     
     var model: User? {
         didSet {
@@ -44,6 +44,15 @@ class FeedDetailViewController: UIViewController {
     }()
     
     //MARK: - init
+    init(feedIdx: Int) {
+        self.feedIdx = feedIdx
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
