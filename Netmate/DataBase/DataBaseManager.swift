@@ -64,6 +64,7 @@ class DataBaseManager {
                     }
                 }
             } catch let error as NSError {
+                completition(nil)
                 print(error.localizedDescription)
             }
         }

@@ -100,7 +100,7 @@ class MainViewController: UIViewController {
                     let user: User = FeedStorage.tableModel[tapIndexPath.row - 2]
                     
                     mainVM.addToFavoriteFeed(tappedCell.model!, user) { message in
-                        self.showAlertOk(message: message ?? "")
+                        self.showAlertOk(message:  message ?? "")
                     }
                 }
             }
