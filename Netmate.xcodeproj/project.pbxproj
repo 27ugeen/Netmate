@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072E492C3683E7F9C4949281 /* Pods_NetmateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D2528A33BCA6D565553CF2 /* Pods_NetmateTests.framework */; };
 		11179A24289D12E300B8AB63 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11179A23289D12E300B8AB63 /* FavoriteViewModel.swift */; };
 		11179A27289D20CA00B8AB63 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11179A26289D20CA00B8AB63 /* MainViewModel.swift */; };
+		111DE5F5289FA4B20089A9AA /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE5F4289FA4B20089A9AA /* AppCoordinatorTests.swift */; };
 		112CE367289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112CE366289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift */; };
 		112CE369289BA76D008B2B06 /* ProfileNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112CE368289BA76D008B2B06 /* ProfileNotesTableViewCell.swift */; };
+		112D6A6928A0294300C42797 /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D6A6828A0294300C42797 /* MainCoordinatorTests.swift */; };
 		113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113621DE2893F59100EE5C5F /* RadioButton.swift */; };
 		11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E14289142D900A8AFE3 /* ProfileViewController.swift */; };
 		11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */; };
@@ -77,11 +80,25 @@
 		4BA9345BCFB43EA4FFD6B52F /* Pods_Netmate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		111DE5F6289FA4B20089A9AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1156B7E0288E9ABF00F58577 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1156B7E7288E9AC000F58577;
+			remoteInfo = Netmate;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0A6349C086E6F667297201A4 /* Pods-NetmateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetmateTests.release.xcconfig"; path = "Target Support Files/Pods-NetmateTests/Pods-NetmateTests.release.xcconfig"; sourceTree = "<group>"; };
 		11179A23289D12E300B8AB63 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		11179A26289D20CA00B8AB63 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		111DE5F2289FA4B20089A9AA /* NetmateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetmateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		111DE5F4289FA4B20089A9AA /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
 		112CE366289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubscribtionTableViewCell.swift; sourceTree = "<group>"; };
 		112CE368289BA76D008B2B06 /* ProfileNotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotesTableViewCell.swift; sourceTree = "<group>"; };
+		112D6A6828A0294300C42797 /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
 		113621DE2893F59100EE5C5F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		11431E14289142D900A8AFE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,11 +167,21 @@
 		11F07E4F289D00C20004D054 /* DataBaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBaseModel.xcdatamodel; sourceTree = "<group>"; };
 		11F07E51289D045B0004D054 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netmate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0D2528A33BCA6D565553CF2 /* Pods_NetmateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetmateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6902BFF188793C58BD4A023 /* Pods-NetmateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetmateTests.debug.xcconfig"; path = "Target Support Files/Pods-NetmateTests/Pods-NetmateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.release.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.release.xcconfig"; sourceTree = "<group>"; };
 		F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netmate.debug.xcconfig"; path = "Target Support Files/Pods-Netmate/Pods-Netmate.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		111DE5EF289FA4B20089A9AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				072E492C3683E7F9C4949281 /* Pods_NetmateTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1156B7E5288E9AC000F58577 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,6 +199,8 @@
 			children = (
 				F7C80E4D7D27F158F2315BBB /* Pods-Netmate.debug.xcconfig */,
 				F31C75EEEA9F8C7E63C4BD0E /* Pods-Netmate.release.xcconfig */,
+				D6902BFF188793C58BD4A023 /* Pods-NetmateTests.debug.xcconfig */,
+				0A6349C086E6F667297201A4 /* Pods-NetmateTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -201,6 +230,15 @@
 				112CE368289BA76D008B2B06 /* ProfileNotesTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		111DE5F3289FA4B20089A9AA /* NetmateTests */ = {
+			isa = PBXGroup;
+			children = (
+				111DE5F4289FA4B20089A9AA /* AppCoordinatorTests.swift */,
+				112D6A6828A0294300C42797 /* MainCoordinatorTests.swift */,
+			);
+			path = NetmateTests;
 			sourceTree = "<group>";
 		};
 		11431E16289142DF00A8AFE3 /* Profile */ = {
@@ -298,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				1156B7EA288E9AC000F58577 /* Netmate */,
+				111DE5F3289FA4B20089A9AA /* NetmateTests */,
 				1156B7E9288E9AC000F58577 /* Products */,
 				0F51D194776812270A958C6D /* Pods */,
 				C8469C57D8868439AE601DBD /* Frameworks */,
@@ -308,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				1156B7E8288E9AC000F58577 /* Netmate.app */,
+				111DE5F2289FA4B20089A9AA /* NetmateTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -584,6 +624,7 @@
 			isa = PBXGroup;
 			children = (
 				78B25ECF4F9E68E35F270119 /* Pods_Netmate.framework */,
+				A0D2528A33BCA6D565553CF2 /* Pods_NetmateTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -591,6 +632,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		111DE5F1289FA4B20089A9AA /* NetmateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 111DE5FA289FA4B20089A9AA /* Build configuration list for PBXNativeTarget "NetmateTests" */;
+			buildPhases = (
+				2AC9A8D110EC26CFE5D6D070 /* [CP] Check Pods Manifest.lock */,
+				111DE5EE289FA4B20089A9AA /* Sources */,
+				111DE5EF289FA4B20089A9AA /* Frameworks */,
+				111DE5F0289FA4B20089A9AA /* Resources */,
+				A402C5D6026B83A4E3C65DC9 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				111DE5F7289FA4B20089A9AA /* PBXTargetDependency */,
+			);
+			name = NetmateTests;
+			productName = NetmateTests;
+			productReference = 111DE5F2289FA4B20089A9AA /* NetmateTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		1156B7E7288E9AC000F58577 /* Netmate */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1156B7FC288E9AC200F58577 /* Build configuration list for PBXNativeTarget "Netmate" */;
@@ -623,6 +684,10 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					111DE5F1289FA4B20089A9AA = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 1156B7E7288E9AC000F58577;
+					};
 					1156B7E7288E9AC000F58577 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -647,11 +712,19 @@
 			projectRoot = "";
 			targets = (
 				1156B7E7288E9AC000F58577 /* Netmate */,
+				111DE5F1289FA4B20089A9AA /* NetmateTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		111DE5F0289FA4B20089A9AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1156B7E6288E9AC000F58577 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -690,6 +763,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2AC9A8D110EC26CFE5D6D070 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NetmateTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5609797E66B04FE50B362786 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -707,9 +802,35 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Netmate/Pods-Netmate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A402C5D6026B83A4E3C65DC9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NetmateTests/Pods-NetmateTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NetmateTests/Pods-NetmateTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NetmateTests/Pods-NetmateTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		111DE5EE289FA4B20089A9AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				111DE5F5289FA4B20089A9AA /* AppCoordinatorTests.swift in Sources */,
+				112D6A6928A0294300C42797 /* MainCoordinatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1156B7E4288E9AC000F58577 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -779,6 +900,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		111DE5F7289FA4B20089A9AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1156B7E7288E9AC000F58577 /* Netmate */;
+			targetProxy = 111DE5F6289FA4B20089A9AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		1156B7F6288E9AC200F58577 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -802,6 +931,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		111DE5F8289FA4B20089A9AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6902BFF188793C58BD4A023 /* Pods-NetmateTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6KKCSVG8J3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gin.NetmateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Netmate.app/Netmate";
+			};
+			name = Debug;
+		};
+		111DE5F9289FA4B20089A9AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A6349C086E6F667297201A4 /* Pods-NetmateTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6KKCSVG8J3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gin.NetmateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Netmate.app/Netmate";
+			};
+			name = Release;
+		};
 		1156B7FA288E9AC200F58577 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -977,6 +1144,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		111DE5FA289FA4B20089A9AA /* Build configuration list for PBXNativeTarget "NetmateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				111DE5F8289FA4B20089A9AA /* Debug */,
+				111DE5F9289FA4B20089A9AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1156B7E3288E9AC000F58577 /* Build configuration list for PBXProject "Netmate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

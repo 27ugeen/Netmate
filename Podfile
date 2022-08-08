@@ -8,3 +8,11 @@ target 'Netmate' do
   # Pods for Netmate
 pod 'BonsaiController'
 end
+
+target 'NetmateTests' do
+  use_frameworks!
+
+  pod 'Quick', '= 5.0.1'
+  pod 'Nimble'
+
+end

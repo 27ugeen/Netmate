@@ -77,6 +77,7 @@ class ProfileViewController: UIViewController {
 //MARK: - setupViews
 extension ProfileViewController {
     private func setupViews() {
+        self.title = "Profile"
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
         
