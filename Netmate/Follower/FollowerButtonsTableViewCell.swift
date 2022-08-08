@@ -11,12 +11,16 @@ class FollowerButtonsTableViewCell: UITableViewCell {
     //MARK: - props
     static let cellId = "FollowerButtonsTableViewCell"
     
+    //MARK: - localization
+    private var titleMessage = "message_btn".localized()
+    private var titlePhone = "phone_btn".localized()
+    
     //MARK: - subviews
-    private lazy var messageButton = MagicButton(title: "Message", titleColor: Palette.btnWithBordTitleColor) {
+    private lazy var messageButton = MagicButton(title: titleMessage, titleColor: Palette.btnWithBordTitleColor) {
         print("follower message button tapped")
     }
     
-    private lazy var phoneButton = MagicButton(title: "Phone", titleColor: Palette.btnWithBordTitleColor) {
+    private lazy var phoneButton = MagicButton(title: titlePhone, titleColor: Palette.btnWithBordTitleColor) {
         print("follower phone button tapped")
     }
     

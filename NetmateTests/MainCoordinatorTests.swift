@@ -69,13 +69,13 @@ class MainCoordinatorTests: QuickSpec {
         describe("goToProfileVC() testing") {
             context("when func started") {
                 beforeEach {
-                    self.navigationController.pushViewControllerCalled = false
-                    self.mainCoord.navigationRootViewController = self.navigationController
+//                    self.navigationController.pushViewControllerCalled = false
+//                    self.mainCoord.navigationRootViewController = self.navigationController
                 }
                 it("expect go to tab ProfileVC") {
                    self.mainCoord.goToProfileVC()
                     
-                    print("2: \(self.navigationController.children.endIndex)")
+//                    expect(self.navigationController.instanceVC).to(beAKindOf(ProfileViewController.self))
 
                 }
             }
@@ -90,7 +90,7 @@ class MainCoordinatorTests: QuickSpec {
                 it("expect push vc to FollowerVC") {
                     let testIdx = 0
                     self.mainCoord.goToFollowerVC(testIdx)
-                    
+
                     expect(self.navigationController.instanceVC).to(beAKindOf(FollowerViewController.self))
                     expect(self.navigationController.pushViewControllerCalled).to(equal(true))
                 }

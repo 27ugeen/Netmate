@@ -15,6 +15,7 @@ class FollowerViewController: UIViewController {
     private let buttonsCellID = FollowerButtonsTableViewCell.cellId
     private let subscriptCellID = ProfileSubscribtionTableViewCell.cellId
     private let photoCellID = PhotoTableViewCell.cellId
+    private let userNotesCellID = ProfileUserNotesTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
     var idx: Int
@@ -22,6 +23,9 @@ class FollowerViewController: UIViewController {
     var goToInfoVCAction: (() -> Void)?
     var goToFeedDetailVCAction: ((_ model: User, _ idx: Int) -> Void)?
     var goToPhotoGalleryAction: (() -> Void)?
+    
+    //MARK: - localization
+    private var userNotes = "user_note_title".localized()
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -92,6 +96,7 @@ extension FollowerViewController {
         tableView.register(FollowerButtonsTableViewCell.self, forCellReuseIdentifier: buttonsCellID)
         tableView.register(ProfileSubscribtionTableViewCell.self, forCellReuseIdentifier: subscriptCellID)
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
+        tableView.register(ProfileUserNotesTableViewCell.self, forCellReuseIdentifier: userNotesCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
 
         tableView.dataSource = self
@@ -113,7 +118,7 @@ extension FollowerViewController {
 //MARK: - UITableViewDataSource
 extension FollowerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FeedStorage.tableModel[idx - 1].feed.count + 4
+        return FeedStorage.tableModel[idx - 1].feed.count + 5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,6 +126,7 @@ extension FollowerViewController: UITableViewDataSource {
         let buttonsCell = tableView.dequeueReusableCell(withIdentifier: buttonsCellID) as! FollowerButtonsTableViewCell
         let subscriptCell = tableView.dequeueReusableCell(withIdentifier: subscriptCellID) as! ProfileSubscribtionTableViewCell
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
+        let userNotesCell = tableView.dequeueReusableCell(withIdentifier: userNotesCellID) as! ProfileUserNotesTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
 
         let profileModel = FeedStorage.tableModel[idx - 1]
@@ -143,16 +149,20 @@ extension FollowerViewController: UITableViewDataSource {
             photoCell.selectionStyle = .none
             photoCell.model = profileModel
             return photoCell
+        case 4:
+            userNotesCell.searchButton.isHidden = true
+            userNotesCell.titleLabel.text = "\(profileModel.firstName)'s \(userNotes)"
+            return userNotesCell
         default:
             feedCell.selectionStyle = .none
-            feedCell.model = profileModel.feed[indexPath.row - 4]
+            feedCell.model = profileModel.feed[indexPath.row - 5]
             
             feedCell.authorLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
             feedCell.authorImageView.image = profileModel.avatar
             feedCell.descriptLabel.text = profileModel.profession
             
             feedCell.showMoreAction = {
-                self.goToFeedDetailVCAction?(profileModel, indexPath.row - 4)
+                self.goToFeedDetailVCAction?(profileModel, indexPath.row - 5)
             }
             return feedCell
         }
@@ -177,7 +187,9 @@ extension FollowerViewController: UITableViewDelegate {
         case 2:
             return 91
         case 3:
-            return 140
+            return 165
+        case 4:
+            return 40
         default:
             return 400
         }

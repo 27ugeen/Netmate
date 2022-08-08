@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		072E492C3683E7F9C4949281 /* Pods_NetmateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D2528A33BCA6D565553CF2 /* Pods_NetmateTests.framework */; };
+		1110A9B728A105DC0099F904 /* ProfileUserNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110A9B628A105DC0099F904 /* ProfileUserNotesTableViewCell.swift */; };
 		11179A24289D12E300B8AB63 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11179A23289D12E300B8AB63 /* FavoriteViewModel.swift */; };
 		11179A27289D20CA00B8AB63 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11179A26289D20CA00B8AB63 /* MainViewModel.swift */; };
 		111DE5F5289FA4B20089A9AA /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE5F4289FA4B20089A9AA /* AppCoordinatorTests.swift */; };
@@ -92,6 +93,7 @@
 
 /* Begin PBXFileReference section */
 		0A6349C086E6F667297201A4 /* Pods-NetmateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetmateTests.release.xcconfig"; path = "Target Support Files/Pods-NetmateTests/Pods-NetmateTests.release.xcconfig"; sourceTree = "<group>"; };
+		1110A9B628A105DC0099F904 /* ProfileUserNotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserNotesTableViewCell.swift; sourceTree = "<group>"; };
 		11179A23289D12E300B8AB63 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		11179A26289D20CA00B8AB63 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		111DE5F2289FA4B20089A9AA /* NetmateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetmateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +230,7 @@
 				116041E62899262F00C3D82C /* ProfileButtonsTableViewCell.swift */,
 				112CE366289B9DB8008B2B06 /* ProfileSubscribtionTableViewCell.swift */,
 				112CE368289BA76D008B2B06 /* ProfileNotesTableViewCell.swift */,
+				1110A9B628A105DC0099F904 /* ProfileUserNotesTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -888,6 +891,7 @@
 				112CE369289BA76D008B2B06 /* ProfileNotesTableViewCell.swift in Sources */,
 				115A32C72895394E00873DB9 /* MenuTableViewCell.swift in Sources */,
 				1156B7EE288E9AC000F58577 /* SceneDelegate.swift in Sources */,
+				1110A9B728A105DC0099F904 /* ProfileUserNotesTableViewCell.swift in Sources */,
 				113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */,
 				11573E40288FEE7E00819116 /* MainViewController.swift in Sources */,
 				116041E72899262F00C3D82C /* ProfileButtonsTableViewCell.swift in Sources */,

@@ -109,7 +109,7 @@ extension PhotoTableViewCell {
             separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             separator.topAnchor.constraint(equalTo: photosPreview.bottomAnchor, constant: 10),
             separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25),
             separator.heightAnchor.constraint(equalToConstant: 0.5)
         ])
     }

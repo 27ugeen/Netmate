@@ -63,6 +63,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.rootViewController = onBoardingNavVC
     }
-
 }
 

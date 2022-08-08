@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
     private let subscriptCellID = ProfileSubscribtionTableViewCell.cellId
     private let notesCellID = ProfileNotesTableViewCell.cellId
     private let photoCellID = PhotoTableViewCell.cellId
+    private let userNotesCellID = ProfileUserNotesTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
     private let profileModel = UserStorage.tableModel[0]
@@ -86,6 +87,7 @@ extension ProfileViewController {
         tableView.register(ProfileSubscribtionTableViewCell.self, forCellReuseIdentifier: subscriptCellID)
         tableView.register(ProfileNotesTableViewCell.self, forCellReuseIdentifier: notesCellID)
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
+        tableView.register(ProfileUserNotesTableViewCell.self, forCellReuseIdentifier: userNotesCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
         
         tableView.dataSource = self
@@ -102,7 +104,7 @@ extension ProfileViewController {
 //MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserStorage.tableModel[0].feed.count + 5
+        return UserStorage.tableModel[0].feed.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -111,6 +113,7 @@ extension ProfileViewController: UITableViewDataSource {
         let subscriptCell = tableView.dequeueReusableCell(withIdentifier: subscriptCellID) as! ProfileSubscribtionTableViewCell
         let notesCell = tableView.dequeueReusableCell(withIdentifier: notesCellID) as! ProfileNotesTableViewCell
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
+        let userNotesCell = tableView.dequeueReusableCell(withIdentifier: userNotesCellID) as! ProfileUserNotesTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
         
         switch indexPath.row {
@@ -137,18 +140,20 @@ extension ProfileViewController: UITableViewDataSource {
             photoCell.selectionStyle = .none
             photoCell.model = profileModel
             return photoCell
+        case 5:
+            return userNotesCell
         default:
             feedCell.authorImageView.image = profileModel.avatar
             feedCell.authorLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
             feedCell.descriptLabel.text = "\(profileModel.profession)"
-            feedCell.model = profileModel.feed[indexPath.row - 5]
+            feedCell.model = profileModel.feed[indexPath.row - 6]
             
             feedCell.menuAction = {
                 self.goToProfileFeedMenuVCAction?()
             }
             
             feedCell.showMoreAction = {
-                self.goToFeedDetailAction?(self.profileModel, indexPath.row - 5)
+                self.goToFeedDetailAction?(self.profileModel, indexPath.row - 6)
             }
             return feedCell
         }
@@ -174,7 +179,9 @@ extension ProfileViewController: UITableViewDelegate {
         case 3:
             return 90
         case 4:
-            return 140
+            return 165
+        case 5:
+            return 40
         default:
             return 400
         }

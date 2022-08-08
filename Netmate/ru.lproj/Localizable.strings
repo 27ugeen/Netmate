@@ -121,3 +121,13 @@
 
 //MARK: - AppCoordinator
 "bar_prof_title" = "Профиль";
+
+//MARK: - ProfileUserNotesTableViewCell
+"my_notes_title" = "Мои записи";
+
+//MARK: - FollowerViewController
+"user_note_title" = "записи";
+
+//MARK: - FollowerButtonsTableViewCell
+"message_btn" = "Сщщбщение";
+"phone_btn" = "Позвонить";
