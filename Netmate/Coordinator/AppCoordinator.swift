@@ -50,8 +50,11 @@ final class AppCoordinator: AppBaseCoordinatorProtocol {
         favoriteCoordinator.parentCoordinator = self
         favoriteNavVC.tabBarItem = UITabBarItem(title: barFav, image: UIImage(named: "heart"), tag: 2)
         
-        (rootViewController as? UITabBarController)?.viewControllers = [mainNavVC, profileNavVC, favoriteNavVC]
-        
-        return rootViewController
+        let tabBC = UITabBarController()
+        tabBC.viewControllers = [mainNavVC, profileNavVC, favoriteNavVC]
+
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBC)
+   
+        return tabBC
     }
 }
