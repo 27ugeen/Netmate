@@ -31,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let infoVM = InfoViewModel()
         let feedMenuVM = FeedMenuViewModel()
         let profileMenuVM = MenuViewModel()
+        let followerVM = FollowerViewModel()
         
         let mainVC = MainViewController(mainVM: mainVM)
         let profileVC = ProfileViewController()
@@ -40,6 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                         mainVC: mainVC,
                                         infoVM: infoVM,
                                         feedMenuVM: feedMenuVM,
+                                        followerVM: followerVM,
                                         imagePublisherFacade: imgPubFascade)
         
         let profileCoord = ProfileCoordinator(rootViewController: rootVC,

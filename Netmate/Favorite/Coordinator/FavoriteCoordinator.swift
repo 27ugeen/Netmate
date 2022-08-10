@@ -28,8 +28,8 @@ class FavoriteCoordinator: FavoriteBaseCoordinatorProtocol {
             self?.goToSearchVC()
         }
         
-        favVC.goToFeedDetailAction = { user, idx in
-            self.goToFeedDetailVC(user, idx)
+        favVC.goToFeedDetailAction = { feed in
+            self.goToFeedDetailVC(feed)
         }
         
         rootViewController = UINavigationController(rootViewController: favVC)
@@ -44,8 +44,8 @@ class FavoriteCoordinator: FavoriteBaseCoordinatorProtocol {
         navigationRootViewController?.present(searchVC, animated: true)
     }
     
-    func goToFeedDetailVC(_ model: UserStub, _ index: Int) {
-        let feedDetailVC = FeedDetailViewController(feedIdx: index)
+    func goToFeedDetailVC(_ model: FeedStub) {
+        let feedDetailVC = FeedDetailViewController()
         feedDetailVC.model = model
         navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
     }

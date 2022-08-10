@@ -12,7 +12,7 @@ protocol ProfileBaseCoordinatorProtocol: CoordinatorProtocol {
     func showSmallVC(vc: UIViewController, transition: TransitionType)
     func goToMenuVC()
     func goToInfoVC()
-    func goToPhotoVC()
+    func goToPhotoVC(_ photo: [PhotoStub])
 }
 
 class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
@@ -52,12 +52,12 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
             self?.goToProfEditVC()
         }
         
-        profileVC.goToPhotoGalleryAction = { [weak self] in
-            self?.goToPhotoVC()
+        profileVC.goToPhotoGalleryAction = { photoArr in
+            self.goToPhotoVC(photoArr)
         }
         
-        profileVC.goToFeedDetailAction = { model, idx in
-            self.goToFeedDetailVC(model, idx)
+        profileVC.goToFeedDetailAction = { feed in
+            self.goToFeedDetailVC(feed)
         }
         
         rootViewController = UINavigationController(rootViewController: profileVC)
@@ -101,13 +101,14 @@ class ProfileCoordinator: ProfileBaseCoordinatorProtocol {
         navigationRootViewController?.pushViewController(profEditVC, animated: true)
     }
     
-    func goToPhotoVC() {
+    func goToPhotoVC(_ photo: [PhotoStub]) {
         let photoVC = PhotoViewController(imagePublisherFacade: imgPubFascade)
+        photoVC.model = photo
         navigationRootViewController?.pushViewController(photoVC, animated: true)
     }
     
-    func goToFeedDetailVC(_ model: UserStub, _ index: Int) {
-        let feedDetailVC = FeedDetailViewController(feedIdx: index)
+    func goToFeedDetailVC(_ model: FeedStub) {
+        let feedDetailVC = FeedDetailViewController()
         feedDetailVC.model = model
         navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
     }

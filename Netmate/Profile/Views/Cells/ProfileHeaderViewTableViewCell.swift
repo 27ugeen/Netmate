@@ -20,7 +20,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "Margot_Robbie_2")
+        image.image = UIImage(named: "default_pic")
         image.layer.cornerRadius = 40
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
@@ -32,7 +32,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.mainTextColor
         label.font = UIFont.setSBFont(18)
-        label.text = "Margot Robbie"
+        label.text = "full_name"
         return label
     }()
     
@@ -41,7 +41,7 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Palette.secondTextColor
         label.font = UIFont.setNormFont(14)
-        label.text = "Actor"
+        label.text = "profession"
         return label
     }()
     

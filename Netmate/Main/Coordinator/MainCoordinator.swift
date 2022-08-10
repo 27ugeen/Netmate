@@ -20,14 +20,17 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
     private let mainVC: MainViewController
     private let infoVM: InfoViewModel
     private let feedMenuVM: FeedMenuViewModel
+    private let followerVM: FollowerViewModel
     private let imagePublisherFacade: ImagePublisherFacade
     
     //MARK: - init
-    init(rootViewController: UIViewController, mainVC: MainViewController, infoVM: InfoViewModel, feedMenuVM: FeedMenuViewModel, imagePublisherFacade: ImagePublisherFacade) {
+    init(rootViewController: UIViewController, mainVC: MainViewController, infoVM: InfoViewModel, feedMenuVM: FeedMenuViewModel, followerVM: FollowerViewModel, imagePublisherFacade: ImagePublisherFacade) {
         self.rootViewController = rootViewController
         self.mainVC = mainVC
         self.infoVM = infoVM
+        self.followerVM = followerVM
         self.feedMenuVM = feedMenuVM
+        
         self.imagePublisherFacade = imagePublisherFacade
     }
     //MARK: - methods
@@ -36,12 +39,12 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
             self.goToProfileVC()
         }
         
-        mainVC.goToFollowerVCAction = { user, idx in
-            self.goToFollowerVC(user, idx)
+        mainVC.goToFollowerVCAction = { id in
+            self.goToFollowerVC(id)
         }
         
-        mainVC.goToFeedDetailVCAction = { user, idx in
-            self.goToFeedDetailVC(user, idx)
+        mainVC.goToFeedDetailVCAction = { feed in
+            self.goToFeedDetailVC(feed)
         }
         
         mainVC.goToFeedMenuVCAction = {
@@ -56,8 +59,8 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
         rootViewController.tabBarController?.selectedIndex = 1
     }
     
-    func goToFollowerVC(_ user: UserStub, _ index: Int) {
-        let followerVC = FollowerViewController(idx: index)
+    func goToFollowerVC(_ userId: String) {
+        let followerVC = FollowerViewController(userId: userId, followerVM: followerVM)
         
         followerVC.goToInfoVCAction = {
             let infoVC = InfoViewController(infoVM: self.infoVM)
@@ -70,22 +73,23 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
             }
         }
         
-        followerVC.goToFeedDetailVCAction = { model, idx in
-            let feedDetailVC = FeedDetailViewController(feedIdx: idx)
-            feedDetailVC.model = model
+        followerVC.goToFeedDetailVCAction = { feedModel in
+            let feedDetailVC = FeedDetailViewController()
+            feedDetailVC.model = feedModel
             self.navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
         }
         
-        followerVC.goToPhotoGalleryAction = {
+        followerVC.goToPhotoGalleryAction = { photoArr in
             let photoVC = PhotoViewController(imagePublisherFacade: self.imagePublisherFacade)
+            photoVC.model = photoArr
             self.navigationRootViewController?.pushViewController(photoVC, animated: true)
         }
         
         navigationRootViewController?.pushViewController(followerVC, animated: true)
     }
     
-    func goToFeedDetailVC(_ model: UserStub, _ index: Int) {
-        let feedDetailVC = FeedDetailViewController(feedIdx: index)
+    func goToFeedDetailVC(_ model: FeedStub) {
+        let feedDetailVC = FeedDetailViewController()
         feedDetailVC.model = model
         navigationRootViewController?.pushViewController(feedDetailVC, animated: true)
     }

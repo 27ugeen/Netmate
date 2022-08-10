@@ -13,12 +13,8 @@ class FeedDetailViewController: UIViewController {
     private let postCellID = FeedDetailPostTableViewCell.cellId
     private let botCellID = FeedDetailBotTableViewCell.cellId
     
-    var feedIdx: Int
-    
-    var model: UserStub? {
-        didSet {
-            tableView.reloadData()
-        }
+    var model: FeedStub? {
+        didSet { tableView.reloadData() }
     }
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -44,15 +40,6 @@ class FeedDetailViewController: UIViewController {
     }()
     
     //MARK: - init
-    init(feedIdx: Int) {
-        self.feedIdx = feedIdx
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -108,13 +95,13 @@ extension FeedDetailViewController: UITableViewDataSource {
         case 0:
             headerCell.selectionStyle = .none
             headerCell.avatarImage.image = model?.avatar
-            headerCell.nicknameLabel.text = model?.nickName
-            headerCell.profLabel.text = model?.profession
+            headerCell.nicknameLabel.text = model?.name
+            headerCell.profLabel.text = model?.prof
             return headerCell
         case 1:
             postCell.selectionStyle = .none
-            postCell.postImageView.image = model?.feed[feedIdx].image
-            postCell.postLabel.text = model?.feed[feedIdx].article
+            postCell.postImageView.image = model?.image
+            postCell.postLabel.text = model?.article
             return postCell
         default:
             botCell.selectionStyle = .none

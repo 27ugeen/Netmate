@@ -9,24 +9,27 @@ import Foundation
 import UIKit
 import iOSIntPackage
 
-public func putFilterOnImage(_ image: UIImage, _ filterOn: ColorFilter) -> UIImage {
-    var filteredImage: UIImage?
-    ImageProcessor().processImage(sourceImage: image, filter: filterOn) { processedImage in
-        filteredImage = processedImage
+
+extension UIImage {
+    func filterOn(_ filterOn: ColorFilter) -> UIImage {
+        var filteredImage: UIImage?
+        ImageProcessor().processImage(sourceImage: self, filter: filterOn) { processedImage in
+            filteredImage = processedImage
+        }
+        return filteredImage ?? self
     }
-    return filteredImage ?? image
 }
 
-public func reciveImagesArrFromPhotoStorage(photos: AnyObject) -> [UIImage] {
-    var imageArray: [UIImage] = []
-    
-         PhotoStorage.tableModel.forEach { section in
-             section.photo.forEach { Photo in
-                 imageArray.append(Photo.image)
-             }
-         }
-    return imageArray
-}
+//public func reciveImagesArrFromPhotoStorage(photos: AnyObject) -> [UIImage] {
+//    var imageArray: [UIImage] = []
+//    
+////         PhotoStorage.tableModel.forEach { section in
+////             section.photo.forEach { Photo in
+////                 imageArray.append(Photo.image)
+////             }
+////         }
+//    return imageArray
+//}
 
 
 extension UIViewController {
@@ -43,10 +46,10 @@ extension UIViewController {
 }
 
 extension UITableViewCell {
-  func separator(hide: Bool) {
-      //TODO: - need another way to hide
-      separatorInset.left = hide ? bounds.size.width * 5 : 0
-  }
+    func separator(hide: Bool) {
+        //TODO: - need another way to hide
+        separatorInset.left = hide ? bounds.size.width * 5 : 0
+    }
 }
 
 extension UITabBar {

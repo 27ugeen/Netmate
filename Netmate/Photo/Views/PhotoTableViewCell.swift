@@ -14,10 +14,8 @@ class PhotoTableViewCell: UITableViewCell {
     private let photoWidth = (UIScreen.main.bounds.width - 48) / 4
     private let photoCellID = PhotoCollectionViewCell.cellId
     
-    var model: UserStub? {
-        didSet {
-            photosPreview.reloadData()
-        }
+    var model: [PhotoStub] = [] {
+        didSet { photosPreview.reloadData() }
     }
     //MARK: - localization
         private let titlePhoto = "photo_title".localized()
@@ -122,9 +120,8 @@ extension PhotoTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photosPreview.dequeueReusableCell(withReuseIdentifier: photoCellID, for: indexPath) as! PhotoCollectionViewCell
-        //        cell.imageView.image = ImgStorage.arrImg[indexPath.item]
-//        cell.imageView.image = model?.photo[indexPath.item].image
-        
+        guard model.count > 1 else { cell.imageView.image = UIImage(named: "default_img"); return cell }
+        cell.imageView.image = model[indexPath.item].photo
         return cell
     }
 }

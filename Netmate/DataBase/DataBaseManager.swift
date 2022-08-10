@@ -38,7 +38,7 @@ class DataBaseManager {
         return favoriteFeedArray ?? []
     }
     
-    func addFeed(_ feed: FeedStub, _ user: UserStub, completition: @escaping (String?) -> Void) {
+    func addFeed(_ feed: FeedStub, completition: @escaping (String?) -> Void) {
         backgroundContext.perform { [weak self] in
             guard let self = self else { return }
             let fetchRequest = FavoriteFeed.fetchRequest()
@@ -51,10 +51,10 @@ class DataBaseManager {
                     print("This post has already been added!")
                 } else {
                     if let newSet = NSEntityDescription.insertNewObject(forEntityName: "FavoriteFeed", into: self.backgroundContext) as? FavoriteFeed {
-                        newSet.author = "\(user.firstName) \(user.lastName)"
-                        newSet.authorProf = user.profession
+                        newSet.author = feed.name
+                        newSet.authorProf = feed.prof
                         newSet.article = feed.article
-                        newSet.stringAvatar = self.saveImageToDocuments(chosenImage: user.avatar)
+                        newSet.stringAvatar = self.saveImageToDocuments(chosenImage: feed.avatar)
                         newSet.stringImage = self.saveImageToDocuments(chosenImage: feed.image)
                         
                         try self.backgroundContext.save()

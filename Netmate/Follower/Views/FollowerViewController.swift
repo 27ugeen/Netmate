@@ -18,16 +18,16 @@ class FollowerViewController: UIViewController {
     private let userNotesCellID = ProfileUserNotesTableViewCell.cellId
     private let feedCellID = FeedTableViewCell.cellId
     
-    var idx: Int
-    var model: UserStub? {
-        didSet {
-            tableView.reloadData()
-        }
+    private let userId: String
+    private let followerVM: FollowerViewModel
+    
+    var userModel: UserStub? {
+        didSet { tableView.reloadData() }
     }
     
     var goToInfoVCAction: (() -> Void)?
-    var goToFeedDetailVCAction: ((_ model: UserStub, _ idx: Int) -> Void)?
-    var goToPhotoGalleryAction: (() -> Void)?
+    var goToFeedDetailVCAction: ((_ model: FeedStub) -> Void)?
+    var goToPhotoGalleryAction: (([PhotoStub]) -> Void)?
     
     //MARK: - localization
     private var userNotes = "user_note_title".localized()
@@ -58,8 +58,9 @@ class FollowerViewController: UIViewController {
     private lazy var topSeparator = Separator(backgroundColor: Palette.separatorColor)
     
     //MARK: - init
-    init(idx: Int) {
-        self.idx = idx
+    init(userId: String, followerVM: FollowerViewModel) {
+        self.userId = userId
+        self.followerVM = followerVM
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -70,23 +71,26 @@ class FollowerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        followerVM.getUser(userId: userId) { user in
+            self.userModel = user
+            self.titleLabel.text = user.nickName
+        }
+        
         setupTabBarView()
         setupViews()
     }
     //MARK: - methods
     private func setupTabBarView() {
-//        let profileModel = MainViewModel().feedStorage[idx - 1]
-        let profileModel = model
-        self.titleLabel.text = profileModel?.nickName
-        
         let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
         self.navigationItem.setLeftBarButtonItems([backBarButton, leftBarTitle], animated: true)
         self.navigationItem.setRightBarButtonItems([menuBarButton], animated: true)
         self.navigationController?.navigationBar.tintColor = Palette.accentTextColor
     }
+    
     @objc private func menuTapped() {
         print("follower menu btn tapped")
     }
+    
     @objc private func backTapped() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -124,8 +128,7 @@ extension FollowerViewController {
 //MARK: - UITableViewDataSource
 extension FollowerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return MainViewModel().feedStorage[idx - 1].feed.count + 5
-        return (model?.feed.count ?? 0) + 5
+        return (userModel?.feed.count ?? 0) + 5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -135,54 +138,51 @@ extension FollowerViewController: UITableViewDataSource {
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let userNotesCell = tableView.dequeueReusableCell(withIdentifier: userNotesCellID) as! ProfileUserNotesTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
-
-//        let profileModel = MainViewModel().feedStorage[idx - 1]
-        let profileModel = model
-        switch indexPath.row {
-        case 0:
-            headerCell.selectionStyle = .none
-            headerCell.avatarImage.image = profileModel?.avatar
-            headerCell.fullNameLabel.text = "\(profileModel?.firstName) \(profileModel?.lastName)"
-            headerCell.profLabel.text = "\(profileModel?.profession)"
             
-            headerCell.goToInfoAction = {
-                self.goToInfoVCAction?()
-            }
-            return headerCell
-        case 1:
-            return buttonsCell
-        case 2:
-            return subscriptCell
-        case 3:
-            photoCell.selectionStyle = .none
-            photoCell.model = profileModel
-            return photoCell
-        case 4:
-            userNotesCell.searchButton.isHidden = true
-            userNotesCell.titleLabel.text = "\(profileModel?.firstName)'s \(userNotes)"
-            return userNotesCell
-        default:
-            feedCell.selectionStyle = .none
-            feedCell.model = profileModel?.feed[indexPath.row - 5]
-            
-            feedCell.authorLabel.text = "\(profileModel?.firstName) \(profileModel?.lastName)"
-            feedCell.authorImageView.image = profileModel?.avatar
-            feedCell.descriptLabel.text = profileModel?.profession
-            
-            feedCell.showMoreAction = {
-                self.goToFeedDetailVCAction?(profileModel!, indexPath.row - 5)
-            }
-            return feedCell
+            switch indexPath.row {
+            case 0:
+                headerCell.selectionStyle = .none
+                headerCell.avatarImage.image = userModel?.avatar ?? UIImage(named: "default_pic")
+                headerCell.fullNameLabel.text = "\(userModel?.firstName ?? "Name") \(userModel?.lastName ?? "")"
+                headerCell.profLabel.text = "\(userModel?.profession ?? "Profession")"
+                
+                headerCell.goToInfoAction = {
+                    self.goToInfoVCAction?()
+                }
+                return headerCell
+            case 1:
+                return buttonsCell
+            case 2:
+                return subscriptCell
+            case 3:
+                photoCell.selectionStyle = .none
+                photoCell.model = userModel?.photo ?? [PhotoStub(photo: UIImage(named: "default_img")!)]
+                return photoCell
+            case 4:
+                userNotesCell.searchButton.isHidden = true
+                userNotesCell.titleLabel.text = "\(userModel?.firstName ?? "User")'s \(userNotes)"
+                return userNotesCell
+            default:
+                feedCell.selectionStyle = .none
+                feedCell.model = userModel?.feed[indexPath.row - 5]
+                
+                feedCell.authorLabel.text = "\(userModel?.firstName ?? "Name") \(userModel?.lastName ?? "")"
+                feedCell.authorImageView.image = userModel?.avatar ?? UIImage(named: "default_pic")
+                feedCell.descriptLabel.text = userModel?.profession ?? "Profession"
+                
+                feedCell.showMoreAction = {
+                    self.goToFeedDetailVCAction?((self.userModel?.feed[indexPath.row - 5])!)
+                }
+                return feedCell
         }
     }
-
 }
 //MARK: - UITableViewDelegate
 extension FollowerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 3 {
-            self.goToPhotoGalleryAction?()
+            self.goToPhotoGalleryAction?(userModel?.photo ?? [PhotoStub(photo: UIImage(named: "default_img")!)])
         }
     }
     

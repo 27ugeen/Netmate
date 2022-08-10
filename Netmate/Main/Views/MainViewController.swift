@@ -16,14 +16,16 @@ class MainViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     var goToProfileVCAction: (() -> Void)?
-    var goToFollowerVCAction: ((_ model: UserStub, _ idx: Int) -> Void)?
-    var goToFeedDetailVCAction: ((_ model: UserStub, _ idx: Int) -> Void)?
+    var goToFollowerVCAction: ((_ userId: String) -> Void)?
+    var goToFeedDetailVCAction: ((_ model: FeedStub) -> Void)?
     var goToFeedMenuVCAction: (() -> Void)?
     
-    var model: [UserStub]? {
-        didSet {
-            tableView.reloadData()
-        }
+    var feedModel: [FeedStub] = [] {
+        didSet { tableView.reloadData() }
+    }
+    
+    var friendModel: [FriendStub] = [] {
+        didSet { tableView.reloadData() }
     }
     
     //MARK: - localization
@@ -67,8 +69,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainVM.getAllUsers() { user in
-            self.model?.append(user)
+        mainVM.getFeedCollection() { feed in
+            self.feedModel.append(feed)
+        }
+        mainVM.getFriendCollection() { friend in
+            self.friendModel.append(friend)
         }
         
         setupViews()
@@ -107,10 +112,9 @@ class MainViewController: UIViewController {
                 if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? FeedTableViewCell {
                     guard tapIndexPath.row > 1 else { return }
                     
-                    tappedCell.model = mainVM.feedStorage[tapIndexPath.row - 2].feed[0]
-                    let user: UserStub = mainVM.feedStorage[tapIndexPath.row - 2]
+                    tappedCell.model = feedModel[tapIndexPath.row - 2]
                     
-                    mainVM.addToFavoriteFeed(tappedCell.model!, user) { message in
+                    mainVM.addToFavoriteFeed(tappedCell.model!) { message in
                         self.showAlertOk(message:  message ?? "")
                     }
                 }
@@ -147,7 +151,7 @@ extension MainViewController {
 //MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainVM.feedStorage.count + 2
+        return feedModel.count + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -160,28 +164,27 @@ extension MainViewController: UITableViewDataSource {
             headerCell.selectionStyle = .none
             return headerCell
         case 1:
-            let userModel = model?[indexPath.item - 1]
-            friedsListCell.model = mainVM.feedStorage
+//            let model = friendModel[indexPath.item - 1]
+            friedsListCell.model = friendModel
             friedsListCell.goToProfileAction = {
                 self.goToProfileVCAction?()
             }
-            friedsListCell.goToFollowerAction = { model, idx in
-                self.goToFollowerVCAction?(userModel!, idx)
+            friedsListCell.goToFollowerAction = { userId in
+                self.goToFollowerVCAction?(userId)
             }
             friedsListCell.selectionStyle = .none
             return friedsListCell
         default:
             feedCell.selectionStyle = .none
-            let userModel = mainVM.feedStorage[indexPath.row - 2]
-            feedCell.authorLabel.text = "\(userModel.firstName) \(userModel.lastName)"
-            feedCell.descriptLabel.text = "\(userModel.profession)"
-            feedCell.authorImageView.image = userModel.avatar
+            let fModel = feedModel[indexPath.row - 2]
+            feedCell.authorLabel.text = "\(fModel.name)"
+            feedCell.descriptLabel.text = "\(fModel.prof)"
+            feedCell.authorImageView.image = fModel.avatar
             
-            if !userModel.feed.isEmpty {
-                feedCell.model = userModel.feed[0]
-            }
+            feedCell.model = fModel
+            
             feedCell.showMoreAction = {
-                self.goToFeedDetailVCAction?(userModel, 0)
+                self.goToFeedDetailVCAction?(fModel)
             }
             
             feedCell.menuAction = {
@@ -189,7 +192,7 @@ extension MainViewController: UITableViewDataSource {
             }
             
             feedCell.avatarAction = {
-                self.goToFollowerVCAction?(userModel, (indexPath.row - 2) + 1)
+                self.goToFollowerVCAction?(fModel.userId)
             }
             return feedCell
         }

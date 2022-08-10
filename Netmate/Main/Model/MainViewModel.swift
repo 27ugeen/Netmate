@@ -14,61 +14,78 @@ struct UserStub {
     let lastName: String
     let nickName: String
     let profession: String
-    let photo: [Photo]
+    let photo: [PhotoStub]
     let feed: [FeedStub]
 }
 
+struct FriendStub {
+    let userId: String
+    let avatar: UIImage
+}
+
 struct FeedStub {
+    let userId: String
+    let avatar: UIImage
+    let name: String
+    let prof: String
     let article: String
     let image: UIImage
 }
 
+struct PhotoStub {
+    let photo: UIImage
+}
+
 protocol MainViewModelInputProtocol {
-    func addToFavoriteFeed(_ feed: FeedStub, _ user: UserStub, completition: @escaping (String?) -> Void)
+    func addToFavoriteFeed(_ feed: FeedStub, completition: @escaping (String?) -> Void)
 }
 
 class MainViewModel: MainViewModelInputProtocol {
     
-    var feedStorage: [UserStub] = []
-    
-    func getAllUsers(completion: @escaping (UserStub) -> Void) {
-        APIManager.shared.getAllUsers(collection: "users") { users in
-            
-            users.forEach { data in
-                var userAvatar: UIImage?
-                var feedArr: [FeedStub] = []
-                if let user = data {
+    func getFeedCollection(completion: @escaping (FeedStub) -> Void) {
+        APIManager.shared.getFeedCollection(collection: "feeds") { arr in
+            arr.forEach { data in
+                if let feed = data {
+                    var feedImg: UIImage?
+                    var uAvatar: UIImage?
                     
                     let group = DispatchGroup()
+                    
                     group.enter()
-                    APIManager.shared.getImage(picName: user.avatar) { pic in
-                        userAvatar = pic
+                    APIManager.shared.getImage(collName: "postImgs", picName: feed.image) { pic in
+                        feedImg = pic
+                        group.leave()
+                    }
+                    group.enter()
+                    APIManager.shared.getImage(collName: "avatars", picName: feed.uAvatar) { pic in
+                        uAvatar = pic
                         group.leave()
                     }
                     
-                    group.enter()
-                    user.feeds.forEach { feed in
-                        APIManager.shared.getPostImgs(picName: feed.image) { img in
-                            let newFeed = FeedStub(article: feed.article, image: img)
-                            feedArr.append(newFeed)
-                        }
-                    }
-                    group.leave()
-                    
                     group.notify(queue: .main) {
-                        let newUser = UserStub(avatar: userAvatar ?? UIImage(), firstName: user.firstName, lastName: user.lastName, nickName: user.nickName, profession: user.profession, photo: [], feed: feedArr)
-                        self.feedStorage.append(newUser)
-                        completion(newUser)
-                        print("USER=====: \(newUser)")
+                        let newFeed = FeedStub(userId: feed.userId, avatar: uAvatar ?? UIImage(named: "default_pic")!, name: feed.uName, prof: feed.uProf, article: feed.article, image: feedImg ?? UIImage(named: "default_pic")!)
+                        completion(newFeed)
                     }
                 }
             }
         }
-        print("UA: \(feedStorage)")
     }
     
-    func addToFavoriteFeed(_ feed: FeedStub, _ user: UserStub, completition: @escaping (String?) -> Void) {
-        DataBaseManager.shared.addFeed(feed, user) { message in
+    func getFriendCollection(completion: @escaping (FriendStub) -> Void) {
+        APIManager.shared.getFriendCollection(collection: "friends") { arr in
+            arr.forEach { data in
+                if let friend = data {
+                    APIManager.shared.getImage(collName: "avatars", picName: friend.avatar) { pic in
+                        let newFriend = FriendStub(userId: friend.userId, avatar: pic)
+                        completion(newFriend)
+                    }
+                }
+            }
+        }
+    }
+    
+    func addToFavoriteFeed(_ feed: FeedStub, completition: @escaping (String?) -> Void) {
+        DataBaseManager.shared.addFeed(feed) { message in
             DispatchQueue.main.async {
                 completition(message)
             }

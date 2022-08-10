@@ -32,8 +32,8 @@ class ProfileViewController: UIViewController {
     var goToProfileFeedMenuVCAction: (() -> Void)?
     var goToInfoVCAction: (() -> Void)?
     var goToEditVCAction: (() -> Void)?
-    var goToPhotoGalleryAction: (() -> Void)?
-    var goToFeedDetailAction: ((_ model: UserStub, _ idx: Int) -> Void)?
+    var goToPhotoGalleryAction: (([PhotoStub]) -> Void)?
+    var goToFeedDetailAction: ((_ model: FeedStub) -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -78,7 +78,6 @@ class ProfileViewController: UIViewController {
 //MARK: - setupViews
 extension ProfileViewController {
     private func setupViews() {
-        self.title = "Profile"
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(tableView)
         
@@ -104,8 +103,7 @@ extension ProfileViewController {
 //MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return UserStorage.tableModel[0].feed.count + 6
-        return 7
+        return UserStorage.tableModel[0].feed.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -139,7 +137,7 @@ extension ProfileViewController: UITableViewDataSource {
             return notesCell
         case 4:
             photoCell.selectionStyle = .none
-            photoCell.model = profileModel
+            photoCell.model = profileModel.photo
             return photoCell
         case 5:
             return userNotesCell
@@ -154,7 +152,7 @@ extension ProfileViewController: UITableViewDataSource {
             }
             
             feedCell.showMoreAction = {
-                self.goToFeedDetailAction?(self.profileModel, indexPath.row - 6)
+                self.goToFeedDetailAction?(self.profileModel.feed[indexPath.row - 6])
             }
             return feedCell
         }
@@ -165,7 +163,7 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 4 {
-            self.goToPhotoGalleryAction?()
+            self.goToPhotoGalleryAction?(profileModel.photo)
         }
     }
     

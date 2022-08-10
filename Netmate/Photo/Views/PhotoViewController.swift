@@ -13,10 +13,10 @@ class PhotoViewController: UIViewController {
     private let photoCellID = PhotoCollectionViewCell.cellId
     private let imagePublisherFacade: ImagePublisherFacade
     
+    var model: [PhotoStub] = []
+    
     private var userImages: [UIImage]? {
-        didSet {
-            collectionView.reloadData()
-        }
+        didSet { collectionView.reloadData() }
     }
     //MARK: - localization
     private let titleGallery = "photo_gallery_title".localized()
@@ -70,8 +70,9 @@ class PhotoViewController: UIViewController {
     }
     //MARK: - methods
     private func subscribe() {
+        let photoArr = model.map { el in el.photo }
         imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: ImgStorage.arrImg.count , userImages: ImgStorage.arrImg)
+        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: photoArr.count , userImages: photoArr)
     }
 }
 //MARK: - setupViews
@@ -100,7 +101,7 @@ extension PhotoViewController: ImageLibrarySubscriber {
 //MARK: - UICollectionViewDataSource
 extension PhotoViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return PhotoStorage.tableModel.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
