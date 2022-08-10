@@ -10,7 +10,7 @@ import iOSIntPackage
 
 protocol MainBaseCoordinatorProtocol: CoordinatorProtocol {
     func goToProfileVC()
-    func goToFollowerVC(_ index: Int)
+//    func goToFollowerVC(_ index: Int)
 }
 
 class MainCoordinator: MainBaseCoordinatorProtocol {
@@ -36,8 +36,8 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
             self.goToProfileVC()
         }
         
-        mainVC.goToFollowerVCAction = { idx in
-            self.goToFollowerVC(idx)
+        mainVC.goToFollowerVCAction = { user, idx in
+            self.goToFollowerVC(user, idx)
         }
         
         mainVC.goToFeedDetailVCAction = { user, idx in
@@ -56,7 +56,7 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
         rootViewController.tabBarController?.selectedIndex = 1
     }
     
-    func goToFollowerVC(_ index: Int) {
+    func goToFollowerVC(_ user: UserStub, _ index: Int) {
         let followerVC = FollowerViewController(idx: index)
         
         followerVC.goToInfoVCAction = {
@@ -84,7 +84,7 @@ class MainCoordinator: MainBaseCoordinatorProtocol {
         navigationRootViewController?.pushViewController(followerVC, animated: true)
     }
     
-    func goToFeedDetailVC(_ model: User, _ index: Int) {
+    func goToFeedDetailVC(_ model: UserStub, _ index: Int) {
         let feedDetailVC = FeedDetailViewController(feedIdx: index)
         feedDetailVC.model = model
         navigationRootViewController?.pushViewController(feedDetailVC, animated: true)

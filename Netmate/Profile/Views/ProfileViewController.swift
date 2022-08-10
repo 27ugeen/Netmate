@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController {
     var goToInfoVCAction: (() -> Void)?
     var goToEditVCAction: (() -> Void)?
     var goToPhotoGalleryAction: (() -> Void)?
-    var goToFeedDetailAction: ((_ model: User, _ idx: Int) -> Void)?
+    var goToFeedDetailAction: ((_ model: UserStub, _ idx: Int) -> Void)?
     
     //MARK: - subviews
     private lazy var titleLabel: UILabel = {
@@ -104,7 +104,8 @@ extension ProfileViewController {
 //MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserStorage.tableModel[0].feed.count + 6
+//        return UserStorage.tableModel[0].feed.count + 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

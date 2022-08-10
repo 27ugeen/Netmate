@@ -19,9 +19,14 @@ class FollowerViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     var idx: Int
+    var model: UserStub? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     var goToInfoVCAction: (() -> Void)?
-    var goToFeedDetailVCAction: ((_ model: User, _ idx: Int) -> Void)?
+    var goToFeedDetailVCAction: ((_ model: UserStub, _ idx: Int) -> Void)?
     var goToPhotoGalleryAction: (() -> Void)?
     
     //MARK: - localization
@@ -70,8 +75,9 @@ class FollowerViewController: UIViewController {
     }
     //MARK: - methods
     private func setupTabBarView() {
-        let profileModel = FeedStorage.tableModel[idx - 1]
-        self.titleLabel.text = profileModel.nickName
+//        let profileModel = MainViewModel().feedStorage[idx - 1]
+        let profileModel = model
+        self.titleLabel.text = profileModel?.nickName
         
         let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
         self.navigationItem.setLeftBarButtonItems([backBarButton, leftBarTitle], animated: true)
@@ -118,7 +124,8 @@ extension FollowerViewController {
 //MARK: - UITableViewDataSource
 extension FollowerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FeedStorage.tableModel[idx - 1].feed.count + 5
+//        return MainViewModel().feedStorage[idx - 1].feed.count + 5
+        return (model?.feed.count ?? 0) + 5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -129,13 +136,14 @@ extension FollowerViewController: UITableViewDataSource {
         let userNotesCell = tableView.dequeueReusableCell(withIdentifier: userNotesCellID) as! ProfileUserNotesTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
 
-        let profileModel = FeedStorage.tableModel[idx - 1]
+//        let profileModel = MainViewModel().feedStorage[idx - 1]
+        let profileModel = model
         switch indexPath.row {
         case 0:
             headerCell.selectionStyle = .none
-            headerCell.avatarImage.image = profileModel.avatar
-            headerCell.fullNameLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
-            headerCell.profLabel.text = "\(profileModel.profession)"
+            headerCell.avatarImage.image = profileModel?.avatar
+            headerCell.fullNameLabel.text = "\(profileModel?.firstName) \(profileModel?.lastName)"
+            headerCell.profLabel.text = "\(profileModel?.profession)"
             
             headerCell.goToInfoAction = {
                 self.goToInfoVCAction?()
@@ -151,18 +159,18 @@ extension FollowerViewController: UITableViewDataSource {
             return photoCell
         case 4:
             userNotesCell.searchButton.isHidden = true
-            userNotesCell.titleLabel.text = "\(profileModel.firstName)'s \(userNotes)"
+            userNotesCell.titleLabel.text = "\(profileModel?.firstName)'s \(userNotes)"
             return userNotesCell
         default:
             feedCell.selectionStyle = .none
-            feedCell.model = profileModel.feed[indexPath.row - 5]
+            feedCell.model = profileModel?.feed[indexPath.row - 5]
             
-            feedCell.authorLabel.text = "\(profileModel.firstName) \(profileModel.lastName)"
-            feedCell.authorImageView.image = profileModel.avatar
-            feedCell.descriptLabel.text = profileModel.profession
+            feedCell.authorLabel.text = "\(profileModel?.firstName) \(profileModel?.lastName)"
+            feedCell.authorImageView.image = profileModel?.avatar
+            feedCell.descriptLabel.text = profileModel?.profession
             
             feedCell.showMoreAction = {
-                self.goToFeedDetailVCAction?(profileModel, indexPath.row - 5)
+                self.goToFeedDetailVCAction?(profileModel!, indexPath.row - 5)
             }
             return feedCell
         }

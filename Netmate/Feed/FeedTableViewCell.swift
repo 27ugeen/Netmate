@@ -17,7 +17,7 @@ class FeedTableViewCell: UITableViewCell {
     var menuAction: (() -> Void)?
     var avatarAction: (() -> Void)?
     
-    var model: Feed? {
+    var model: FeedStub? {
         didSet {
             postTableView.reloadData()
         }

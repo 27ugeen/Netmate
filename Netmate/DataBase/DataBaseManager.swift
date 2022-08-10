@@ -38,7 +38,7 @@ class DataBaseManager {
         return favoriteFeedArray ?? []
     }
     
-    func addFeed(_ feed: Feed, _ user: User, completition: @escaping (String?) -> Void) {
+    func addFeed(_ feed: FeedStub, _ user: UserStub, completition: @escaping (String?) -> Void) {
         backgroundContext.perform { [weak self] in
             guard let self = self else { return }
             let fetchRequest = FavoriteFeed.fetchRequest()

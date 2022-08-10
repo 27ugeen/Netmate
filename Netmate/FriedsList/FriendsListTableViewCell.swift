@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class FriendsListTableViewCell: UITableViewCell {
     //MARK: - props
@@ -13,7 +14,13 @@ class FriendsListTableViewCell: UITableViewCell {
     private let collectionCellId = FriendListCollectionViewCell.cellId
     
     var goToProfileAction: (() -> Void)?
-    var goToFollowerAction: ((Int) -> Void)?
+    var goToFollowerAction: ((UserStub, Int) -> Void)?
+    
+    var model: [UserStub]? {
+        didSet {
+            friendsCollectionView.reloadData()
+        }
+    }
     
     //MARK: - subviews
     private lazy var friendsCollectionView: UICollectionView = {
@@ -73,7 +80,7 @@ extension FriendsListTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return FeedStorage.tableModel.count + 1
+        return (model?.count ?? 0) + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -84,7 +91,7 @@ extension FriendsListTableViewCell: UICollectionViewDataSource {
             cell.imageView.image = UIImage(named: "surfer")
             cell.plusImageView.layer.opacity = 1
         default:
-            cell.imageView.image = FeedStorage.tableModel[indexPath.item - 1].avatar
+            cell.imageView.image = model?[indexPath.item - 1].avatar
         }
         
         return cell
@@ -113,7 +120,7 @@ extension FriendsListTableViewCell: UICollectionViewDelegateFlowLayout {
         case 0:
             self.goToProfileAction?()
         default:
-            self.goToFollowerAction?(indexPath.item)
+            self.goToFollowerAction?((model?[indexPath.item])!, indexPath.item)
         }
         print("Index: \(indexPath.item)")
     }

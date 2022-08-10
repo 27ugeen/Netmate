@@ -14,7 +14,7 @@ class PhotoTableViewCell: UITableViewCell {
     private let photoWidth = (UIScreen.main.bounds.width - 48) / 4
     private let photoCellID = PhotoCollectionViewCell.cellId
     
-    var model: User? {
+    var model: UserStub? {
         didSet {
             photosPreview.reloadData()
         }
@@ -123,7 +123,7 @@ extension PhotoTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photosPreview.dequeueReusableCell(withReuseIdentifier: photoCellID, for: indexPath) as! PhotoCollectionViewCell
         //        cell.imageView.image = ImgStorage.arrImg[indexPath.item]
-        cell.imageView.image = model?.photo[indexPath.item].image
+//        cell.imageView.image = model?.photo[indexPath.item].image
         
         return cell
     }

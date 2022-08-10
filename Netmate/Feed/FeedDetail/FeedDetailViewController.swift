@@ -15,7 +15,7 @@ class FeedDetailViewController: UIViewController {
     
     var feedIdx: Int
     
-    var model: User? {
+    var model: UserStub? {
         didSet {
             tableView.reloadData()
         }

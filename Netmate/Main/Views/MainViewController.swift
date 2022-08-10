@@ -16,9 +16,15 @@ class MainViewController: UIViewController {
     private let feedCellID = FeedTableViewCell.cellId
     
     var goToProfileVCAction: (() -> Void)?
-    var goToFollowerVCAction: ((_ idx: Int) -> Void)?
-    var goToFeedDetailVCAction: ((_ model: User, _ idx: Int) -> Void)?
+    var goToFollowerVCAction: ((_ model: UserStub, _ idx: Int) -> Void)?
+    var goToFeedDetailVCAction: ((_ model: UserStub, _ idx: Int) -> Void)?
     var goToFeedMenuVCAction: (() -> Void)?
+    
+    var model: [UserStub]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     //MARK: - localization
     private let titleBar = "bar_main_title".localized()
@@ -61,11 +67,16 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mainVM.getAllUsers() { user in
+            self.model?.append(user)
+        }
+        
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         setupTabBarView()
     }
     //MARK: - methods
@@ -96,8 +107,8 @@ class MainViewController: UIViewController {
                 if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? FeedTableViewCell {
                     guard tapIndexPath.row > 1 else { return }
                     
-                    tappedCell.model = FeedStorage.tableModel[tapIndexPath.row - 2].feed[0]
-                    let user: User = FeedStorage.tableModel[tapIndexPath.row - 2]
+                    tappedCell.model = mainVM.feedStorage[tapIndexPath.row - 2].feed[0]
+                    let user: UserStub = mainVM.feedStorage[tapIndexPath.row - 2]
                     
                     mainVM.addToFavoriteFeed(tappedCell.model!, user) { message in
                         self.showAlertOk(message:  message ?? "")
@@ -136,7 +147,7 @@ extension MainViewController {
 //MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FeedStorage.tableModel.count + 2
+        return mainVM.feedStorage.count + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -149,22 +160,26 @@ extension MainViewController: UITableViewDataSource {
             headerCell.selectionStyle = .none
             return headerCell
         case 1:
+            let userModel = model?[indexPath.item - 1]
+            friedsListCell.model = mainVM.feedStorage
             friedsListCell.goToProfileAction = {
                 self.goToProfileVCAction?()
             }
-            friedsListCell.goToFollowerAction = { idx in
-                self.goToFollowerVCAction?(idx)
+            friedsListCell.goToFollowerAction = { model, idx in
+                self.goToFollowerVCAction?(userModel!, idx)
             }
             friedsListCell.selectionStyle = .none
             return friedsListCell
         default:
             feedCell.selectionStyle = .none
-            let userModel = FeedStorage.tableModel[indexPath.row - 2]
+            let userModel = mainVM.feedStorage[indexPath.row - 2]
             feedCell.authorLabel.text = "\(userModel.firstName) \(userModel.lastName)"
             feedCell.descriptLabel.text = "\(userModel.profession)"
             feedCell.authorImageView.image = userModel.avatar
             
-            feedCell.model = userModel.feed[0]
+            if !userModel.feed.isEmpty {
+                feedCell.model = userModel.feed[0]
+            }
             feedCell.showMoreAction = {
                 self.goToFeedDetailVCAction?(userModel, 0)
             }
@@ -174,7 +189,7 @@ extension MainViewController: UITableViewDataSource {
             }
             
             feedCell.avatarAction = {
-                self.goToFollowerVCAction?((indexPath.row - 2) + 1)
+                self.goToFollowerVCAction?(userModel, (indexPath.row - 2) + 1)
             }
             return feedCell
         }

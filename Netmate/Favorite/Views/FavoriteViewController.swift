@@ -15,7 +15,7 @@ class FavoriteViewController: UIViewController {
     private let favSearchID = FavoriteSearchHeaderView.cellId
     
     var goToSearchAction: (() -> Void)?
-    var goToFeedDetailAction: ((_ model: User, _ idx: Int) -> Void)?
+    var goToFeedDetailAction: ((_ model: UserStub, _ idx: Int) -> Void)?
     
     //MARK: - localization
     private let titleBar = "bar_fav_title".localized()
@@ -138,8 +138,8 @@ extension FavoriteViewController: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID, for: indexPath) as! FeedTableViewCell
         let model = favoriteViewModel.favoriteFeed[indexPath.row]
-        let feedModel = Feed(article: model.article, image: model.image)
-        let userModel = User(avatar: model.avatar, firstName: model.author, lastName: "", nickName: model.author, profession: model.authorProf, photo: [], feed: [feedModel])
+        let feedModel = FeedStub(article: model.article, image: model.image)
+        let userModel = UserStub(avatar: model.avatar, firstName: model.author, lastName: "", nickName: model.author, profession: model.authorProf, photo: [], feed: [feedModel])
         
         feedCell.authorImageView.image = model.avatar
         feedCell.authorLabel.text = model.author
