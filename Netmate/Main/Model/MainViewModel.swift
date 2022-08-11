@@ -40,7 +40,13 @@ protocol MainViewModelInputProtocol {
     func addToFavoriteFeed(_ feed: FeedStub, completition: @escaping (String?) -> Void)
 }
 
-class MainViewModel: MainViewModelInputProtocol {
+protocol MainViewModelOutputProtocol {
+    func getFeedCollection(completion: @escaping (FeedStub) -> Void)
+    func getFriendCollection(completion: @escaping (FriendStub) -> Void)
+}
+
+
+class MainViewModel: MainViewModelInputProtocol, MainViewModelOutputProtocol {
     
     func getFeedCollection(completion: @escaping (FeedStub) -> Void) {
         APIManager.shared.getFeedCollection(collection: "feeds") { arr in

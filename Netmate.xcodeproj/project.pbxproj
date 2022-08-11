@@ -16,7 +16,6 @@
 		112CE369289BA76D008B2B06 /* ProfileNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112CE368289BA76D008B2B06 /* ProfileNotesTableViewCell.swift */; };
 		112D6A6928A0294300C42797 /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112D6A6828A0294300C42797 /* MainCoordinatorTests.swift */; };
 		113621DF2893F59100EE5C5F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113621DE2893F59100EE5C5F /* RadioButton.swift */; };
-		113634BD28A4522800276E81 /* PhotoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113634BC28A4522800276E81 /* PhotoStorage.swift */; };
 		11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E14289142D900A8AFE3 /* ProfileViewController.swift */; };
 		11431E182891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */; };
 		11431E1A28919E1300A8AFE3 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11431E1928919E1300A8AFE3 /* FavoriteViewController.swift */; };
@@ -109,7 +108,6 @@
 		112CE368289BA76D008B2B06 /* ProfileNotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotesTableViewCell.swift; sourceTree = "<group>"; };
 		112D6A6828A0294300C42797 /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
 		113621DE2893F59100EE5C5F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
-		113634BC28A4522800276E81 /* PhotoStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStorage.swift; sourceTree = "<group>"; };
 		11431E14289142D900A8AFE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11431E172891453400A8AFE3 /* ProfileHeaderViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewTableViewCell.swift; sourceTree = "<group>"; };
 		11431E1928919E1300A8AFE3 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -536,7 +534,6 @@
 		116041E828992ED300C3D82C /* DataStorage */ = {
 			isa = PBXGroup;
 			children = (
-				113634BC28A4522800276E81 /* PhotoStorage.swift */,
 				11573E46288FF8DA00819116 /* FeedUserStorage.swift */,
 			);
 			path = DataStorage;
@@ -904,7 +901,6 @@
 				11F07E50289D00C20004D054 /* DataBaseModel.xcdatamodeld in Sources */,
 				117270FF28926ACE0084D204 /* MainHeaderTableViewCell.swift in Sources */,
 				11431E312891AB6300A8AFE3 /* FavoriteCoordinator.swift in Sources */,
-				113634BD28A4522800276E81 /* PhotoStorage.swift in Sources */,
 				115A32C4289516A000873DB9 /* MenuViewController.swift in Sources */,
 				11431E1F2891A27100A8AFE3 /* FavoriteSearchViewController.swift in Sources */,
 				11431E15289142D900A8AFE3 /* ProfileViewController.swift in Sources */,

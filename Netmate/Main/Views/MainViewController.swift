@@ -69,22 +69,25 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchData()
+        setupViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupTabBarView()
+    }
+    //MARK: - methods
+    private func fetchData() {
         mainVM.getFeedCollection() { feed in
             self.feedModel.append(feed)
         }
         mainVM.getFriendCollection() { friend in
             self.friendModel.append(friend)
         }
-        
-        setupViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        setupTabBarView()
-    }
-    //MARK: - methods
     private func setupTabBarView() {
         self.tabBarController?.tabBar.barTintColor = Palette.appTintColor
         self.tabBarController?.tabBar.isTranslucent = true
@@ -164,7 +167,6 @@ extension MainViewController: UITableViewDataSource {
             headerCell.selectionStyle = .none
             return headerCell
         case 1:
-//            let model = friendModel[indexPath.item - 1]
             friedsListCell.model = friendModel
             friedsListCell.goToProfileAction = {
                 self.goToProfileVCAction?()

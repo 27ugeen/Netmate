@@ -71,15 +71,18 @@ class FollowerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        followerVM.getUser(userId: userId) { user in
-            self.userModel = user
-            self.titleLabel.text = user.nickName
-        }
-        
+        fetchData()
         setupTabBarView()
         setupViews()
     }
     //MARK: - methods
+    private func fetchData() {
+        followerVM.getUser(userId: userId) { user in
+            self.userModel = user
+            self.titleLabel.text = user.nickName
+        }
+    }
+    
     private func setupTabBarView() {
         let leftBarTitle = UIBarButtonItem.init(customView: titleLabel)
         self.navigationItem.setLeftBarButtonItems([backBarButton, leftBarTitle], animated: true)
@@ -108,7 +111,7 @@ extension FollowerViewController {
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: photoCellID)
         tableView.register(ProfileUserNotesTableViewCell.self, forCellReuseIdentifier: userNotesCellID)
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: feedCellID)
-
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -130,7 +133,7 @@ extension FollowerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (userModel?.feed.count ?? 0) + 5
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as! ProfileHeaderTableViewCell
         let buttonsCell = tableView.dequeueReusableCell(withIdentifier: buttonsCellID) as! FollowerButtonsTableViewCell
@@ -138,42 +141,42 @@ extension FollowerViewController: UITableViewDataSource {
         let photoCell = tableView.dequeueReusableCell(withIdentifier: photoCellID) as! PhotoTableViewCell
         let userNotesCell = tableView.dequeueReusableCell(withIdentifier: userNotesCellID) as! ProfileUserNotesTableViewCell
         let feedCell = tableView.dequeueReusableCell(withIdentifier: feedCellID) as! FeedTableViewCell
+        
+        switch indexPath.row {
+        case 0:
+            headerCell.selectionStyle = .none
+            headerCell.avatarImage.image = userModel?.avatar ?? UIImage(named: "default_pic")
+            headerCell.fullNameLabel.text = "\(userModel?.firstName ?? "Name") \(userModel?.lastName ?? "")"
+            headerCell.profLabel.text = "\(userModel?.profession ?? "Profession")"
             
-            switch indexPath.row {
-            case 0:
-                headerCell.selectionStyle = .none
-                headerCell.avatarImage.image = userModel?.avatar ?? UIImage(named: "default_pic")
-                headerCell.fullNameLabel.text = "\(userModel?.firstName ?? "Name") \(userModel?.lastName ?? "")"
-                headerCell.profLabel.text = "\(userModel?.profession ?? "Profession")"
-                
-                headerCell.goToInfoAction = {
-                    self.goToInfoVCAction?()
-                }
-                return headerCell
-            case 1:
-                return buttonsCell
-            case 2:
-                return subscriptCell
-            case 3:
-                photoCell.selectionStyle = .none
-                photoCell.model = userModel?.photo ?? [PhotoStub(photo: UIImage(named: "default_img")!)]
-                return photoCell
-            case 4:
-                userNotesCell.searchButton.isHidden = true
-                userNotesCell.titleLabel.text = "\(userModel?.firstName ?? "User")'s \(userNotes)"
-                return userNotesCell
-            default:
-                feedCell.selectionStyle = .none
-                feedCell.model = userModel?.feed[indexPath.row - 5]
-                
-                feedCell.authorLabel.text = "\(userModel?.firstName ?? "Name") \(userModel?.lastName ?? "")"
-                feedCell.authorImageView.image = userModel?.avatar ?? UIImage(named: "default_pic")
-                feedCell.descriptLabel.text = userModel?.profession ?? "Profession"
-                
-                feedCell.showMoreAction = {
-                    self.goToFeedDetailVCAction?((self.userModel?.feed[indexPath.row - 5])!)
-                }
-                return feedCell
+            headerCell.goToInfoAction = {
+                self.goToInfoVCAction?()
+            }
+            return headerCell
+        case 1:
+            return buttonsCell
+        case 2:
+            return subscriptCell
+        case 3:
+            photoCell.selectionStyle = .none
+            photoCell.model = userModel?.photo ?? [PhotoStub(photo: UIImage(named: "default_img")!)]
+            return photoCell
+        case 4:
+            userNotesCell.searchButton.isHidden = true
+            userNotesCell.titleLabel.text = "\(userModel?.firstName ?? "User")'s \(userNotes)"
+            return userNotesCell
+        default:
+            feedCell.selectionStyle = .none
+            feedCell.model = userModel?.feed[indexPath.row - 5]
+            
+            feedCell.authorLabel.text = "\(userModel?.firstName ?? "Name") \(userModel?.lastName ?? "")"
+            feedCell.authorImageView.image = userModel?.avatar ?? UIImage(named: "default_pic")
+            feedCell.descriptLabel.text = userModel?.profession ?? "Profession"
+            
+            feedCell.showMoreAction = {
+                self.goToFeedDetailVCAction?((self.userModel?.feed[indexPath.row - 5])!)
+            }
+            return feedCell
         }
     }
 }

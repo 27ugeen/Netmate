@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-class FollowerViewModel {
+protocol FollowerViewModelOutputProtocol {
+    func getUser(userId: String, completion: @escaping (UserStub) -> Void)
+}
+
+class FollowerViewModel: FollowerViewModelOutputProtocol {
     
     func getUser(userId: String, completion: @escaping (UserStub) -> Void) {
         APIManager.shared.getUser(collection: "users", docName: userId) { data in
