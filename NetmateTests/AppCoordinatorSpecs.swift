@@ -12,7 +12,7 @@ import iOSIntPackage
 
 final class UIViewControllerMock: UIViewController {}
 
-class AppCoordinatorTests: QuickSpec {
+class AppCoordinatorSpecs: QuickSpec {
     private var viewController: UIViewControllerMock!
     private var imagePublisherFacade: ImagePublisherFacade!
     
@@ -22,6 +22,7 @@ class AppCoordinatorTests: QuickSpec {
     private var menuVM: MenuViewModel!
     private var profileVM: ProfileViewModel!
     private var favVM: FavoriteViewModel!
+    private var followerVM: FollowerViewModel!
 
     private var mainVC: MainViewController!
     private var profileVC: ProfileViewController!
@@ -43,12 +44,13 @@ class AppCoordinatorTests: QuickSpec {
         self.menuVM = MenuViewModel()
         self.profileVM = ProfileViewModel()
         self.favVM = FavoriteViewModel()
+        self.followerVM = FollowerViewModel()
 
         self.mainVC = MainViewController(mainVM: mainVM)
         self.profileVC = ProfileViewController()
         self.favVC = FavoriteViewController(favoriteViewModel: favVM)
 
-        self.mainCoord = MainCoordinator(rootViewController: viewController, mainVC: mainVC, infoVM: infoVM, feedMenuVM: feedMenuVM, imagePublisherFacade: imagePublisherFacade)
+        self.mainCoord = MainCoordinator(rootViewController: viewController, mainVC: mainVC, infoVM: infoVM, feedMenuVM: feedMenuVM, followerVM: followerVM, imagePublisherFacade: imagePublisherFacade)
         self.profileCoord = ProfileCoordinator(rootViewController: viewController, profileVC: profileVC, infoVM: infoVM, menuVM: menuVM, profileVM: profileVM, imgPubFascade: imagePublisherFacade)
         self.favCoord = FavoriteCoordinator(rootViewController: viewController, favVC: favVC)
         

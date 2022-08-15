@@ -32,15 +32,15 @@ class DataBaseManager {
         var favoriteFeedArray: [FavoriteFeed]?
         do {
             favoriteFeedArray = try persistentContainer.viewContext.fetch(fetchRequest)
-        } catch let error {
-            print(error)
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
         return favoriteFeedArray ?? []
     }
     
     func addFeed(_ feed: FeedStub, completition: @escaping (String?) -> Void) {
         backgroundContext.perform { [weak self] in
-            guard let self = self else { return }
+            guard let self = self else { completition(nil); return }
             let fetchRequest = FavoriteFeed.fetchRequest()
             
             do {
@@ -58,8 +58,10 @@ class DataBaseManager {
                         newSet.stringImage = self.saveImageToDocuments(chosenImage: feed.image)
                         
                         try self.backgroundContext.save()
+                        completition(nil)
                         print("Post has been added!")
                     } else {
+                        completition(nil)
                         fatalError("Unable to insert FavoritePost entity")
                     }
                 }

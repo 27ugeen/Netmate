@@ -34,6 +34,7 @@ class MainCoordinatorTests: QuickSpec {
     private var mainVM: MainViewModel!
     private var infoVM: InfoViewModel!
     private var feedMenuVM: FeedMenuViewModel!
+    private var followerVM: FollowerViewModel!
     
     private var mainVC: MainViewController!
     
@@ -48,10 +49,11 @@ class MainCoordinatorTests: QuickSpec {
         self.mainVM = MainViewModel()
         self.infoVM = InfoViewModel()
         self.feedMenuVM = FeedMenuViewModel()
+        self.followerVM = FollowerViewModel()
         
         self.mainVC = MainViewController(mainVM: mainVM)
         
-        self.mainCoord = MainCoordinator(rootViewController: viewController, mainVC: mainVC, infoVM: infoVM, feedMenuVM: feedMenuVM, imagePublisherFacade: imagePublisherFacade)
+        self.mainCoord = MainCoordinator(rootViewController: viewController, mainVC: mainVC, infoVM: infoVM, feedMenuVM: feedMenuVM, followerVM: followerVM, imagePublisherFacade: imagePublisherFacade)
         self.navigationController = UINavigationControllerMock(rootViewController: mainVC)
         
         //MARK: - start() testing
@@ -88,7 +90,7 @@ class MainCoordinatorTests: QuickSpec {
                     self.mainCoord.navigationRootViewController = self.navigationController
                 }
                 it("expect push vc to FollowerVC") {
-                    let testIdx = 0
+                    let testIdx = "user"
                     self.mainCoord.goToFollowerVC(testIdx)
 
                     expect(self.navigationController.instanceVC).to(beAKindOf(FollowerViewController.self))
