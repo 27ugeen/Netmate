@@ -1,0 +1,24 @@
+PODS:
+  - BonsaiController (6.0.0)
+  - Nimble (10.0.0)
+  - Quick (5.0.1)
+
+DEPENDENCIES:
+  - BonsaiController
+  - Nimble
+  - Quick (= 5.0.1)
+
+SPEC REPOS:
+  trunk:
+    - BonsaiController
+    - Nimble
+    - Quick
+
+SPEC CHECKSUMS:
+  BonsaiController: 63410fc39bc5b3a9df5b329dbc848b6b27edf663
+  Nimble: 5316ef81a170ce87baf72dd961f22f89a602ff84
+  Quick: 749aa754fd1e7d984f2000fe051e18a3a9809179
+
+PODFILE CHECKSUM: 760b613c02de9b22b8eb17881f20a37ed3cff23e
+
+COCOAPODS: 1.11.3

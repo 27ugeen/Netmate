@@ -6,47 +6,75 @@
 //
 
 import UIKit
+import LocalAuthentication
+import iOSIntPackage
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: scene)
+        window?.makeKeyAndVisible()
+        
+        let localAuthContext = LAContext()
+        let rootVC = UIViewController()
+        
+        let localAuthorizationService = LocalAuthorizationService(localAuthContext: localAuthContext)
+        
+        let imgPubFascade = ImagePublisherFacade()
+        
+        let mainVM = MainViewModel()
+        let profileVM = ProfileViewModel()
+        let favVM = FavoriteViewModel()
+        let infoVM = InfoViewModel()
+        let feedMenuVM = FeedMenuViewModel()
+        let profileMenuVM = MenuViewModel()
+        let followerVM = FollowerViewModel()
+        
+        let mainVC = MainViewController(mainVM: mainVM)
+        let profileVC = ProfileViewController()
+        let favVC = FavoriteViewController(favoriteViewModel: favVM)
+        
+        let mainCoord = MainCoordinator(rootViewController: rootVC,
+                                        mainVC: mainVC,
+                                        infoVM: infoVM,
+                                        feedMenuVM: feedMenuVM,
+                                        followerVM: followerVM,
+                                        imagePublisherFacade: imgPubFascade)
+        
+        let profileCoord = ProfileCoordinator(rootViewController: rootVC,
+                                              profileVC: profileVC,
+                                              infoVM: infoVM,
+                                              menuVM: profileMenuVM,
+                                              profileVM: profileVM,
+                                              imgPubFascade: imgPubFascade)
+        
+        let favCoord = FavoriteCoordinator(rootViewController: rootVC,
+                                           favVC: favVC)
+        
+        let appCoordinator = AppCoordinator(mainCoordinator: mainCoord,
+                                            profileCoordinator: profileCoord,
+                                            favoriteCoordinator: favCoord)
+        
+        let onBoardingVC = OnboardingViewController(coordinator: appCoordinator,
+                                                    localAuthorizationService: localAuthorizationService)
+        
+        let onBoardingNavVC = UINavigationController(rootViewController: onBoardingVC)
+        
+        window?.rootViewController = onBoardingNavVC
     }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+    
+    func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard let window = self.window else { return }
+        window.rootViewController = vc
+        // add animation
+        UIView.transition(with: window,
+                          duration: 0.42,
+                          options: .transitionFlipFromLeft,
+                          animations: nil,
+                          completion: nil)
     }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-    }
-
-
 }
 

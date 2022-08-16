@@ -1,0 +1,133 @@
+/* 
+  Localizable.strings
+  Netmate
+
+  Created by GiN Eugene on 6/8/2022.
+  
+*/
+
+//MARK: - OnboardingViewController
+"reg_btn" = "ЗАРЕГЕСТРИРОВАТЬСЯ";
+"go_to_signin_btn" = "Уже есть аккаунт";
+
+//MARK: - SignInViewController
+"top_lab" = "С возвращением";
+"mid_lab" = "Введите номер телефона для входа в приложение";
+"confirm_btn" = "ПОДТВЕРДИТЬ";
+
+//MARK: - RegisterViewController
+"mid_reg_lab" = "Введите номер";
+"mid_reg_sub_lab" = "Ваш номер будет использоваться для входа в аккаунт";
+"next_btn" = "ДАЛЕЕ";
+"bot_reg_sub_lab" = "Нажимая кнопку \"Далее\", вы принимаете пользовательское соглашение и политику конфиденциальности";
+
+//MARK: - RegisterConfirmViewController
+"top_conf_lab" = "Подтверждение регистрации";
+"mid_conf_lab" = "Мы отправили SMS с кодом на номер:";
+"mid_conf_sub_lab" = "Введите код из SMS";
+
+//MARK: - MainViewController
+"bar_main_title" = "Главная";
+
+//MARK: - MainHeaderTableViewCell
+"news_btn" = "Новости";
+"forU_btn" = "Для вас";
+
+//MARK: - ProfileEditViewController
+"edit_title" = "Основная информация";
+"first_name" = "Имя";
+"last_name" = "Фамилия";
+"sex" = "Пол";
+"male_btn" = "Мужской";
+"female_btn" = "Женский";
+"birth_date" = "Дата рождения";
+"city_name" = "Родной город";
+"city_name_field" = "Введите название";
+
+//MARK: - ProfileHeaderTableViewCell
+"detail_btn" = "Подробная информация";
+
+//MARK: - ProfileButtonsTableViewCell
+"edit_btn" = "Редактировать";
+
+//MARK: - ProfileSubscribtionTableViewCell
+"publications_btn" = "публикаций";
+"subscriptions_btn" = "подписок";
+"subscribers_btn" = "подписчиков";
+"subscribers_qtt" = "тыс.";
+
+//MARK: - ProfileNotesTableViewCell
+"notes_btn" = "Запись";
+"history_btn" = "История";
+"photo_btn" = "Фото";
+
+//MARK: - MenuViewController
+"settings_btn" = "Настройки";
+"log_out_btn" = "Выйти";
+
+//MARK: - MenuViewModel
+"bookmarks_btn" = "Закладки";
+"favorite_btn" = "Сохраненные";
+"files_btn" = "Файлы";
+"archive_btn" = "Архивы";
+
+//MARK: - InfoViewController
+"info_title" = "Профиль";
+
+//MARK: - InfoViewModel
+"general_info_btn" = "Основная информация";
+"contacts_btn" = "Контакты";
+"interests_btn" = "Интересы";
+"education_btn" = "Образование";
+"career_btn" = "Карьера";
+
+//MARK: - ProfileViewModel
+"save_to_bookmarks_btn" = "Сохранить в закладках";
+"pin_btn" = "Закрепить";
+"disable_comments_btn" = "Выключить комментирование";
+"copy_the_link_btn" = "Копировать ссылку";
+"archive_the_entry_btn" = "Архивировать запись";
+"delete_btn" = "Удалить";
+
+//MARK: - FeedMenuViewModel
+"enable_notific_btn" = "Включить уведомления";
+"share_in_btn" = "Поделиться в...";
+"unsubscribe_btn" = "Отменить подписку";
+"complain_btn" = "Пожаловаться";
+
+//MARK: - PhotoTableViewCell
+"photo_title" = "Фото";
+
+//MARK: - PhotoViewController
+"photo_gallery_title" = "Фотогалерея";
+
+//MARK: - FavoriteViewController
+"bar_fav_title" = "Сохраненные";
+"no_feed_yet" = "Еще нет фида";
+"filtered_feed" = "Фиды отфильтрованы по автору:";
+"not_filtered_feed" = "Нет фильтра";
+
+//MARK: - FavoriteSearchViewController
+"search_field" = "Введите автора";
+"cancel_btn" = "Отмена";
+"search_btn" = "Поиск";
+"search_author_alert" = "Введите автора...";
+
+//MARK: - PostTopTableViewCell
+"show_more_btn" = "Показать больше...";
+
+//MARK: - showAlertOk
+"alert_error" = "Ошибка";
+
+//MARK: - AppCoordinator
+"bar_prof_title" = "Профиль";
+
+//MARK: - ProfileUserNotesTableViewCell
+"my_notes_title" = "Мои записи";
+
+//MARK: - FollowerViewController
+"user_note_title" = "записи";
+
+//MARK: - FollowerButtonsTableViewCell
+"message_btn" = "Сooбщение";
+"phone_btn" = "Позвонить";
