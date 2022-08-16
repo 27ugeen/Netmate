@@ -1,4 +1,6 @@
 # Netmate application.
+### This program is the basis for a social network with the possibility of unlimited expansion of functionality.
+#
 
 Receives data from "FireBase".
 
