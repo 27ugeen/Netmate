@@ -1,6 +1,6 @@
 # Netmate application.
 
-Retrieves data from "FireBase".
+Receives data from "FireBase".
 
 Implemented:
 - Application layout using Auto Layout without StoryBoards;
