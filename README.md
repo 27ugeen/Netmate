@@ -7,7 +7,7 @@ Receives data from "FireBase".
 Implemented:
 - Application layout using Auto Layout without StoryBoards;
 - MVVM pattern + coordinator;
-- using FireBase as the main storage;
+- using FireBase as the main cloud storage;
 - adding/deleting data from CoreData;
 - using light/dark theme;
 - using localization in 3 languages;
