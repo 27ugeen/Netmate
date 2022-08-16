@@ -8,6 +8,9 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
+    //MARK: - props
+    private let appCoordinator: AppCoordinator
+    
     //MARK: - localization
     private let titleReg = "reg_btn".localized()
     private let titleMid = "mid_reg_lab".localized()
@@ -74,7 +77,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private lazy var nextButton = MagicButton(title: titleNext, titleColor: Palette.btnWithBordTitleColor) {
-        let regConfVC = RegisterConfirmViewController()
+        let regConfVC = RegisterConfirmViewController(coordinator: self.appCoordinator)
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(regConfVC, animated: true)
     }
@@ -90,6 +93,15 @@ class RegisterViewController: UIViewController {
         return label
     }()
     //MARK: - init
+    init(coordinator: AppCoordinator) {
+        self.appCoordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

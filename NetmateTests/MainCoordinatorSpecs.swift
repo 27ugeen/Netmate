@@ -27,7 +27,7 @@ final class UINavigationControllerMock: UINavigationController {
     }
 }
 
-class MainCoordinatorTests: QuickSpec {
+class MainCoordinatorSpecs: QuickSpec {
     private var viewController: UIViewControllerMock!
     private var imagePublisherFacade: ImagePublisherFacade!
     
@@ -64,21 +64,6 @@ class MainCoordinatorTests: QuickSpec {
                     
                     expect(actual).to(beAKindOf(UINavigationController.self))
                     expect(actual.isViewLoaded).to(equal(true))
-                }
-            }
-        }
-        //MARK: - goToProfileVC() testing
-        describe("goToProfileVC() testing") {
-            context("when func started") {
-                beforeEach {
-//                    self.navigationController.pushViewControllerCalled = false
-//                    self.mainCoord.navigationRootViewController = self.navigationController
-                }
-                it("expect go to tab ProfileVC") {
-                   self.mainCoord.goToProfileVC()
-                    
-//                    expect(self.navigationController.instanceVC).to(beAKindOf(ProfileViewController.self))
-
                 }
             }
         }

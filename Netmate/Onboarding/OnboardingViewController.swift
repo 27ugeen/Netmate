@@ -41,7 +41,7 @@ class OnboardingViewController: UIViewController {
     }()
     
     private lazy var registerButton = MagicButton(title: titleRegister, titleColor: Palette.btnWithBordTitleColor) {
-        let regVC = RegisterViewController()
+        let regVC = RegisterViewController(coordinator: self.appCoordinator)
         self.navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(regVC, animated: true)
     }

@@ -76,30 +76,11 @@ class ProfileNotesTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setupButtons()
         setupViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    //MARK: - methods
-    private func setupButtons() {
-//        historyButton.configurationUpdateHandler = { btn in
-//            if btn.isHighlighted {
-//                var config = btn.configuration
-//                config?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attr in
-//                    var newAttr = attr
-//                    newAttr.foregroundColor = Palette.accentTextColor
-//                    return newAttr
-//                }
-//                config?.imageColorTransformer = UIConfigurationColorTransformer { _ in
-//                    return Palette.accentTextColor
-//
-//                }
-//                btn.configuration = config
-//            }
-//        }
     }
 }
 //MARK: - setupViews

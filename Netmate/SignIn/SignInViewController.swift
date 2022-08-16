@@ -113,8 +113,6 @@ class SignInViewController: UIViewController {
     
     private func goToProfile() {
         let _ = appCoordinator.start()
-    
-//        self.navigationController?.pushViewController(tabBC, animated: true)
         print("Current user:  is signed in")
     }
 }

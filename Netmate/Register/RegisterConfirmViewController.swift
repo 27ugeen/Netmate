@@ -8,6 +8,9 @@
 import UIKit
 
 class RegisterConfirmViewController: UIViewController {
+    //MARK: - props
+    private let appCoordinator: AppCoordinator
+    
     //MARK: - localization
     private let titleTop = "top_conf_lab".localized()
     private let titleMid = "mid_conf_lab".localized()
@@ -86,7 +89,7 @@ class RegisterConfirmViewController: UIViewController {
     }()
     
     private lazy var registerButton = MagicButton(title: titleRegister, titleColor: Palette.btnWithBordTitleColor) {
-        //        self.goToProfile()
+        self.goToProfile()
     }
     
     private lazy var logoImageView: UIImageView = {
@@ -97,6 +100,15 @@ class RegisterConfirmViewController: UIViewController {
         return imageView
     }()
     //MARK: - init
+    init(coordinator: AppCoordinator) {
+        self.appCoordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,6 +137,11 @@ class RegisterConfirmViewController: UIViewController {
         registerButton.layer.cornerRadius = 8
         registerButton.clipsToBounds = true
     }
+    
+    private func goToProfile() {
+        let _ = appCoordinator.start()
+        print("Current user:  is signed in")
+    }
 }
 //MARK: - setupViews
 extension RegisterConfirmViewController {
@@ -134,7 +151,7 @@ extension RegisterConfirmViewController {
         //TODO: - set changing color for darkMode
         self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "gtlArrow")?.withRenderingMode(.alwaysOriginal)
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "gtlArrow")
-
+        
         self.view.backgroundColor = Palette.appTintColor
         self.view.addSubview(scrollView)
         

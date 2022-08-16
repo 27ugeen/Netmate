@@ -20,18 +20,6 @@ extension UIImage {
     }
 }
 
-//public func reciveImagesArrFromPhotoStorage(photos: AnyObject) -> [UIImage] {
-//    var imageArray: [UIImage] = []
-//    
-////         PhotoStorage.tableModel.forEach { section in
-////             section.photo.forEach { Photo in
-////                 imageArray.append(Photo.image)
-////             }
-////         }
-//    return imageArray
-//}
-
-
 extension UIViewController {
     func showAlertOk(message: String) {
         //MARK: - localization

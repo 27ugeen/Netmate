@@ -93,6 +93,7 @@ class MainViewModel: MainViewModelInputProtocol, MainViewModelOutputProtocol {
     func addToFavoriteFeed(_ feed: FeedStub, completition: @escaping (String?) -> Void) {
         DataBaseManager.shared.addFeed(feed) { message in
             DispatchQueue.main.async {
+                guard message != nil else { return }
                 completition(message)
             }
         }
