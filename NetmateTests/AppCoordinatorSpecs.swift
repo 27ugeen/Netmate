@@ -9,6 +9,7 @@ import Quick
 import Nimble
 import iOSIntPackage
 @testable import Netmate
+import CoreData
 
 final class UIViewControllerMock: UIViewController {}
 
@@ -23,6 +24,10 @@ class AppCoordinatorSpecs: QuickSpec {
     private var profileVM: ProfileViewModel!
     private var favVM: FavoriteViewModel!
     private var followerVM: FollowerViewModel!
+    
+    private var container: NSPersistentContainer!
+    private var backContext: NSManagedObjectContext!
+    private var dbManager: DataBaseManager!
 
     private var mainVC: MainViewController!
     private var profileVC: ProfileViewController!
@@ -38,12 +43,17 @@ class AppCoordinatorSpecs: QuickSpec {
         self.viewController = UIViewControllerMock()
         self.imagePublisherFacade = ImagePublisherFacade()
         
-        self.mainVM = MainViewModel()
+        self.container = NSPersistentContainer(name: "DataBaseModel")
+        self.backContext = container.newBackgroundContext()
+        
+        self.dbManager = DataBaseManager(persistentContainer: container, backgroundContext: backContext)
+        
+        self.mainVM = MainViewModel(dbManager: dbManager)
         self.infoVM = InfoViewModel()
         self.feedMenuVM = FeedMenuViewModel()
         self.menuVM = MenuViewModel()
         self.profileVM = ProfileViewModel()
-        self.favVM = FavoriteViewModel()
+        self.favVM = FavoriteViewModel(dbManager: dbManager)
         self.followerVM = FollowerViewModel()
 
         self.mainVC = MainViewController(mainVM: mainVM)

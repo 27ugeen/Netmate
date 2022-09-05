@@ -18,7 +18,7 @@ struct User {
     let photo: [Photo]
 }
 
-struct Feed {
+struct Feed: Equatable {
     let userId: String
     let uAvatar: String
     let uName: String

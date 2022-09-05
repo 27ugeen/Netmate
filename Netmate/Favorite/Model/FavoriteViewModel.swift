@@ -23,20 +23,27 @@ struct FavoriteFeedStub: Equatable {
 
 class FavoriteViewModel: FavoriteViewModelOutputProtocol {
     //MARK: - props
+    private let dbManager: DataBaseManager
+    
     var favoriteFeed: [FavoriteFeedStub] = []
     var filteredFeed: [FavoriteFeedStub] = []
     
+    //MARK: - init
+    init(dbManager: DataBaseManager) {
+        self.dbManager = dbManager
+    }
+    
     //MARK: - methods
     func getAllFavoriteFeed() {
-        let feedArray = DataBaseManager.shared.getAllFeed()
+        let feedArray = dbManager.getAllFeed()
         
         favoriteFeed = []
         for feed in feedArray {
             if let uFeed = feed {
                 
-                let newAvatar = DataBaseManager.shared.getImageFromDocuments(imageUrl: URL(string: uFeed.stringAvatar ?? "") ?? URL(fileURLWithPath: ""))
+                let newAvatar = dbManager.getImageFromDocuments(imageUrl: URL(string: uFeed.stringAvatar ?? "") ?? URL(fileURLWithPath: ""))
                 
-                let newFeedImage = DataBaseManager.shared.getImageFromDocuments(imageUrl: URL(string: uFeed.stringImage ?? "") ?? URL(fileURLWithPath: ""))
+                let newFeedImage = dbManager.getImageFromDocuments(imageUrl: URL(string: uFeed.stringImage ?? "") ?? URL(fileURLWithPath: ""))
                 
                 let newFeed = FavoriteFeedStub(author: uFeed.author ?? "",
                                                authorProf: uFeed.authorProf ?? "",
@@ -49,7 +56,7 @@ class FavoriteViewModel: FavoriteViewModelOutputProtocol {
     }
     
     func removeFeedFromFavorite(feed: FavoriteFeedStub, index: Int) {
-        DataBaseManager.shared.deleteFeed(favFeed: feed)
+        dbManager.deleteFeed(favFeed: feed)
         favoriteFeed.remove(at: index)
     }
     

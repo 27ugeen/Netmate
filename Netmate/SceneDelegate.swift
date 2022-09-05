@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 import LocalAuthentication
 import iOSIntPackage
 
@@ -25,9 +26,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let imgPubFascade = ImagePublisherFacade()
         
-        let mainVM = MainViewModel()
+        lazy var persistentContainer: NSPersistentContainer = {
+            let container = NSPersistentContainer(name: "DataBaseModel")
+            container.loadPersistentStores { description, error in
+                if let error = error {
+                    fatalError("Unable to load persistent stores: \(error)")
+                }
+            }
+            return container
+        }()
+
+        
+        let context = persistentContainer.newBackgroundContext()
+        let dbManager = DataBaseManager(persistentContainer: persistentContainer, backgroundContext: context)
+        
+        
+        let mainVM = MainViewModel(dbManager: dbManager)
         let profileVM = ProfileViewModel()
-        let favVM = FavoriteViewModel()
+        let favVM = FavoriteViewModel(dbManager: dbManager)
         let infoVM = InfoViewModel()
         let feedMenuVM = FeedMenuViewModel()
         let profileMenuVM = MenuViewModel()

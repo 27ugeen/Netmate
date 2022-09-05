@@ -7,6 +7,7 @@
 
 import Quick
 import Nimble
+import CoreData
 import iOSIntPackage
 @testable import Netmate
 
@@ -36,6 +37,10 @@ class MainCoordinatorSpecs: QuickSpec {
     private var feedMenuVM: FeedMenuViewModel!
     private var followerVM: FollowerViewModel!
     
+    private var container: NSPersistentContainer!
+    private var backContext: NSManagedObjectContext!
+    private var dbManager: DataBaseManager!
+    
     private var mainVC: MainViewController!
     
     private var mainCoord: MainCoordinator!
@@ -46,7 +51,12 @@ class MainCoordinatorSpecs: QuickSpec {
         self.viewController = UIViewControllerMock()
         self.imagePublisherFacade = ImagePublisherFacade()
         
-        self.mainVM = MainViewModel()
+        self.container = NSPersistentContainer(name: "DataBaseModel")
+        self.backContext = container.newBackgroundContext()
+        
+        self.dbManager = DataBaseManager(persistentContainer: container, backgroundContext: backContext)
+        
+        self.mainVM = MainViewModel(dbManager: dbManager)
         self.infoVM = InfoViewModel()
         self.feedMenuVM = FeedMenuViewModel()
         self.followerVM = FollowerViewModel()

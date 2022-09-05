@@ -11,20 +11,15 @@ import CoreData
 
 class DataBaseManager {
     //MARK: - props
-    static let shared = DataBaseManager()
     //Create container
     private let persistentContainer: NSPersistentContainer
-    private lazy var backgroundContext = persistentContainer.newBackgroundContext()
+    private let backgroundContext: NSManagedObjectContext
     
     //MARK: - init
-    init() {
-        let container = NSPersistentContainer(name: "DataBaseModel")
-        container.loadPersistentStores { description, error in
-            if let error = error {
-                fatalError("Unable to load persistent stores: \(error)")
-            }
-        }
-        self.persistentContainer = container
+    init(persistentContainer: NSPersistentContainer,
+         backgroundContext: NSManagedObjectContext) {
+        self.persistentContainer = persistentContainer
+        self.backgroundContext = backgroundContext
     }
     //MARK: - methods
     func getAllFeed() -> [FavoriteFeed?] {

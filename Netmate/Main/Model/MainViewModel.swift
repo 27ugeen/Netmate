@@ -47,7 +47,14 @@ protocol MainViewModelOutputProtocol {
 
 
 class MainViewModel: MainViewModelInputProtocol, MainViewModelOutputProtocol {
+    //MARK: - props
+    private let dbManager: DataBaseManager
     
+    //MARK: - init
+    init(dbManager: DataBaseManager) {
+        self.dbManager = dbManager
+    }
+    //MARK: - methods
     func getFeedCollection(completion: @escaping (FeedStub) -> Void) {
         APIManager.shared.getFeedCollection(collection: "feeds") { arr in
             arr.forEach { data in
@@ -91,7 +98,7 @@ class MainViewModel: MainViewModelInputProtocol, MainViewModelOutputProtocol {
     }
     
     func addToFavoriteFeed(_ feed: FeedStub, completition: @escaping (String?) -> Void) {
-        DataBaseManager.shared.addFeed(feed) { message in
+        dbManager.addFeed(feed) { message in
             DispatchQueue.main.async {
                 guard message != nil else { return }
                 completition(message)

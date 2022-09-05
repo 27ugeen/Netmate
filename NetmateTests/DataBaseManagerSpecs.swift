@@ -14,66 +14,61 @@ class DataBaseManagerSpecs: QuickSpec {
     
     override func spec() {
         //sut => system under test
-        let sut = DataBaseManager()
+        let container = NSPersistentContainer(name: "DataBaseModel") // - container name same real container
+        let docUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
+        let storeUrl = docUrl?.appendingPathComponent("testModel.sqlite")
+        do {
+            try container.persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+                                                                        configurationName: nil, at: storeUrl)
+        } catch let error {
+            print(error)
+        }
         
-        var container: NSPersistentContainer!
+        let backContext = container.newBackgroundContext()
+        let sut = DataBaseManager(persistentContainer: container, backgroundContext: backContext)
+        
         let imgMock = UIImage()
         var imgUrlTest: String!
         let imageUrlMock = URL(fileURLWithPath: "")
+        
         let testFeedStub = FeedStub(userId: "test", avatar: imgMock, name: "test", prof: "", article: "test", image: imgMock)
         let testFavFeedStub = FavoriteFeedStub(author: "test", authorProf: "test", avatar: imgMock, image: imgMock, article: "test")
-        var testFavFeed: FavoriteFeed?
-        var testArrFavFeed = [testFavFeed]
-        
-        describe("Given init testing") {
-            let expectedContainer = NSPersistentContainer(name: "DataBaseModel")
-            context("When dbManager init") {
-                beforeEach {
-                    container = NSPersistentContainer(name: "DataBaseModel")
-                }
-                it("Then should init persistentContainer") {
-                    let _ = DataBaseManager.init()
-                    
-                    expect(container.name).to(equal(expectedContainer.name))
-                }
-                
-                afterEach {
-                    container = nil
-                }
-            }
-        }
         
         describe("Given getAllFeed() testing") {
             context("When getAllFeed() start") {
                 it("Then expect receive FavoriteFeed array") {
-                    let actualArr = sut.getAllFeed()
-                    
-                    expect(actualArr).to(beAKindOf([FavoriteFeed].self))
+                    waitUntil { done in
+                        sut.addFeed(testFeedStub) { data in
+                            let actualArr = sut.getAllFeed()
+                            expect(actualArr).to(beAKindOf([FavoriteFeed].self))
+                            expect(actualArr.count).to(equal(1))
+                            done()
+                        }
+                    }
+                }
+                afterEach {
+                    sut.deleteFeed(favFeed: testFavFeedStub)
                 }
             }
         }
         
         describe("Given addFeed() testing") {
             context("When addFeed() start") {
-                beforeEach {
-                    sut.deleteFeed(favFeed: testFavFeedStub)
-                    testFavFeed = FavoriteFeed()
-                    testArrFavFeed = []
-                }
                 it("Then expect added feed to db") {
-                    let startArrCount = testArrFavFeed.count
                     waitUntil { done in
                         sut.addFeed(testFeedStub) { completion in
-                            testArrFavFeed.append(testFavFeed)
+                            let actualArr = sut.getAllFeed()
                             expect(completion).to(beNil())
-                            expect(testArrFavFeed.count).to(equal(startArrCount + 1))
+                            expect(actualArr.first??.author).to(equal(testFeedStub.name))
                             done()
                         }
                     }
                 }
                 it("Then expect get error post added") {
                     waitUntil { done in
-                        sut.addFeed(testFeedStub) {completion in done()}
+                        sut.addFeed(testFeedStub) {completion in
+                            done()
+                        }
                     }
                     waitUntil { done in
                         sut.addFeed(testFeedStub) { completion in
@@ -83,35 +78,25 @@ class DataBaseManagerSpecs: QuickSpec {
                     }
                 }
                 afterEach {
-                    testFavFeed = nil
                     sut.deleteFeed(favFeed: testFavFeedStub)
-                    testArrFavFeed = []
                 }
             }
         }
         
         describe("Given deleteFeed() testing") {
             context("When deleteFeed() start") {
-                beforeEach {
-                    sut.addFeed(testFeedStub) {completion in}
-                    testFavFeed = FavoriteFeed()
-                    testArrFavFeed.append(testFavFeed)
-                }
                 it("Then expect delete feed from db") {
-                    let startArrCount = sut.getAllFeed().count + 1
-                    var endArrcount = 0
+                    var finishArrCount: Int?
                     waitUntil { done in
-                        sut.deleteFeed(favFeed: testFavFeedStub)
-                        done()
-                        endArrcount = sut.getAllFeed().count
+                        sut.addFeed(testFeedStub) { completion in
+                            let actualArr = sut.getAllFeed()
+                            sut.deleteFeed(favFeed: testFavFeedStub)
+                            finishArrCount = sut.getAllFeed().count
+                            expect(actualArr.count).to(equal(1))
+                            expect(finishArrCount).to(equal(actualArr.count - 1))
+                            done()
+                        }
                     }
-                    expect(endArrcount).to(equal(startArrCount - 1))
-                }
-                
-                afterEach {
-                    sut.deleteFeed(favFeed: testFavFeedStub)
-                    testFavFeed = nil
-                    testArrFavFeed = []
                 }
             }
         }
@@ -120,7 +105,6 @@ class DataBaseManagerSpecs: QuickSpec {
             context("When saveImageToDocuments() start") {
                 it("Then expect save img to doc") {
                     let resultStr = sut.saveImageToDocuments(chosenImage: imgMock)
-                    
                     expect(resultStr).to(beAKindOf(String.self))
                 }
             }
@@ -133,13 +117,11 @@ class DataBaseManagerSpecs: QuickSpec {
                 }
                 it("Then expect get image from doc") {
                     let resultImg = sut.getImageFromDocuments(imageUrl: URL(string: imgUrlTest)!)
-                    
                     expect(resultImg).to(beAKindOf(UIImage.self))
                 }
                 
                 it("Then expect get nil") {
                     let resultImg = sut.getImageFromDocuments(imageUrl: imageUrlMock)
-                    
                     expect(resultImg).to(beNil())
                 }
                 afterEach {
